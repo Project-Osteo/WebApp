@@ -71,7 +71,7 @@ app.post('/api/registar', (req, res) => {
     });
 });
 
-//Inserir dados paciente POR ACABAR
+//Inserir dados paciente
 app.post('/api/utilizador/inserirdados', (req, res) => {
     const user_id;
     const nome;
@@ -84,10 +84,12 @@ app.post('/api/utilizador/inserirdados', (req, res) => {
     const telemovel;
 
     const sqlInsertDadosPaciente = "INSERT INTO PACIENTES " +
-        "(user_id, nome, mail, genero, nacionalidade, localidade, data_nascimento, altura, telemovel)"
-
-
-
+        "(user_id, nome, mail, genero, nacionalidade, localidade, data_nascimento, altura, telemovel)" +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    db.query(sqlInsertDadosPaciente, [user_id, nome, mail, genero, nacionalidade, localidade, 
+        data_nascimento, altura, telemovel], (err, result) => {
+            console.log(result);
+        });
 });
 
 //Dados paciente
@@ -115,7 +117,6 @@ app.post('/api/treinos/novo', (req, res) => {
 });
 
 
-
 //Informaçao de uma consulta do paciente
 //Informaçao de um treino do paciente
 
@@ -126,9 +127,6 @@ app.post('/api/treinos/novo', (req, res) => {
 //Listar todos os treinos do user
 //Informaçao de uma consulta do user
 //Informaçao de um treino do user
-
-
-
 
 
 
