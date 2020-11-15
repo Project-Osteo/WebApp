@@ -15,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
 //Listar todos os pacientes
 app.get('/api/pacientes', (req, res) => {
     const sqlSelectAllPacientes = 'SELECT * FROM pacientes';
@@ -61,9 +60,9 @@ app.get('/api/pacientes/:id/treinos', (req, res) => {
 
 //Inserir novo utilizador
 app.post('/api/registar', (req, res) => {
-    const nome ; 
-    const email;
-    const password;
+    const nome = ""; 
+    const email = "";
+    const password = "";
 
     const sqlInsertUser = "INSERT INTO utilizadores (nome, mail, pwd) VALUES (?,?,?)";
     db.query(sqlInsertUser, [nome, email, password], (err, result) => {
@@ -73,15 +72,15 @@ app.post('/api/registar', (req, res) => {
 
 //Inserir dados paciente
 app.post('/api/utilizador/inserirdados', (req, res) => {
-    const user_id;
-    const nome;
-    const mail;
-    const genero;
-    const nacionalidade;
-    const localidade;
-    const data_nascimento;
-    const altura;
-    const telemovel;
+    const user_id = "";
+    const nome = "";
+    const mail = "";
+    const genero = "";
+    const nacionalidade = "";
+    const localidade = "";
+    const data_nascimento = "";
+    const altura = "";
+    const telemovel = "";
 
     const sqlInsertDadosPaciente = "INSERT INTO PACIENTES " +
         "(user_id, nome, mail, genero, nacionalidade, localidade, data_nascimento, altura, telemovel)" +
@@ -103,11 +102,11 @@ app.get('/api/utilizador/:id', (req, res) => {
 
 //Inserir treino
 app.post('/api/treinos/novo', (req, res) => {
-    const paciente_id;
-    const datatreino;
-    const tipotreino;
-    const descricao;
-    const obs;
+    const paciente_id = "";
+    const datatreino = "";
+    const tipotreino = "";
+    const descricao = "";
+    const obs = "";
 
     const sqlInsertTreino = "INSERT INTO treinos (paciente_id, data_treino, descricao, tipo, obs)" +  
         "VALUES (?, ?, ?, ?, ?)";
