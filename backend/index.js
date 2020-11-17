@@ -41,7 +41,7 @@ app.get('/api/pacientes/:id/consultas', (req, res) => {
     });
 });
 
-//Listar todos os tratamentos de uma consulta
+//Listar todos os tratamentos de uma consulta -> ok
 app.get('/api/consulta/:id/tratamento', (req, res) => {
     const id = req.params.id;
     const sqlSelectTratamentosFromConsulta = "SELECT * FROM tratamentos WHERE consulta_id = ?";
