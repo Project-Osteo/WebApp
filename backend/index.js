@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//Listar todos os pacientes
+//Listar todos os pacientes -> ok
 app.get('/api/pacientes', (req, res) => {
     const sqlSelectAllPacientes = 'SELECT * FROM pacientes';
     db.query(sqlSelectAllPacientes, (err, result) => {
@@ -23,7 +23,7 @@ app.get('/api/pacientes', (req, res) => {
     });
 });
 
-//Listar todas as consultas
+//Listar todas as consultas -> ok
 app.get('/api/consultas',  (req, res) => {
     const sqlSelectAllConsultas = 'SELECT * FROM consultas';
     db.query(sqlSelectAllConsultas, (err, result) => {
@@ -31,11 +31,21 @@ app.get('/api/consultas',  (req, res) => {
     });
 });
 
-//Listar consultas do paciente
+//Listar consultas do paciente -> ok
 app.get('/api/pacientes/:id/consultas', (req, res) => {
     const id = req.params.id;
     const sqlSelectConsultasFromPaciente = "SELECT * FROM consultas WHERE paciente_id = ?";
     db.query(sqlSelectConsultasFromPaciente, [id], (err, result) => {
+        console.log(result);
+        res.send(result);
+    });
+});
+
+//Listar todos os tratamentos de uma consulta
+app.get('/api/consulta/:id/tratamento', (req, res) => {
+    const id = req.params.id;
+    const sqlSelectTratamentosFromConsulta = "SELECT * FROM tratamentos WHERE consulta_id = ?";
+    db.query(sqlSelectTratamentosFromConsulta, [id], (err, result) => {
         console.log(result);
         res.send(result);
     });
