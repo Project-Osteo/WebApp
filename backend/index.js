@@ -23,7 +23,7 @@ app.get('/api/pacientes', (req, res) => {
     });
 });
 
-//Listar todas as consultas -> ok
+//Listar todas as consultas -> ok but no need
 app.get('/api/consultas',  (req, res) => {
     const sqlSelectAllConsultas = 'SELECT * FROM consultas';
     db.query(sqlSelectAllConsultas, (err, result) => {
@@ -42,7 +42,7 @@ app.get('/api/pacientes/:id/consultas', (req, res) => {
 });
 
 //Listar todos os tratamentos de uma consulta -> ok
-app.get('/api/consulta/:id/tratamento', (req, res) => {
+app.get('/api/consultas/:id/tratamento', (req, res) => {
     const id = req.params.id;
     const sqlSelectTratamentosFromConsulta = "SELECT * FROM tratamentos WHERE consulta_id = ?";
     db.query(sqlSelectTratamentosFromConsulta, [id], (err, result) => {
@@ -51,7 +51,7 @@ app.get('/api/consulta/:id/tratamento', (req, res) => {
     });
 });
 
-//Listar todos os treinos
+//Listar todos os treinos -> ok
 app.get('/api/treinos',  (req, res) => {
     const sqlSelectAllTreinos = 'SELECT * FROM treinos';
     db.query(sqlSelectAllTreinos, (err, result) => {
@@ -60,7 +60,7 @@ app.get('/api/treinos',  (req, res) => {
     });
 });
 
-//Listar treinos do paciente
+//Listar treinos do paciente -> ok
 app.get('/api/pacientes/:id/treinos', (req, res) => {
     var id = req.params.id;
     const sqlSelectTreinosFromPaciente = "SELECT * FROM treinos WHERE paciente_id = ?";
@@ -71,8 +71,7 @@ app.get('/api/pacientes/:id/treinos', (req, res) => {
 
 });
 
-
-//Listar users
+//Listar users -> ok but no need
 app.get('/api/utilizadores', (req, res) => {
     const sqlSelectAllUsers = "SELECT * FROM utilizadores";
     db.query(sqlSelectAllUsers, (err, result) => {
@@ -81,7 +80,7 @@ app.get('/api/utilizadores', (req, res) => {
     });
 });
 
-//Inserir novo utilizador
+//Inserir novo utilizador -> ok i guess falta frontend
 app.post('/api/registar', (req, res) => {
     const name = "";
     const email = "";
@@ -94,7 +93,7 @@ app.post('/api/registar', (req, res) => {
     });
 });
 
-//Inserir dados paciente
+//Inserir dados paciente -> 
 app.post('/api/utilizador/inserirdados', (req, res) => {
     const user_id = "";
     const nome = "";
@@ -116,7 +115,7 @@ app.post('/api/utilizador/inserirdados', (req, res) => {
         });
 });
 
-//Dados paciente
+//Dados paciente -> ok
 app.get('/api/pacientes/:id', (req, res) => {
     const id = req.params.id;
 
@@ -150,12 +149,8 @@ app.post('/api/treinos/novo', (req, res) => {
 
 
 //PEDIDOS MOBILE
-//Listar todas as consultas do user
-//Listar todos os treinos do user
 //Informaçao de uma consulta do user
 //Informaçao de um treino do user
-
-
 
 app.post('/api/insert', (req, res) => {
 
