@@ -20,7 +20,7 @@ app.get('/api/pacientes', (req, res) => {
     const sqlSelectAllPacientes = 'SELECT * FROM pacientes';
     db.query(sqlSelectAllPacientes, (err, result) => {
         res.send(result);
-    })
+    });
 });
 
 //Listar todas as consultas
@@ -28,45 +28,59 @@ app.get('/api/consultas',  (req, res) => {
     const sqlSelectAllConsultas = 'SELECT * FROM consultas';
     db.query(sqlSelectAllConsultas, (err, result) => {
         res.send(result);
-    })
+    });
 });
 
 //Listar consultas do paciente
 app.get('/api/pacientes/:id/consultas', (req, res) => {
-    var id = req.params.paciente_id;
+    const id = req.params.id;
     const sqlSelectConsultasFromPaciente = "SELECT * FROM consultas WHERE paciente_id = ?";
     db.query(sqlSelectConsultasFromPaciente, [id], (err, result) => {
         console.log(result);
+        res.send(result);
     });
 });
 
 //Listar todos os treinos
 app.get('/api/treinos',  (req, res) => {
-    const sqlSelectAllTreinos = 'SELECT * FROM consultas';
+    const sqlSelectAllTreinos = 'SELECT * FROM treinos';
     db.query(sqlSelectAllTreinos, (err, result) => {
+        console.log(result);
         res.send(result);
-    })
+    });
 });
 
 //Listar treinos do paciente
 app.get('/api/pacientes/:id/treinos', (req, res) => {
-    var id = req.params.paciente_id;
+    var id = req.params.id;
     const sqlSelectTreinosFromPaciente = "SELECT * FROM treinos WHERE paciente_id = ?";
-    db.query(sqlSelectTreinosFromPaciente, (err, result) => {
+    db.query(sqlSelectTreinosFromPaciente, [id], (err, result) => {
         console.log(result);
+        res.send(result);
     });
 
 });
 
+
+//Listar users
+app.get('/api/utilizadores', (req, res) => {
+    const sqlSelectAllUsers = "SELECT * FROM utilizadores";
+    db.query(sqlSelectAllUsers, (err, result) => {
+        console.log(result);
+        res.send(result);
+    });
+});
+
 //Inserir novo utilizador
 app.post('/api/registar', (req, res) => {
-    const nome = ""; 
+    const name = "";
     const email = "";
     const password = "";
 
     const sqlInsertUser = "INSERT INTO utilizadores (nome, mail, pwd) VALUES (?,?,?)";
-    db.query(sqlInsertUser, [nome, email, password], (err, result) => {
+    db.query(sqlInsertUser, [name, email, password], (err, result) => {
         console.log(result);
+        res.send(result);
     });
 });
 
@@ -88,15 +102,18 @@ app.post('/api/utilizador/inserirdados', (req, res) => {
     db.query(sqlInsertDadosPaciente, [user_id, nome, mail, genero, nacionalidade, localidade, 
         data_nascimento, altura, telemovel], (err, result) => {
             console.log(result);
+            res.send(result);
         });
 });
 
 //Dados paciente
-app.get('/api/utilizador/:id', (req, res) => {
-    var id = req.params.id
+app.get('/api/pacientes/:id', (req, res) => {
+    const id = req.params.id;
+
     const sqlSelectDadosPaciente = "SELECT * FROM pacientes WHERE user_id = ?";
-    db.query(sqlSelectDadosPaciente, (err, result) => {
+    db.query(sqlSelectDadosPaciente, [id], (err, result) => {
         console.log(result);
+        res.send(result);
     });
 });
 
@@ -112,6 +129,7 @@ app.post('/api/treinos/novo', (req, res) => {
         "VALUES (?, ?, ?, ?, ?)";
         db.query(sqlInsertTreino, [paciente_id, datatreino, tipotreino, descricao, obs], (err, req) => {
             console.log(result);
+            res.send(result);
         });
 });
 
