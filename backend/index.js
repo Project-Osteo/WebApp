@@ -24,13 +24,7 @@ app.get('/api/pacientes', (req, res) => {
     });
 });
 
-//Listar todas as consultas -> ok
-app.get('/api/consultas',  (req, res) => {
-    const sqlSelectAllConsultas = 'SELECT * FROM consultas';
-    db.query(sqlSelectAllConsultas, (err, result) => {
-        res.send(result);
-    });
-});
+// '/api/pacientes/:id -> listar os dados do paciente, carregar consultas e treinos do paciente
 
 //Listar consultas do paciente -> ok
 app.get('/api/pacientes/:id/consultas', (req, res) => {
@@ -48,6 +42,14 @@ app.get('/api/consulta/:id/tratamento', (req, res) => {
     const sqlSelectTratamentosFromConsulta = "SELECT * FROM tratamentos WHERE consulta_id = ?";
     db.query(sqlSelectTratamentosFromConsulta, [id], (err, result) => {
         console.log(result);
+        res.send(result);
+    });
+});
+
+//Listar todas as consultas -> ok
+app.get('/api/consultas',  (req, res) => {
+    const sqlSelectAllConsultas = 'SELECT * FROM consultas';
+    db.query(sqlSelectAllConsultas, (err, result) => {
         res.send(result);
     });
 });
@@ -84,13 +86,14 @@ app.get('/api/utilizadores', (req, res) => {
 
 //Inserir novo utilizador -> ok
 app.post('/api/registar', (req, res) => {
-    const name = "";
-    const email = "";
-    const password = "";
+    const nome = req.params.name;
+    const email = req.params.email;
+    const pwd = req.params.password;
 
-    const sqlInsertUser = "INSERT INTO utilizadores (nome, mail, pwd) VALUES (?,?,?)";
-    db.query(sqlInsertUser, [name, email, password], (err, result) => {
+    const sqlInsertUser = "INSERT INTO utilizadores (mail, pwd, nome) VALUES (?,?,?)";
+    db.query(sqlInsertUser, [nome, email, pwd], (err, result) => {
         console.log(result);
+        console.log('error', err);
         res.send(result);
     });
 });
