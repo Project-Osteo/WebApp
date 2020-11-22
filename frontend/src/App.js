@@ -1,8 +1,12 @@
 import React from 'react';
 
+import './geral.css';
+
+import Login from './pages/Login'
+
 function App() {
   return (
-    <h1>Osteo App Web</h1>
+    <Login />
   );
 }
 
