@@ -1,0 +1,17 @@
+.pacientes-container {
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 32px auto;
+}
+
+.pacientes-container header {
+    display: block;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.pacientes-container header p {
+    margin-bottom: 5px;
+    font-size: 20px;
+}
