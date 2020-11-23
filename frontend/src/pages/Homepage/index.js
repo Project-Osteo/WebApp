@@ -12,7 +12,7 @@ export default function Homepage() {
 
         <ul>
             <li>
-                <strong type="button" onClick={(event) => (window.location.href = "/")}> 
+                <strong type="button" onClick={(event) => (window.location.href = "/pacientes")}> 
                     Jona do Cota
                 </strong>
             </li>
