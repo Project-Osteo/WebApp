@@ -7,28 +7,12 @@ export default function Homepage() {
    return(
       <div className="homepage-container">
           <header>
-              <span>Bem-vindo Osteo</span>
-    
+              <span>Bem-vindo Osteo</span>  
           </header>
 
         <ul>
             <li>
-                <strong>
-                    Jona do Cota
-                </strong>
-            </li>
-            <li>
-                <strong>
-                    Jona do Cota
-                </strong>
-            </li>
-            <li>
-                <strong>
-                    Jona do Cota
-                </strong>
-            </li>
-            <li>
-                <strong>
+                <strong type="button" onClick={(event) => (window.location.href = "/")}> 
                     Jona do Cota
                 </strong>
             </li>
