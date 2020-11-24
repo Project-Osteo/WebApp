@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiSettings, FiPower } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 
 import './styles.css';
 
@@ -13,6 +13,10 @@ export default function Pacientes() {
                 <span>Jona do cota</span>
 
                 <div className="btn-group">
+                    <Link type="button" to="/homepage">
+                        <FiHome size={55} color="#41414d"></FiHome>
+                    </Link>
+
                     <Link>
                         <FiSettings size={55} color="#41414d"></FiSettings>
                     </Link>
