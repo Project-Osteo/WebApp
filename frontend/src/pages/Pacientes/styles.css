@@ -33,6 +33,8 @@
 }
 
 .pacientes-container .info-paciente {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
@@ -45,8 +47,8 @@
 .pacientes-container .info-paciente p {
     margin-bottom: 5px;
     font-size: 30px;
-}
 
+}
 
 
 

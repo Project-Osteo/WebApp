@@ -10,7 +10,7 @@ export default function Pacientes() {
 
             <header>
 
-                <span>Paciente: Jona do cota</span>
+                <span>Jona do cota</span>
 
                 <div className="btn-group">
                     <Link>
@@ -28,7 +28,11 @@ export default function Pacientes() {
                     <p><b>Idade:</b> 28 anos</p>
                     <p><b>Localidade:</b> Charca de Famões</p>
                     <p><b>Peso:</b> 70kg</p>
+                    <p><b>Nacionalidade:</b> Portuguesa</p>
                     <p><b>Altura:</b> 1,80m</p>
+                    <p><b>Contacto:</b> 9112121212</p>
+                    <p><b>Sexo:</b> Masculino</p>
+                    <p><b>Email:</b> jonadocota@gmail.com</p>               
             </div>
             
         </div>
