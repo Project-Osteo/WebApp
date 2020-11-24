@@ -17,11 +17,11 @@ export default function Pacientes() {
                         <FiHome size={55} color="#41414d"></FiHome>
                     </Link>
 
-                    <Link>
+                    <Link type="button">
                         <FiSettings size={55} color="#41414d"></FiSettings>
                     </Link>
 
-                    <Link>
+                    <Link type="button">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
                 </div>
@@ -37,6 +37,18 @@ export default function Pacientes() {
                     <p><b>Contacto:</b> 9112121212</p>
                     <p><b>Sexo:</b> Masculino</p>
                     <p><b>Email:</b> jonadocota@gmail.com</p>               
+            </div>
+
+            <div className="btn-container">
+                
+                <Link type="buton">
+                    CONSULTAS
+                </Link>
+
+                <Link type="buton">
+                    TREINOS
+                </Link>
+
             </div>
             
         </div>
