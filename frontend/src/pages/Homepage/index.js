@@ -12,9 +12,16 @@ export default function Homepage() {
 
         <ul>
             <li>
-                <strong type="button" onClick={(event) => (window.location.href = "/pacientes")}> 
-                    Jona do Cota
-                </strong>
+                <Link to="/pacientes">
+                <p><b>Nome:</b> Jona do cota</p>
+                <p><b>Email:</b> jonadocota@hotmail.com</p>
+                </Link>              
+            </li>
+            <li>
+                <Link to="/pacientes">
+                <p><b>Nome:</b> Jona do cota</p>
+                <p><b>Email:</b> jonadocota@hotmail.com</p>
+                </Link>    
             </li>
         </ul>
       </div> 

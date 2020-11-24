@@ -14,7 +14,7 @@ export default function Pacientes() {
                 <p><b>Peso:</b> 70kg</p>
                 <p><b>Altura:</b> 1,80m</p>
             </header>
-
+            
         </div>
     );
 }

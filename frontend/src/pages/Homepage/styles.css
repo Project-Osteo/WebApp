@@ -24,19 +24,19 @@
   grid-template-columns:1fr;
   grid-gap: 5px;
   list-style: none;
-  text-align: center;
-  position: fixed;
-  left: 50%;
-  margin-right: -50%;
-  margin-top: 150px;
-  transform: translate(-50%, -50%);
+  text-align: left;
 }
 
 .homepage-container ul li {
-    width: 400px;
     background: #FFF;
     padding: 24px;
     border-radius: 8px;
     border-bottom: 2px solid #ddd;
     cursor: pointer;
+    font-size: 25px;
+}
+
+.homepage-container ul li a {
+    color: inherit;
+    text-decoration: inherit;
 }
