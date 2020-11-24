@@ -10,16 +10,16 @@ export default function Homepage() {
           <header>
               <span>Bem-vindo Osteo</span>
 
-                <Link to="/pacientes">
-                    <FiUserPlus size={18} />
+                <Link type="button" to="/pacientes">
+                    <FiUserPlus size={50} color="#41414d"></FiUserPlus>
                 </Link>
 
-                <Link>
-                    <FiSettings size={18} />
+                <Link type="button" to="/pacientes">
+                    <FiSettings size={50} color="#41414d"></FiSettings>
                 </Link>
 
-                <Link>
-                    <FiPower size={18} />
+                <Link type="button" to="/pacientes">
+                    <FiPower size={50} color="#41414d"></FiPower>
                 </Link>
 
           </header>
