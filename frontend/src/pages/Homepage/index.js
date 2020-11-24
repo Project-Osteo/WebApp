@@ -8,19 +8,22 @@ export default function Homepage() {
    return(
       <div className="homepage-container">
           <header>
+
               <span>Bem-vindo Osteo</span>
 
-                <Link type="button" to="/pacientes">
-                    <FiUserPlus size={50} color="#41414d"></FiUserPlus>
-                </Link>
+              <div className="btn-group">
+                    <Link type="button" to="/pacientes">
+                        <FiUserPlus size={55} color="#41414d"></FiUserPlus>
+                    </Link>
 
-                <Link type="button" to="/pacientes">
-                    <FiSettings size={50} color="#41414d"></FiSettings>
-                </Link>
+                    <Link type="button" to="/pacientes">
+                        <FiSettings size={55} color="#41414d"></FiSettings>
+                    </Link>
 
-                <Link type="button" to="/pacientes">
-                    <FiPower size={50} color="#41414d"></FiPower>
-                </Link>
+                    <Link type="button" to="/pacientes">
+                        <FiPower size={55} color="#41414d"></FiPower>
+                    </Link>
+              </div>
 
           </header>
 

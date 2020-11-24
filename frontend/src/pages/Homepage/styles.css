@@ -14,12 +14,12 @@
 .homepage-container header span {
     font-size: 40px;
     margin-top: 10px;
-    margin-left: 30px;
+    margin-right: auto;
     margin-bottom: 30px;
     font-weight: 500;
 }
 
-.homepage-container header a {
+.homepage-container header .btn-group a {
     height: 60px;
     width: 60px;
     border-radius: 4px;
@@ -28,6 +28,11 @@
     margin-left: auto;
     transition: border-color 0.2s;
     text-align: center;
+    float: left;
+}
+
+.homepage-container header .btn-group a:hover {
+    border-color: #999;
 }
 
 .homepage-container ul {
