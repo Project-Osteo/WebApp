@@ -7,7 +7,7 @@ export default function Homepage() {
    return(
       <div className="homepage-container">
           <header>
-              <span>Bem-vindo Osteo</span>  
+              <span>Bem-vindo Osteo</span>
           </header>
 
         <ul>
@@ -19,8 +19,8 @@ export default function Homepage() {
             </li>
             <li>
                 <Link to="/pacientes">
-                <p><b>Nome:</b> Jona do cota</p>
-                <p><b>Email:</b> jonadocota@hotmail.com</p>
+                <p><b>Nome:</b>Jona do cota</p>
+                <p><b>Email:</b>jonadocota@hotmail.com</p>
                 </Link>    
             </li>
         </ul>

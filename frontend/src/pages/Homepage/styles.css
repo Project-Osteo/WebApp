@@ -40,3 +40,12 @@
     color: inherit;
     text-decoration: inherit;
 }
+
+.homepage-container ul li p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.homepage-container ul li p b {
+    margin-right: 15px;
+}
