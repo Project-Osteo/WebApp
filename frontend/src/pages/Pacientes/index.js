@@ -17,7 +17,7 @@ export default function Pacientes() {
                         <FiHome size={55} color="#41414d"></FiHome>
                     </Link>
 
-                    <Link type="button">
+                    <Link type="button" to="/settings"> 
                         <FiSettings size={55} color="#41414d"></FiSettings>
                     </Link>
 
@@ -51,7 +51,7 @@ export default function Pacientes() {
 
             <ul>
                 <li>
-                    <Link to="/pacientes">
+                    <Link to="/consulta">
                     <p><b>Data:</b> 26/11/2020</p>
                     <p><b>Descrição:</b> Dores de qualquer coisa</p>
                     </Link> 

@@ -12,15 +12,15 @@ export default function Homepage() {
               <span>Bem-vindo Osteo</span>
 
               <div className="btn-group">
-                    <Link type="button" to="/pacientes">
+                    <Link type="button" to="/novoPaciente">
                         <FiUserPlus size={55} color="#41414d"></FiUserPlus>
                     </Link>
 
-                    <Link type="button" to="/pacientes">
+                    <Link type="button" to="/settings">
                         <FiSettings size={55} color="#41414d"></FiSettings>
                     </Link>
 
-                    <Link type="button" to="/pacientes">
+                    <Link type="button">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
               </div>
