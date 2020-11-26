@@ -51,6 +51,7 @@
 
 .pacientes-container .btn-container {
     display: flex;
+    margin-bottom: 40px;
 }
 
 .pacientes-container .btn-container button {
@@ -69,5 +70,36 @@
     margin-left: 2px;
     margin-right: 2px;
 }
+
+.pacientes-container ul {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-gap: 5px;
+    list-style: none;
+    text-align: left;
+  }
+  
+  .pacientes-container ul li {
+      background: #FFF;
+      padding: 24px;
+      border-radius: 8px;
+      border-bottom: 2px solid #ddd;
+      cursor: pointer;
+      font-size: 25px;
+  }
+  
+  .pacientes-container ul li a {
+      color: inherit;
+      text-decoration: inherit;
+  }
+  
+  .pacientes-container ul li p {
+      margin-top: 8px;
+      margin-bottom: 8px;
+  }
+  
+  .homepage-container ul li p b {
+      margin-right: 15px;
+  }
 
 

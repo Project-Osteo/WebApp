@@ -39,8 +39,7 @@ export default function Pacientes() {
                     <p><b>Email:</b> jonadocota@gmail.com</p>               
             </div>
 
-            <div className="btn-container">
-                
+            <div className="btn-container">                
                 <button type="buton">
                     CONSULTAS
                 </button>
@@ -48,8 +47,16 @@ export default function Pacientes() {
                 <button type="buton">
                     TREINOS
                 </button>
-
             </div>
+
+            <ul>
+                <li>
+                    <Link to="/pacientes">
+                    <p><b>Data:</b> 26/11/2020</p>
+                    <p><b>Descrição:</b> Dores de qualquer coisa</p>
+                    </Link> 
+                </li>
+            </ul>
             
         </div>
     );
