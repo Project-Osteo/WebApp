@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 
 import './styles.css';
-import { findAllByDisplayValue } from '@testing-library/react';
 
 export default function Pacientes() {
 
