@@ -9,6 +9,12 @@ export default function Pacientes() {
 
     function showConsultas () {
         document.getElementById("listaConsultas").style.display = 'block';
+        document.getElementById("listaTreinos").style.display = "none";
+    }
+
+    function showTreinos () {
+        document.getElementById("listaTreinos").style.display = 'block';
+        document.getElementById("listaConsultas").style.display = 'none';
     }
 
     return(
@@ -50,19 +56,32 @@ export default function Pacientes() {
                     CONSULTAS
                 </button>
 
-                <button type="buton">
+                <button type="buton" onClick={() => showTreinos()}>
                     TREINOS
                 </button>
             </div>
 
-            <ul id="listaConsultas">
-                <li>
-                    <Link to="/consulta">
-                    <p><b>Data:</b> 26/11/2020</p>
-                    <p><b>Descrição:</b> Dores de qualquer coisa</p>
-                    </Link> 
-                </li>
-            </ul>
+            <div className="consultas"  id="listaConsultas">
+                <ul>
+                    <li>
+                        <Link to="/consulta">
+                        <p><b>Data:</b> 26/11/2020</p>
+                        <p><b>Descrição:</b> Dores de qualquer coisa</p>
+                        </Link> 
+                    </li>
+                </ul>
+            </div>
+
+            <div className="treinos"  id="listaTreinos">
+                <ul>
+                    <li>
+                        <Link to="/treino">
+                        <p><b>Data:</b> 26/11/2020</p>
+                        <p><b>Descrição:</b> Treino de qualquer coisa</p>
+                        </Link> 
+                    </li>
+                </ul>
+            </div>
             
         </div>
     );
