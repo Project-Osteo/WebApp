@@ -53,7 +53,7 @@
     display: flex;
 }
 
-.pacientes-container .btn-container a {
+.pacientes-container .btn-container button {
     width: 50%;
     height: 70px;
     background: #333;

@@ -41,13 +41,13 @@ export default function Pacientes() {
 
             <div className="btn-container">
                 
-                <Link type="buton">
+                <button type="buton">
                     CONSULTAS
-                </Link>
+                </button>
 
-                <Link type="buton">
+                <button type="buton">
                     TREINOS
-                </Link>
+                </button>
 
             </div>
             
