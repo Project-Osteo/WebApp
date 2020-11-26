@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 
 import './styles.css';
+import { findAllByDisplayValue } from '@testing-library/react';
 
 export default function Pacientes() {
+
+    function showConsultas () {
+        document.getElementById("listaConsultas").style.display = 'block';
+    }
+
     return(
         <div className="pacientes-container">
 
@@ -40,7 +46,7 @@ export default function Pacientes() {
             </div>
 
             <div className="btn-container">                
-                <button type="buton">
+                <button type="buton"  onClick={() => showConsultas()}>
                     CONSULTAS
                 </button>
 
@@ -49,7 +55,7 @@ export default function Pacientes() {
                 </button>
             </div>
 
-            <ul>
+            <ul id="listaConsultas">
                 <li>
                     <Link to="/consulta">
                     <p><b>Data:</b> 26/11/2020</p>

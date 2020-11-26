@@ -72,11 +72,10 @@
 }
 
 .pacientes-container ul {
-    display: grid;
-    grid-template-columns:1fr;
-    grid-gap: 5px;
+    width: 100%;
     list-style: none;
     text-align: left;
+    display: none;
   }
   
   .pacientes-container ul li {
