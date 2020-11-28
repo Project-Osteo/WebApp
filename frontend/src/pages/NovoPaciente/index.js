@@ -4,6 +4,22 @@ import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 
 export default function NovoPaciente () {
     return(
-        <h1>Novo Paciente</h1>
+        <div className="novoPaciente-container">
+            <section>
+                <h1>Adicionar um novo paciente</h1>
+            </section>
+
+            <form>
+                <input placeholder="Nome" />
+                <input placeholder="E-mail" />
+                <input placeholder="Género" />
+                <input placeholder="Nacionalidade" />
+                <input placeholder="Localidade" />
+                <input placeholder="Data de nascimento" />
+                <input placeholder="Altura" />
+                <input placeholder="Contacto" />
+                <button>ADICIONAR</button>
+            </form>
+        </div>
     );
 }
