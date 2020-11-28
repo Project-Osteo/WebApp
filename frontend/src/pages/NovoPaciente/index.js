@@ -7,12 +7,11 @@ import './styles.css';
 export default function NovoPaciente () {
     return(
         <div className="novoPaciente-container">
-            <div className="content">
-                <section>
-                    <h1>Adicionar um novo paciente</h1>
-                </section>
+           <section className="form">
+               
+               <form>
+                    <h1>Adicionar novo paciente</h1>
 
-                <form>
                     <input placeholder="Nome" />
                     <input placeholder="E-mail" />
                     <input placeholder="Género" />
@@ -22,8 +21,9 @@ export default function NovoPaciente () {
                     <input placeholder="Altura" />
                     <input placeholder="Contacto" />
                     <Link type="submit" to="/homepage">ADICIONAR</Link>
-                </form>
-            </div>
+               </form>
+                        
+           </section>
         </div>
     );
 }

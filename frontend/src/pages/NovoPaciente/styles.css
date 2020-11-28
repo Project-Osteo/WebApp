@@ -3,41 +3,45 @@
     max-width: 1120px;
     height: 100vh;
     margin: 0 auto;
-  
+
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-.novoPaciente-container .content {
+}
+
+.novoPaciente-container section.form {
     width: 100%;
-    padding: 96px;
-    background: #f0f0f5;
-    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.novoPaciente-container section.form form h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.novoPaciente-container section.form input {
+    width: 100%;
+    height: 70px;
+    color: #333;
+    border: 1px solid #dcdce6;
+    border-radius: 10px;
+    padding: 0 25px;
+    margin-bottom: 10px;
+}
+
+.novoPaciente-container section.form a {
+    width: 100%;
+    height: 70px;
+    background: #333;
+    border: 0;
     border-radius: 8px;
-  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-.novoPaciente-container .content section {
-    width: 100%;
-    max-width: 380px;
-  }
-   
-.novoPaciente-container .content section h1 {
+    color: #FFF;
+    font-weight: medium;
+    margin-top: 15px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
     font-size: 20px;
-    color: #737380;
-    line-height: 32px;
-  }
-  
-.novoPaciente-container .content form {
-    width: 100%;
-    max-width: 450px;
-  }
-  
-.novoPaciente-container .content form input {
-    margin-top: 8px;
-  }
-  
+    line-height: 60px;
+} 
