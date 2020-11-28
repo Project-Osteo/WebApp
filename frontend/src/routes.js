@@ -8,6 +8,8 @@ import Consulta from './pages/Consulta';
 import Treino from './pages/Treino';
 import Settings from './pages/Settings';
 import NovoPaciente from './pages/NovoPaciente';
+import NovaConsulta from './pages/NovaConsulta';
+import NovoTreino from './pages/NovoTreino';
 
 export default function Routes() {
     return (
@@ -20,6 +22,8 @@ export default function Routes() {
             <Route path="/treino" component={Treino} />
             <Route path="/settings" component={Settings} />
             <Route path="/novoPaciente" component={NovoPaciente} />
+            <Route path="/novaConsulta" component={NovaConsulta} />
+            <Route path="/novoTreino" component={NovoTreino} />
         </Switch>
       </BrowserRouter>  
     );

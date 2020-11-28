@@ -79,6 +79,7 @@
     width: 100%;
     list-style: none;
     text-align: left;
+    margin-top: 20px;
   }
   
   .pacientes-container .consultas ul li {
@@ -107,11 +108,11 @@
   .pacientes-container .treinos {
     display: none;
 }
-
 .pacientes-container .treinos ul {
     width: 100%;
     list-style: none;
     text-align: left;
+    margin-top: 20px;
   }
   
   .pacientes-container .treinos ul li {
