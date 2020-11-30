@@ -7,7 +7,7 @@ import './styles.css';
 export default function NovoPaciente () {
     return(
         <div className="novoPaciente-container">
-           <section className="form">
+           <section>
                
                <form>
                     <h1>Adicionar novo paciente</h1>
