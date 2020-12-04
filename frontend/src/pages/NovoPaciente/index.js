@@ -9,9 +9,10 @@ export default function NovoPaciente () {
         <div className="novoPaciente-container">
             <div className="content">
                 <section>
+
+                    <h1>Adicionar novo paciente</h1>
                 
                     <form>
-                        <h1>Adicionar novo paciente</h1>
 
                         <input placeholder="Nome" />
                         <input placeholder="E-mail" />

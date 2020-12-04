@@ -26,10 +26,15 @@
     max-width: 400px;
 }
 
-.novoPaciente-container .content section form h1 {
+.novoPaciente-container .content section h1 {
     font-size: 40px;
     margin-bottom: 40px;
     text-align: center;
+}
+
+.novoPaciente-container .content section form {
+    width: 100%;
+    max-width: 450px;
 }
 
 .novoPaciente-container .content section form input {
