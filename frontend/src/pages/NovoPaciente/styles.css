@@ -9,18 +9,18 @@
     justify-content: center;
 }
 
-.novoPaciente-container section {
+.novoPaciente-container .content section {
     width: 100%;
     max-width: 400px;
 }
 
-.novoPaciente-container section form h1 {
+.novoPaciente-container .content section form h1 {
     font-size: 40px;
     margin-bottom: 40px;
     text-align: center;
 }
 
-.novoPaciente-container section form input {
+.novoPaciente-container .content section form input {
     width: 100%;
     height: 70px;
     color: #333;
@@ -30,7 +30,7 @@
     margin-bottom: 10px;
 }
 
-.novoPaciente-container section form a {
+.novoPaciente-container .content section form a {
     width: 100%;
     height: 70px;
     background: #333;

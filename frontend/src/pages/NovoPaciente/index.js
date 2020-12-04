@@ -7,23 +7,25 @@ import './styles.css';
 export default function NovoPaciente () {
     return(
         <div className="novoPaciente-container">
-           <section>
-               
-               <form>
-                    <h1>Adicionar novo paciente</h1>
+            <div className="content">
+                <section>
+                
+                    <form>
+                        <h1>Adicionar novo paciente</h1>
 
-                    <input placeholder="Nome" />
-                    <input placeholder="E-mail" />
-                    <input placeholder="Género" />
-                    <input placeholder="Nacionalidade" />
-                    <input placeholder="Localidade" />
-                    <input placeholder="Data de nascimento" />
-                    <input placeholder="Altura" />
-                    <input placeholder="Contacto" />
-                    <Link type="submit" to="/homepage">ADICIONAR</Link>
-               </form>
-                        
-           </section>
+                        <input placeholder="Nome" />
+                        <input placeholder="E-mail" />
+                        <input placeholder="Género" />
+                        <input placeholder="Nacionalidade" />
+                        <input placeholder="Localidade" />
+                        <input placeholder="Data de nascimento" />
+                        <input placeholder="Altura" />
+                        <input placeholder="Contacto" />
+                        <Link type="submit" to="/homepage">ADICIONAR</Link>
+                    </form>
+                            
+                </section>
+            </div>
         </div>
     );
 }
