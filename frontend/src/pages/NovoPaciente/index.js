@@ -12,20 +12,21 @@ export default function NovoPaciente () {
 
                     <h1>Adicionar novo paciente</h1>
                 
-                    <form>
-
-                        <input placeholder="Nome" />
-                        <input placeholder="E-mail" />
-                        <input placeholder="Género" />
-                        <input placeholder="Nacionalidade" />
-                        <input placeholder="Localidade" />
-                        <input placeholder="Data de nascimento" />
-                        <input placeholder="Altura" />
-                        <input placeholder="Contacto" />
-                        <Link type="submit" to="/homepage">ADICIONAR</Link>
-                    </form>
-                            
                 </section>
+
+                <form>
+
+                    <input placeholder="Nome" />
+                    <input placeholder="E-mail" />
+                    <input placeholder="Género" />
+                    <input placeholder="Nacionalidade" />
+                    <input placeholder="Localidade" />
+                    <input placeholder="Data de nascimento" />
+                    <input placeholder="Altura" />
+                    <input placeholder="Contacto" />
+                    <Link type="submit" to="/homepage">ADICIONAR</Link>
+                </form>
+    
             </div>
         </div>
     );
