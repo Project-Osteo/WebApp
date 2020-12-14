@@ -21,7 +21,7 @@ export default function Pacientes() {
 
             <header>
 
-                <span>Jona do cota</span>
+                <span><h1>OSTEOCLINIC</h1></span>
 
                 <div className="btn-group">
                     <Link type="button" to="/homepage">
@@ -40,14 +40,14 @@ export default function Pacientes() {
             </header>
 
             <div className="info-paciente">
-                    <p><b>Idade:</b> 28 anos</p>
-                    <p><b>Localidade:</b> Charca de Famões</p>
-                    <p><b>Peso:</b> 70kg</p>
-                    <p><b>Nacionalidade:</b> Portuguesa</p>
-                    <p><b>Altura:</b> 1,80m</p>
-                    <p><b>Contacto:</b> 9112121212</p>
-                    <p><b>Sexo:</b> Masculino</p>
-                    <p><b>Email:</b> jonadocota@gmail.com</p>               
+                <p><b>Nome:</b> Jona do cota</p>
+                <p><b>Idade:</b> 28 anos</p>
+                <p><b>Localidade:</b> Charca de Famões</p>
+                <p><b>Nacionalidade:</b> Portuguesa</p>
+                <p><b>Altura:</b> 1,80m</p>
+                <p><b>Contacto:</b> 9112121212</p>
+                <p><b>Sexo:</b> Masculino</p>
+                <p><b>Email:</b> jonadocota@gmail.com</p>               
             </div>
 
             <div className="btn-container">                
