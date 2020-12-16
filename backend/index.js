@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const mysql = require("mysql");
+const port = 3001;
 
 const db = mysql.createPool({
     host: 'localhost',
@@ -19,8 +20,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.get('/api/pacientes', (req, res) => {
     const sqlSelectAllPacientes = 'SELECT * FROM pacientes';
     db.query(sqlSelectAllPacientes, (err, result) => {
+        console.log(result);
         res.send(result);
-        console.log('erro', err);
     });
 });
 
@@ -36,20 +37,11 @@ app.get('/api/pacientes/:id/consultas', (req, res) => {
     });
 });
 
-//Listar todos os tratamentos de uma consulta -> ok
-app.get('/api/consulta/:id/tratamento', (req, res) => {
-    const id = req.params.id;
-    const sqlSelectTratamentosFromConsulta = "SELECT * FROM tratamentos WHERE consulta_id = ?";
-    db.query(sqlSelectTratamentosFromConsulta, [id], (err, result) => {
-        console.log(result);
-        res.send(result);
-    });
-});
-
 //Listar todas as consultas -> ok
 app.get('/api/consultas',  (req, res) => {
     const sqlSelectAllConsultas = 'SELECT * FROM consultas';
     db.query(sqlSelectAllConsultas, (err, result) => {
+        console.log(result);
         res.send(result);
     });
 });
@@ -172,6 +164,6 @@ app.post('/api/insert', (req, res) => {
     });
 });
 
-app.listen(3001, () => {
+app.listen(port, () => {
     console.log("running on port 3001");
 });
