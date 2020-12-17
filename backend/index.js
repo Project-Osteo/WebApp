@@ -25,8 +25,6 @@ app.get('/api/pacientes', (req, res) => {
     });
 });
 
-// '/api/pacientes/:id -> listar os dados do paciente, carregar consultas e treinos do paciente
-
 //Listar consultas do paciente -> ok
 app.get('/api/pacientes/:id/consultas', (req, res) => {
     const id = req.params.id;
@@ -91,9 +89,9 @@ app.post('/api/registar', (req, res) => {
 });
 
 //Inserir dados paciente -> ok
-app.post('/api/utilizador/inserirdados', (req, res) => {
+app.post('/api/insertpaciente', (req, res) => {
     const user_id = "";
-    const nome = "";
+    const nome = req.body.inputName;
     const mail = "";
     const genero = "";
     const nacionalidade = "";
@@ -101,6 +99,9 @@ app.post('/api/utilizador/inserirdados', (req, res) => {
     const data_nascimento = "";
     const altura = "";
     const telemovel = "";
+
+    //verificar se mail existe nos utilizadores antes de adicionar
+    //se existir atribui user_id senão user_id=null
 
     const sqlInsertDadosPaciente = "INSERT INTO PACIENTES " +
         "(user_id, nome, mail, genero, nacionalidade, localidade, data_nascimento, altura, telemovel)" +

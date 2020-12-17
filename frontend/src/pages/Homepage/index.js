@@ -1,36 +1,38 @@
-import React from 'react';
-/* import Table from './Table' */
+import React, { useEffect, useState } from 'react';
+/* import Table from './Table'; */
 import { Link } from 'react-router-dom';
 import { FiUserPlus, FiSettings, FiPower } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import { useHistory} from "react-router-dom";
+import Axios from "axios";
 
 import './styles.css';
 
 export default function Homepage() {
-    const fakedata = [
-        {id: 1, name: 'Nelsan', mail: 'nelsan@mail.com'},
-        {id: 2, name: 'Toja', mail: 'toja@mail.com'},
-        {id: 3, name: 'Frigido', mail: 'frigido@mail.com'}
-    ]
 
-    const pacientes = [
-        {id: 1, name: 'Nelsan', mail: 'nelsan@mail.com'},
-        {id: 2, name: 'Toja', mail: 'toja@mail.com'},
-        {id: 3, name: 'Frigido', mail: 'frigido@mail.com'}
-    ]
+    const [idPaciente, setIdPaciente] = useState("");
+    const [nomePaciente, setNomePaciente] = useState("");
+    const [mailPaciente, setMailPaciente] = useState("");
+    const [listaPacientes, setListaPacientes] = useState([]);
 
     const history = useHistory();
+
     const handleRowClick = (row) => {
         history.push(`/pacientes/${row}`);
-    }  
+    }
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/api/pacientes").then((response) => {
+            setListaPacientes(response.data);
+        });
+    }, {});
 
     const renderPaciente = (paciente, index) => {
         return (
             <tr key={index} onClick={()=> handleRowClick(index)}>
                 <td>{paciente.id}</td>
-                <td>{paciente.name}</td>
+                <td>{paciente.nome}</td>
                 <td>{paciente.mail}</td>
             </tr>
         )
@@ -41,7 +43,7 @@ export default function Homepage() {
             <li key={index}>
                 <Link to="/pacientes">
                     <p><b>Ident:</b>{paciente.id}</p>
-                    <p><b>Nome:</b>{paciente.name}</p>
+                    <p><b>Nome:</b>{paciente.nome}</p>
                     <p><b>E-mail:</b>{paciente.mail}</p>
                 </Link>              
             </li>
@@ -79,20 +81,20 @@ export default function Homepage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {pacientes.map(renderPaciente)}
+                        {listaPacientes.map(renderPaciente)}
                     </tbody>
                 </ReactBootStrap.Table>    
             </div>
 
-            <ul>
-                {pacientes.map(renderPacienteCard)}
-                {/* <li>
+            {/* <ul>
+                {listaPacientes.map(renderPacienteCard)}
+                <li>
                     <Link to="/pacientes">
                     <p><b>Nome:</b>Jona do cota</p>
                     <p><b>Email:</b>jonadocota@hotmail.com</p>
                     </Link>    
-                </li> */}
-            </ul> 
+                </li>
+            </ul>  */}
         </div> 
    );
 }
