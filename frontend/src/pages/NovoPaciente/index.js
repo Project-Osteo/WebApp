@@ -19,11 +19,13 @@ export default function NovoPaciente () {
         
         <div className="novoPaciente-container">
 
-            <section>
+            <section> 
                 <h1>Adicionar novo paciente</h1>
-            </section>
+             </section> 
 
             <div className="content">
+
+                {/* <h1>Adicionar novo paciente</h1> */}
 
                 {/* <form>
                     <input type="text" name="nome" placeholder="Nome" 
@@ -45,6 +47,8 @@ export default function NovoPaciente () {
                 </form>  */}
                 
                 <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+
+                    
 
                     <label>Name 
                     <input type="text" name="nome" required />
@@ -95,7 +99,7 @@ export default function NovoPaciente () {
                         </label>
                     </p> */}
 
-                    <p><button type="submit" onClick={submitPaciente}>Adicionar Paciente</button></p>
+                    <p><Link type="submit" to="/homepage" onClick={submitPaciente}>Adicionar Paciente</Link></p>
 
                 </form>
             </div>
