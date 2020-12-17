@@ -14,6 +14,7 @@ export default function Homepage() {
     const [idPaciente, setIdPaciente] = useState("");
     const [nomePaciente, setNomePaciente] = useState("");
     const [mailPaciente, setMailPaciente] = useState("");
+    const [telemovelPaciente, setTelemovel] = useState("");
     const [listaPacientes, setListaPacientes] = useState([]);
 
     const history = useHistory();
@@ -34,11 +35,12 @@ export default function Homepage() {
                 <td>{paciente.id}</td>
                 <td>{paciente.nome}</td>
                 <td>{paciente.mail}</td>
+                <td>{paciente.telemovel}</td>
             </tr>
         )
     }
 
-    const renderPacienteCard = (paciente, index) => {
+    /* const renderPacienteCard = (paciente, index) => {
         return (
             <li key={index}>
                 <Link to="/pacientes">
@@ -48,7 +50,7 @@ export default function Homepage() {
                 </Link>              
             </li>
         )
-    }
+    } */
     
 
     return(
@@ -78,12 +80,13 @@ export default function Homepage() {
                             <th>Ident.</th>
                             <th>Nome</th>
                             <th>E-mail</th>
+                            <th>Telemóvel</th>
                         </tr>
                     </thead>
                     <tbody>
                         {listaPacientes.map(renderPaciente)}
                     </tbody>
-                </ReactBootStrap.Table>    
+                </ReactBootStrap.Table>
             </div>
 
             {/* <ul>

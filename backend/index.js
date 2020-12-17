@@ -9,7 +9,7 @@ const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: 'admin',
-    database: 'osteoclinic_db'
+    database: 'osteoclinic_db_v2'
 });
 
 app.use(cors());
