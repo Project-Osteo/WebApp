@@ -27,7 +27,7 @@ app.get('/api/pacientes', (req, res) => {
 
 //Listar consultas do paciente -> ok
 app.get('/api/pacientes/:id/consultas', (req, res) => {
-    const id = req.params.id;
+    const id = req.params.paciente_id;
     const sqlSelectConsultasFromPaciente = "SELECT * FROM consultas WHERE paciente_id = ?";
     db.query(sqlSelectConsultasFromPaciente, [id], (err, result) => {
         console.log(result);
@@ -117,7 +117,7 @@ app.post('/api/insertpaciente', (req, res) => {
 app.get('/api/pacientes/:id', (req, res) => {
     const id = req.params.id;
 
-    const sqlSelectDadosPaciente = "SELECT * FROM pacientes WHERE user_id = ?";
+    const sqlSelectDadosPaciente = "SELECT * FROM pacientes WHERE paciente_id = ?";
     db.query(sqlSelectDadosPaciente, [id], (err, result) => {
         console.log(result);
         res.send(result);

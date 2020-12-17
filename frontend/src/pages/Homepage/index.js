@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-/* import Table from './Table'; */
 import { Link } from 'react-router-dom';
 import { FiUserPlus, FiSettings, FiPower } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,8 +18,8 @@ export default function Homepage() {
 
     const history = useHistory();
 
-    const handleRowClick = (row) => {
-        history.push(`/pacientes/${row}`);
+    const handleRowClick = (id) => {
+        history.push(`/pacientes/${id}`);
     }
 
     useEffect(() => {
@@ -31,7 +30,7 @@ export default function Homepage() {
 
     const renderPaciente = (paciente, index) => {
         return (
-            <tr key={index} onClick={()=> handleRowClick(index)}>
+            <tr key={index} onClick={() => handleRowClick(paciente.id)}>
                 <td>{paciente.id}</td>
                 <td>{paciente.nome}</td>
                 <td>{paciente.mail}</td>
@@ -40,7 +39,7 @@ export default function Homepage() {
         )
     }
 
-    /* const renderPacienteCard = (paciente, index) => {
+    const renderPacienteCard = (paciente, index) => {
         return (
             <li key={index}>
                 <Link to="/pacientes">
@@ -50,7 +49,7 @@ export default function Homepage() {
                 </Link>              
             </li>
         )
-    } */
+    }
     
 
     return(
@@ -89,7 +88,7 @@ export default function Homepage() {
                 </ReactBootStrap.Table>
             </div>
 
-            {/* <ul>
+            <ul>
                 {listaPacientes.map(renderPacienteCard)}
                 <li>
                     <Link to="/pacientes">
@@ -97,7 +96,7 @@ export default function Homepage() {
                     <p><b>Email:</b>jonadocota@hotmail.com</p>
                     </Link>    
                 </li>
-            </ul>  */}
+            </ul>
         </div> 
    );
 }
