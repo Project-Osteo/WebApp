@@ -4,16 +4,14 @@ import { FiUserPlus, FiSettings, FiPower } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import { useHistory} from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 
 import './styles.css';
 
 export default function Homepage() {
 
-    const [idPaciente, setIdPaciente] = useState("");
-    const [nomePaciente, setNomePaciente] = useState("");
-    const [mailPaciente, setMailPaciente] = useState("");
-    const [telemovelPaciente, setTelemovel] = useState("");
+    const mUrlApi = "http://localhost:3001/api/";
+
     const [listaPacientes, setListaPacientes] = useState([]);
 
     const history = useHistory();
@@ -23,7 +21,7 @@ export default function Homepage() {
     }
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/api/pacientes").then((response) => {
+        axios.get(mUrlApi + "pacientes").then((response) => {
             setListaPacientes(response.data);
         });
     }, {});
@@ -66,7 +64,7 @@ export default function Homepage() {
                         <FiSettings size={55} color="#41414d"></FiSettings>
                     </Link>
 
-                    <Link type="button">
+                    <Link type="button" to="/">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
                 </div>
