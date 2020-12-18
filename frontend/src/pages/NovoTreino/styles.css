@@ -9,9 +9,35 @@
     justify-content: center;
 }
 
-.novoTreino-container section {
+.novoTreino-container .content {
+    width: 100%;
+    padding: 96px;
+    margin: auto;
+    background: #f0f0f5;;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+  }
+
+  .novoTreino-container .content section {
     width: 100%;
     max-width: 400px;
+}
+
+.novoTreino-container .content section h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}  
+
+.novoTreino-container .content form {
+    width: 100%;
+    max-width: 600px;
+    padding: 25px;
+    border-radius: 10px;
 }
 
 .novoTreino-container section form h1 {
@@ -20,9 +46,9 @@
     text-align: center;
 }
 
-.novoTreino-container section form input {
+.novoTreino-container .content form input {
     width: 100%;
-    height: 70px;
+    height: 50px;
     color: #333;
     border: 1px solid #dcdce6;
     border-radius: 10px;
@@ -30,7 +56,16 @@
     margin-bottom: 10px;
 }
 
-.novoTreino-container section form a {
+.novoTreino-container .content form textarea {
+    width: 100%;
+    color: #333;
+    border: 1px solid #dcdce6;
+    border-radius: 10px;
+    padding: 0 25px;
+    margin-bottom: 10px;
+}
+
+.novoTreino-container .content  form p a {
     width: 100%;
     height: 70px;
     background: #333;
@@ -44,4 +79,75 @@
     text-decoration: none;
     font-size: 20px;
     line-height: 60px;
+    padding: 0.3em;
+    float: right;
 } 
+
+.myForm2 {
+    width: 30em;
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+    
+.myForm2 * {
+    box-sizing: border-box;
+    margin: 5px;
+}
+    
+.myForm2 fieldset {
+    border: none;
+    padding: 0;
+}
+    
+.myForm2 legend,
+.myForm2 label {
+padding: 0;
+font-weight: bold;
+}
+    
+.myForm2 label.choice {
+    font-weight: normal;
+}
+    
+.myForm2 label {
+    text-align: left;
+    display: block;
+}
+    
+.myForm2 input[type="text"],
+.myForm2 input[type="tel"],
+.myForm2 input[type="email"],
+.myForm2 input[type="datetime"],
+.myForm2 input[type="number"],
+.myForm2 select,
+.myForm2 textarea {
+    float: right;
+    width: 60%;
+    border: 1px solid #ccc;
+    padding: 0.3em;
+}
+    
+.myForm2 textarea {
+    height: 100px;
+}
+    
+.myForm2 input[type="radio"],
+.myForm2 input[type="checkbox"] {
+    margin-left: 40%;
+}
+    
+.myForm2 button {
+    padding: 1em;
+    border-radius: 0.5em;
+    background: #ccc;
+    border: #333;
+    font-weight: bold;
+    margin-left: 40%;
+    margin-top: 1.8em;
+}
+    
+.myForm2 button:hover {
+    color: #ccc;
+    background: #333;
+    cursor: pointer;
+}
