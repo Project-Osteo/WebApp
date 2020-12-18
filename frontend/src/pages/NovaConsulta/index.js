@@ -22,22 +22,22 @@ export default function NovaConsulta (){
                     </label>
 
                     <label>Descrição da consulta
-                    <input type="text" name="descricao Consulta" />
+                    <textarea type="text" name="descricao Consulta" cols="40" rows="5" />
                     </label>
 
                     <label>Tratamento
-                    <input type="text" name="tratamento" />
+                    <textarea type="text" name="tratamento" cols="40" rows="5" />
                     </label>
 
                     <label>Recomendações
-                    <input type="text" name="recomendacoes" />
+                    <textarea type="text" name="recomendacoes" cols="40" rows="5" />
                     </label>
 
                     <label>Observações
-                    <input type="text" name="observacoes" />
+                    <textarea type="text" name="observacoes" cols="40" rows="5" />
                     </label>
 
-                    <p><Link type="submit" to="/pacientes">ADICIONAR</Link></p>
+                    <p><Link type="submit" to="/pacientes">ADICIONAR CONSULTA</Link></p>
                 </form>
             </div>
         </div>
