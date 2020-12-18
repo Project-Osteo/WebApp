@@ -50,7 +50,7 @@ export default function NovoPaciente () {
 
                     
 
-                    <label>Name 
+                    <label>Nome 
                     <input type="text" name="nome" required />
                     </label>
 

@@ -64,7 +64,7 @@
     text-decoration: none;
     font-size: 20px;
     line-height: 60px;
-} 
+}
 
 .myForm {
     /* font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; */
@@ -104,6 +104,8 @@
     .myForm input[type="tel"],
     .myForm input[type="email"],
     .myForm input[type="datetime"],
+    .myForm input[type="number"],
+    .myForm input[type="date"],
     .myForm select,
     .myForm textarea {
     float: right;
