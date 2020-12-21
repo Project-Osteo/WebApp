@@ -29,7 +29,7 @@
     margin-bottom: 10px;
 }
 
-.login-container section.form button {
+.login-container section.form a {
     width: 100%;
     height: 70px;
     background: #333;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiHome, FiSettings, FiPlusSquare, FiPower } from 'react-icons/fi';
-import Axios from "axios";
+import axios from "axios";
 
 import './styles.css';
 
@@ -12,26 +12,27 @@ export default function Pacientes() {
     
 
     useEffect(() => {
-        Axios
+        axios
         .get('http://localhost:3001/api/pacientes/id?=${id}')
         .then((response) => {
-            setPacienteInfo(response.data);
+            //ERRO AQUI
+            setPacienteInfo(response.data.data);
         });
     }, {});
 
 
-    const renderPaciente = (paciente) => {
+    const renderPaciente = (pacienteInfo) => {
         return (
             <div>
-                <p><b>Id:</b> {paciente.id}</p>
-                <p><b>Nome:</b> {paciente.nome}</p>
-                <p><b>Data de nascimento:</b> {paciente.datanascimento}</p>
-                <p><b>Localidade:</b> {paciente.localidade}</p>
-                <p><b>Nacionalidade:</b> {paciente.nacionalidade}</p>
-                <p><b>Altura:</b> {paciente.altura}</p>
-                <p><b>Contacto:</b> {paciente.telemovel}</p>
-                <p><b>Sexo:</b> {paciente.sexo}</p>
-                <p><b>Email:</b> {paciente.mail}</p>      
+                <p><b>Id:</b> {pacienteInfo.id}</p>
+                <p><b>Nome:</b> {pacienteInfo.nome}</p>
+                <p><b>Data de nascimento:</b> {pacienteInfo.datanascimento}</p>
+                <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
+                <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
+                <p><b>Altura:</b> {pacienteInfo.altura}</p>
+                <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
+                <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
+                <p><b>Email:</b> {pacienteInfo.mail}</p>  
             </div>
         )
     }
@@ -85,7 +86,18 @@ export default function Pacientes() {
             </header>
 
             <div className="info-paciente">
-                {pacienteInfo.map(renderPaciente)}
+                //CARREGAR A INFORMAÇÃO DO CLIENTE
+                <div>
+                <p><b>Id:</b> {pacienteInfo.id}</p>
+                <p><b>Nome:</b> {pacienteInfo.nome}</p>
+                <p><b>Data de nascimento:</b> {pacienteInfo.datanascimento}</p>
+                <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
+                <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
+                <p><b>Altura:</b> {pacienteInfo.altura}</p>
+                <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
+                <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
+                <p><b>Email:</b> {pacienteInfo.mail}</p>  
+            </div>
             </div>
 
             <div className="btn-container">                

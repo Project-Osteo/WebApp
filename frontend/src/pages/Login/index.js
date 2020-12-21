@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
@@ -13,7 +14,7 @@ export default function Login(){
 
                 <input placeholder="E-mail" />
                 <input placeholder="Password" />
-                <button type="submit">LOGIN</button>
+                <Link type="submit" to="/homepage" >LOGIN</Link>
 
             </form>            
             </section>
