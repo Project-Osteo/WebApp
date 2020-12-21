@@ -90,12 +90,6 @@ export default function Homepage() {
 
             <ul>
                 {listaPacientes.map(renderPacienteCard)}
-                <li>
-                    <Link to="/pacientes">
-                    <p><b>Nome:</b>Jona do cota</p>
-                    <p><b>Email:</b>jonadocota@hotmail.com</p>
-                    </Link>    
-                </li>
             </ul>
         </div> 
    );
