@@ -37,19 +37,6 @@ export default function Homepage() {
         )
     }
 
-    const renderPacienteCard = (paciente, index) => {
-        return (
-            <li key={index}>
-                <Link to={`/pacientes/${paciente.id}`}>
-                    <p><b>Ident:</b>{paciente.id}</p>
-                    <p><b>Nome:</b>{paciente.nome}</p>
-                    <p><b>E-mail:</b>{paciente.mail}</p>
-                </Link>              
-            </li>
-        )
-    }
-    
-
     return(
         <div className="homepage-container">
             <header>
@@ -85,10 +72,6 @@ export default function Homepage() {
                     </tbody>
                 </ReactBootStrap.Table>
             </div>
-
-            <ul>
-                {listaPacientes.map(renderPacienteCard)}
-            </ul>
         </div> 
    );
 }

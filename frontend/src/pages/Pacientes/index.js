@@ -25,23 +25,6 @@ export default function Pacientes() {
         });
     }, []);
 
-
-    const renderPaciente = (pacienteInfo) => {
-        return (
-            <div>
-                <p><b>Id:</b> {pacienteInfo.id}</p>
-                <p><b>Nome:</b> {pacienteInfo.nome}</p>
-                <p><b>Data de nascimento:</b> {pacienteInfo.datanascimento}</p>
-                <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
-                <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
-                <p><b>Altura:</b> {pacienteInfo.altura}</p>
-                <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
-                <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
-                <p><b>Email:</b> {pacienteInfo.mail}</p>  
-            </div>
-        )
-    }
-
     const handleRowClickConsulta = (id) => {
         history.push(`/consultas/${id}`);
     }
@@ -70,19 +53,6 @@ export default function Pacientes() {
         )
     }
 
-
-    const renderConsultaCard = (consulta, index) => {
-        return (
-            <li key={index} >
-                <Link to="/consultas">
-                    <p><b>Ident:</b>{consulta.id} &emsp; <b>Data:</b>{consulta.data}</p>
-                    <p><b>Descrição da Consulta:</b>{consulta.descricao}</p>
-                </Link>    
-            </li>
-        )
-    }
-
-
     function showConsultas () {
         document.getElementById("listaConsultas").style.display = 'block';
         document.getElementById("listaTreinos").style.display = "none";
@@ -95,7 +65,6 @@ export default function Pacientes() {
         });
     }
 
-
     function showTreinos () {
         document.getElementById("listaTreinos").style.display = 'block';
         document.getElementById("listaConsultas").style.display = 'none';
@@ -107,7 +76,6 @@ export default function Pacientes() {
             setListaTreinos(response.data);
         });
     }
-
 
     return(
         <div className="pacientes-container">
@@ -160,15 +128,9 @@ export default function Pacientes() {
                 <Link type="button" to="/novaConsulta">
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
-                {//
-                //<ul>
-                //        <Link to="/consulta">
-                //        {listaconsultas.map(renderConsultaCard)}
-                //        </Link> 
-                //</ul>
-                }
-                     <div>
-                        <ReactBootStrap.Table striped bordered hover>
+                
+                <div>
+                    <ReactBootStrap.Table striped bordered hover>
                         <thead>
                             <tr>
                                 <th>Ident.</th>
@@ -176,22 +138,20 @@ export default function Pacientes() {
                                 <th>Descrição da Consulta</th>
                             </tr>
                         </thead>
-                    <tbody>
-                        {listaconsultas.map(renderConsulta)}
-                    </tbody>
+                        <tbody>
+                            {listaconsultas.map(renderConsulta)}
+                        </tbody>
                     </ReactBootStrap.Table>
                 </div>
-
             </div>
-
-       
 
             <div className="treinos"  id="listaTreinos">
                 <Link type="button" to="/novoTreino">
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
+
                 <div>
-                        <ReactBootStrap.Table striped bordered hover>
+                    <ReactBootStrap.Table striped bordered hover>
                         <thead>
                             <tr>
                                 <th>Ident.</th>
@@ -199,12 +159,11 @@ export default function Pacientes() {
                                 <th>Tipo de Treino</th>
                             </tr>
                         </thead>
-                    <tbody>
-                        {listatreinos.map(renderTreino)}
-                    </tbody>
+                        <tbody>
+                            {listatreinos.map(renderTreino)}
+                        </tbody>
                     </ReactBootStrap.Table>
                 </div>
-               
             </div>
         </div>
     );
