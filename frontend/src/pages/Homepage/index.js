@@ -24,7 +24,7 @@ export default function Homepage() {
         axios.get(mUrlApi + "pacientes").then((response) => {
             setListaPacientes(response.data);
         });
-    }, {});
+    }, []);
 
     const renderPaciente = (paciente, index) => {
         return (
@@ -40,7 +40,7 @@ export default function Homepage() {
     const renderPacienteCard = (paciente, index) => {
         return (
             <li key={index}>
-                <Link to="/pacientes">
+                <Link to={`/pacientes/${paciente.id}`}>
                     <p><b>Ident:</b>{paciente.id}</p>
                     <p><b>Nome:</b>{paciente.nome}</p>
                     <p><b>E-mail:</b>{paciente.mail}</p>

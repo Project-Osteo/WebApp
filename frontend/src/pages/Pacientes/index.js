@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FiHome, FiSettings, FiPlusSquare, FiPower } from 'react-icons/fi';
 import axios from "axios";
 
 import './styles.css';
 
 export default function Pacientes() {
+    let { id } = useParams(); 
     const [pacienteInfo, setPacienteInfo] = useState({});
     const [listaconsultas, setListaConsultas] = useState([]);
     const [listatreinos, setListaTreinos] = useState([]);
@@ -13,12 +14,11 @@ export default function Pacientes() {
 
     useEffect(() => {
         axios
-        .get('http://localhost:3001/api/pacientes/id?=${id}')
+        .get(`http://localhost:3001/api/pacientes/${id}`)
         .then((response) => {
-            //ERRO AQUI
-            setPacienteInfo(response.data.data);
+            setPacienteInfo(response.data[0]);
         });
-    }, {});
+    }, []);
 
 
     const renderPaciente = (pacienteInfo) => {
@@ -53,6 +53,13 @@ export default function Pacientes() {
     function showConsultas () {
         document.getElementById("listaConsultas").style.display = 'block';
         document.getElementById("listaTreinos").style.display = "none";
+
+        axios
+        .get(`http://localhost:3001/api/pacientes/${id}/consultas`)
+        .then((response) => {
+            console.log()
+            setListaConsultas(response.data);
+        });
     }
 
 
@@ -88,16 +95,16 @@ export default function Pacientes() {
             <div className="info-paciente">
                 //CARREGAR A INFORMAÇÃO DO CLIENTE
                 <div>
-                <p><b>Id:</b> {pacienteInfo.id}</p>
-                <p><b>Nome:</b> {pacienteInfo.nome}</p>
-                <p><b>Data de nascimento:</b> {pacienteInfo.datanascimento}</p>
-                <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
-                <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
-                <p><b>Altura:</b> {pacienteInfo.altura}</p>
-                <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
-                <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
-                <p><b>Email:</b> {pacienteInfo.mail}</p>  
-            </div>
+                    <p><b>Id:</b> {pacienteInfo.id}</p>
+                    <p><b>Nome:</b> {pacienteInfo.nome}</p>
+                    <p><b>Data de nascimento:</b> {pacienteInfo.datanascimento}</p>
+                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
+                    <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
+                    <p><b>Altura:</b> {pacienteInfo.altura}</p>
+                    <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
+                    <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
+                    <p><b>Email:</b> {pacienteInfo.mail}</p>  
+                </div>
             </div>
 
             <div className="btn-container">                

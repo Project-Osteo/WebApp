@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //Listar todos os pacientes -> ok
 app.get('/api/pacientes', (req, res) => {
+    console.log("/api/pacientes");
     const sqlSelectAllPacientes = 'SELECT * FROM pacientes';
     db.query(sqlSelectAllPacientes, (err, result) => {
         console.log(result);
@@ -27,7 +28,8 @@ app.get('/api/pacientes', (req, res) => {
 
 //Listar consultas do paciente -> ok
 app.get('/api/pacientes/:id/consultas', (req, res) => {
-    const id = req.params.paciente_id;
+    console.log("/api/pacientes/:id/consultas");
+    const id = req.params.id;
     const sqlSelectConsultasFromPaciente = "SELECT * FROM consultas WHERE paciente_id = ?";
     db.query(sqlSelectConsultasFromPaciente, [id], (err, result) => {
         console.log(result);
@@ -37,6 +39,7 @@ app.get('/api/pacientes/:id/consultas', (req, res) => {
 
 //Listar todas as consultas -> ok
 app.get('/api/consultas',  (req, res) => {
+    console.log("/api/consultas");
     const sqlSelectAllConsultas = 'SELECT * FROM consultas';
     db.query(sqlSelectAllConsultas, (err, result) => {
         console.log(result);
@@ -56,13 +59,13 @@ app.get('/api/treinos',  (req, res) => {
 
 //Listar treinos do paciente -> ok
 app.get('/api/pacientes/:id/treinos', (req, res) => {
+
     const id = req.params.paciente_id;
     const sqlSelectTreinosFromPaciente = "SELECT * FROM treinos WHERE paciente_id = ?";
     db.query(sqlSelectTreinosFromPaciente, [id], (err, result) => {
         console.log(result);
         res.send(result);
     });
-
 });
 
 //Listar users -> ok
