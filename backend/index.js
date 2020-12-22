@@ -38,10 +38,11 @@ app.get('/api/pacientes/:id/consultas', (req, res) => {
 });
 
 //Listar todas as consultas -> ok
-app.get('/api/consultas',  (req, res) => {
+app.get('/api/consultas/:id',  (req, res) => {
     console.log("/api/consultas");
-    const sqlSelectAllConsultas = 'SELECT * FROM consultas';
-    db.query(sqlSelectAllConsultas, (err, result) => {
+    const id = req.params.id;
+    const sqlSelectAllConsultas = 'SELECT * FROM consultas WHERE id = ?';
+    db.query(sqlSelectAllConsultas, [id], (err, result) => {
         console.log(result);
         res.send(result);
     });
@@ -59,8 +60,8 @@ app.get('/api/treinos',  (req, res) => {
 
 //Listar treinos do paciente -> ok
 app.get('/api/pacientes/:id/treinos', (req, res) => {
-
-    const id = req.params.paciente_id;
+    console.log("/api/pacientes/:id/treinos");
+    const id = req.params.id;
     const sqlSelectTreinosFromPaciente = "SELECT * FROM treinos WHERE paciente_id = ?";
     db.query(sqlSelectTreinosFromPaciente, [id], (err, result) => {
         console.log(result);

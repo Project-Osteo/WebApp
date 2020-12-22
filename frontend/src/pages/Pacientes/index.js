@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FiHome, FiSettings, FiPlusSquare, FiPower } from 'react-icons/fi';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import * as ReactBootStrap from "react-bootstrap";
+import { useHistory} from "react-router-dom";
 import axios from "axios";
 
 import './styles.css';
@@ -10,6 +13,8 @@ export default function Pacientes() {
     const [pacienteInfo, setPacienteInfo] = useState({});
     const [listaconsultas, setListaConsultas] = useState([]);
     const [listatreinos, setListaTreinos] = useState([]);
+
+    const history = useHistory();
     
 
     useEffect(() => {
@@ -34,6 +39,20 @@ export default function Pacientes() {
                 <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
                 <p><b>Email:</b> {pacienteInfo.mail}</p>  
             </div>
+        )
+    }
+
+    const handleRowClickConsulta = (id) => {
+        history.push(`/consultas/${id}`);
+    }
+
+    const renderConsulta = (consulta, index) => {
+        return (
+            <tr key={index} onClick={() => handleRowClickConsulta(consulta.id)}>
+                <td>{consulta.id}</td>
+                <td>{consulta.data_consulta}</td>
+                <td>{consulta.descricao}</td>
+            </tr>
         )
     }
 
@@ -66,6 +85,13 @@ export default function Pacientes() {
     function showTreinos () {
         document.getElementById("listaTreinos").style.display = 'block';
         document.getElementById("listaConsultas").style.display = 'none';
+
+        axios
+        .get(`http://localhost:3001/api/pacientes/${id}/treinos`)
+        .then((response) => {
+            console.log()
+            setListaTreinos(response.data);
+        });
     }
 
 
@@ -93,7 +119,6 @@ export default function Pacientes() {
             </header>
 
             <div className="info-paciente">
-                //CARREGAR A INFORMAÇÃO DO CLIENTE
                 <div>
                     <p><b>Id:</b> {pacienteInfo.id}</p>
                     <p><b>Nome:</b> {pacienteInfo.nome}</p>
@@ -121,11 +146,28 @@ export default function Pacientes() {
                 <Link type="button" to="/novaConsulta">
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
-                <ul>
-                        <Link to="/consulta">
-                        {listaconsultas.map(renderConsultaCard)}
-                        </Link> 
-                </ul>
+                {//
+                //<ul>
+                //        <Link to="/consulta">
+                //        {listaconsultas.map(renderConsultaCard)}
+                //        </Link> 
+                //</ul>
+                }
+            </div>
+
+            <div>
+                <ReactBootStrap.Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Ident.</th>
+                            <th>Data</th>
+                            <th>Descrição da Consulta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listaconsultas.map(renderConsulta)}
+                    </tbody>
+                </ReactBootStrap.Table>
             </div>
 
             <div className="treinos"  id="listaTreinos">
