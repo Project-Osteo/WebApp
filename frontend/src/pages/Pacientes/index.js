@@ -153,11 +153,9 @@ export default function Pacientes() {
                 //        </Link> 
                 //</ul>
                 }
-            </div>
-
-            <div>
-                <ReactBootStrap.Table striped bordered hover>
-                    <thead>
+                     <div>
+                        <ReactBootStrap.Table striped bordered hover>
+                        <thead>
                         <tr>
                             <th>Ident.</th>
                             <th>Data</th>
@@ -169,6 +167,10 @@ export default function Pacientes() {
                     </tbody>
                 </ReactBootStrap.Table>
             </div>
+
+            </div>
+
+       
 
             <div className="treinos"  id="listaTreinos">
                 <Link type="button" to="/novoTreino">
