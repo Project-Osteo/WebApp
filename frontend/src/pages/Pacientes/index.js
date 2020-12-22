@@ -56,6 +56,20 @@ export default function Pacientes() {
         )
     }
 
+    const handleRowClickTreino = (id) => {
+        history.push(`/treinos/${id}`);
+    }
+
+    const renderTreino = (treino, index) => {
+        return (
+            <tr key={index} onClick={() => handleRowClickTreino(treino.id)}>
+                <td>{treino.id}</td>
+                <td>{treino.data_treino}</td>
+                <td>{treino.tipo}</td>
+            </tr>
+        )
+    }
+
 
     const renderConsultaCard = (consulta, index) => {
         return (
@@ -156,17 +170,17 @@ export default function Pacientes() {
                      <div>
                         <ReactBootStrap.Table striped bordered hover>
                         <thead>
-                        <tr>
-                            <th>Ident.</th>
-                            <th>Data</th>
-                            <th>Descrição da Consulta</th>
-                        </tr>
-                    </thead>
+                            <tr>
+                                <th>Ident.</th>
+                                <th>Data</th>
+                                <th>Descrição da Consulta</th>
+                            </tr>
+                        </thead>
                     <tbody>
                         {listaconsultas.map(renderConsulta)}
                     </tbody>
-                </ReactBootStrap.Table>
-            </div>
+                    </ReactBootStrap.Table>
+                </div>
 
             </div>
 
@@ -176,14 +190,21 @@ export default function Pacientes() {
                 <Link type="button" to="/novoTreino">
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
-                <ul>
-                    <li>
-                        <Link to="/pacientes">
-                        <p><b>Nome:</b>Jona do cota</p>
-                        <p><b>Email:</b>jonadocota@hotmail.com</p>
-                        </Link>
-                    </li>
-                </ul>
+                <div>
+                        <ReactBootStrap.Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Ident.</th>
+                                <th>Data</th>
+                                <th>Tipo de Treino</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        {listatreinos.map(renderTreino)}
+                    </tbody>
+                    </ReactBootStrap.Table>
+                </div>
+               
             </div>
         </div>
     );

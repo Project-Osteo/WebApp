@@ -49,9 +49,10 @@ app.get('/api/consultas/:id',  (req, res) => {
 });
 
 //Listar todos os treinos -> ok
-app.get('/api/treinos',  (req, res) => {
-    const sqlSelectAllTreinos = 'SELECT * FROM treinos';
-    db.query(sqlSelectAllTreinos, (err, result) => {
+app.get('/api/treinos/:id',  (req, res) => {
+    const id = req.params.id;
+    const sqlSelectAllTreinos = 'SELECT * FROM treinos WHERE id = ?';
+    db.query(sqlSelectAllTreinos, [id], (err, result) => {
         console.log(result);
         res.send(result);
     });
