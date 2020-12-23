@@ -18,8 +18,8 @@ export default function Routes() {
             <Route path="/" exact component={Login} />
             <Route path="/homepage" component={Homepage} />
             <Route path="/pacientes/:id" component={Pacientes} />
-            <Route path="/consulta" component={Consulta} />
-            <Route path="/treino" component={Treino} />
+            <Route path="/consultas/:id" component={Consulta} />
+            <Route path="/treinos/:id" component={Treino} />
             <Route path="/settings" component={Settings} />
             <Route path="/novoPaciente" component={NovoPaciente} />
             <Route path="/novaConsulta" component={NovaConsulta} />
