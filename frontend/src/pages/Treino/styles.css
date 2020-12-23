@@ -1,0 +1,33 @@
+.treinos-container {
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 32px auto;
+}
+
+.treinos-container .treinos {
+    display: block;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-bottom: 30px;
+    background: #A9A9A9;
+    padding: 24px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.treinos-container .treinos p {
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.treinos-container .treinos .info-treinos {
+    display: block;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-bottom: 20px;
+    background: #FFF;
+    padding: 24px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}

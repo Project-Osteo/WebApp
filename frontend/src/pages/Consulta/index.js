@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPlusSquare, FiPower } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import { useHistory} from "react-router-dom";
