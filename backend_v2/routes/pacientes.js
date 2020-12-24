@@ -37,7 +37,7 @@ router.get('/:id/consultas', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Consultas WHERE paciente_id = ?;',
+            'SELECT * FROM Consultas WHERE paciente_id = ?;', /* SELECT Consultas.*, Pacientes.* FROM Consultas INNER JOIN Pacientes ON Consultas.paciente_id = Pacientes.id WHERE Consultas.paciente_id = ?; */
             [req.params.id],
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }

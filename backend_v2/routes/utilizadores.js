@@ -37,11 +37,11 @@ router.post('/', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'INSERT INTO Utilizadores (mail, pwd, nome, telemovel) VALUES (?,?,?, ?);',
+            'INSERT INTO Utilizadores (mail, pwd, token, telemovel) VALUES (?,?,?, ?);',
             [
                 req.body.mail, 
                 req.body.pwd, 
-                req.body.nome, 
+                req.body.token, 
                 req.body.telemovel
             ],
             (error, result, fields) => {
@@ -64,13 +64,11 @@ router.patch('/:id', (req, res, next) => {
             `UPDATE Utilizadores SET 
                 mail = ?,
                 pwd = ?,
-                nome = ?,
                 telemovel = ?
             WHERE id = ?`,
             [
                 req.body.mail,
                 req.body.pwd,
-                req.body.nome,
                 req.body.telemovel,
                 req.params.id
             ],
@@ -99,7 +97,6 @@ router.delete('/:id', (req, res, next) => {
                 res.status(202).send({
                     mensagem: 'Utilizador removido com sucesso',
                 });
-
             }
         )
     });
