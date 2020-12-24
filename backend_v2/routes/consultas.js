@@ -36,7 +36,7 @@ router.post('/', (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `INSERT INTO Consultas 
-            (data, descricao, paciente_id, terapeuta_id, peso, tratamento, obs, recomendacao) 
+            (data_consulta, descricao, paciente_id, terapeuta_id, peso, tratamento, obs, recomendacao) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
             [
                 req.body.data, 
