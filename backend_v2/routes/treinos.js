@@ -31,4 +31,31 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
+//NEW TREINO
+router.post('/', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `INSERT INTO Treino 
+            (paciente_id, data, descricao, tipo, obs) 
+            VALUES (?, ?, ?, ?, ?);`,
+            [                
+                req.body.paciente_id,
+                req.body.data, 
+                req.body.descricao, 
+                req.body.tipo,
+                req.body.obs           
+            ],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                res.status(201).send({
+                    mensagem: 'Treino criado com sucesso!',
+                    treino_id: result.insertId
+                });
+            }
+        )
+    });
+});
+
 module.exports = router;
