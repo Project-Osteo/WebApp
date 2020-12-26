@@ -19,7 +19,7 @@ export default function Pacientes() {
 
     useEffect(() => {
         axios
-        .get(`http://localhost:3001/api/pacientes/${id}`)
+        .get(`http://localhost:3001/pacientes/${id}`)
         .then((response) => {
             setPacienteInfo(response.data[0]);
         });
@@ -31,8 +31,8 @@ export default function Pacientes() {
 
     const renderConsulta = (consulta, index) => {
         return (
-            <tr key={index} onClick={() => handleRowClickConsulta(consulta.id)}>
-                <td>{consulta.id}</td>
+            <tr key={index} onClick={() => handleRowClickConsulta(consulta.id_consulta)}>
+                <td>{consulta.id_consulta}</td>
                 <td>{consulta.data_consulta}</td>
                 <td>{consulta.descricao}</td>
             </tr>
@@ -45,8 +45,8 @@ export default function Pacientes() {
 
     const renderTreino = (treino, index) => {
         return (
-            <tr key={index} onClick={() => handleRowClickTreino(treino.id)}>
-                <td>{treino.id}</td>
+            <tr key={index} onClick={() => handleRowClickTreino(treino.id_treino)}>
+                <td>{treino.id_treino}</td>
                 <td>{treino.data_treino}</td>
                 <td>{treino.tipo}</td>
             </tr>
@@ -58,7 +58,7 @@ export default function Pacientes() {
         document.getElementById("listaTreinos").style.display = "none";
 
         axios
-        .get(`http://localhost:3001/api/pacientes/${id}/consultas`)
+        .get(`http://localhost:3001/pacientes/${id}/consultas`)
         .then((response) => {
             console.log()
             setListaConsultas(response.data);
@@ -70,7 +70,7 @@ export default function Pacientes() {
         document.getElementById("listaConsultas").style.display = 'none';
 
         axios
-        .get(`http://localhost:3001/api/pacientes/${id}/treinos`)
+        .get(`http://localhost:3001/pacientes/${id}/treinos`)
         .then((response) => {
             console.log()
             setListaTreinos(response.data);
@@ -100,19 +100,38 @@ export default function Pacientes() {
                 
             </header>
 
-            <div className="info-paciente">
+            {/* <div className="info-paciente">
                 <div>
-                    <p><b>Id:</b> {pacienteInfo.id}</p>
-                    <p><b>Nome:</b> {pacienteInfo.nome}</p>
-                    <p><b>Data de nascimento:</b> {pacienteInfo.datanascimento}</p>
+                    <p><b>Id:</b> {pacienteInfo.id_paciente}</p>
+                    <p><b>Nome:</b> </p>
+                    <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
                     <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
                     <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
                     <p><b>Altura:</b> {pacienteInfo.altura}</p>
                     <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
-                    <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
+                    <p><b>Genero:</b> {pacienteInfo.genero}</p>
                     <p><b>Email:</b> {pacienteInfo.mail}</p>  
                 </div>
+            </div> */}
+
+
+            <div className="info-paciente">
+            <div class="w3-card-4">
+                <header class="w3-container w3-light-grey">
+                    <h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3>
+                </header>
+
+                <div class="w3-container">
+                    <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
+                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
+                    <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
+                    <p><b>Altura:</b> {pacienteInfo.altura}</p>
+                    <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
+                    <p><b>Genero:</b> {pacienteInfo.genero}</p>
+                </div>
             </div>
+            </div>
+
 
             <div className="btn-container">                
                 <button type="buton"  onClick={() => showConsultas()}>

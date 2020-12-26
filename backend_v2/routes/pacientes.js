@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
             'SELECT * FROM Pacientes;',
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result});
+                return res.status(200).send(result);
             }
         )
     });
@@ -22,11 +22,11 @@ router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Pacientes WHERE id = ?;',
+            'SELECT * FROM Pacientes WHERE id_paciente = ?;',
             [req.params.id],
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result})
+                return res.status(200).send(result)
             }
         )
     });
@@ -41,7 +41,7 @@ router.get('/:id/consultas', (req, res, next) => {
             [req.params.id],
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result})
+                return res.status(200).send(result)
             }
         )
     });
@@ -57,7 +57,7 @@ router.get('/:id/treinos', (req, res, next) => {
             [req.params.id],
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result})
+                return res.status(200).send(result)
             }
         )
     });

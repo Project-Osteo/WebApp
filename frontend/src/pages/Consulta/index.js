@@ -14,7 +14,7 @@ export default function Consulta () {
     
     useEffect(() => {
         axios
-        .get(`http://localhost:3001/api/consultas/${id}`)
+        .get(`http://localhost:3001/consultas/${id}`)
         .then((response) => {
             setConsultaInfo(response.data[0]);
         });

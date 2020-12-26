@@ -14,7 +14,7 @@ export default function Treino () {
     
     useEffect(() => {
         axios
-        .get(`http://localhost:3001/api/treinos/${id}`)
+        .get(`http://localhost:3001/treinos/${id}`)
         .then((response) => {
             setTreinoInfo(response.data[0]);
         });

@@ -10,8 +10,6 @@ import './styles.css';
 
 export default function Homepage() {
 
-    const mUrlApi = "http://localhost:3001/api/";
-
     const [listaPacientes, setListaPacientes] = useState([]);
 
     const history = useHistory();
@@ -21,15 +19,15 @@ export default function Homepage() {
     }
 
     useEffect(() => {
-        axios.get(mUrlApi + "pacientes").then((response) => {
+        axios.get("http://localhost:3001/pacientes").then((response) => {
             setListaPacientes(response.data);
         });
     }, []);
 
     const renderPaciente = (paciente, index) => {
         return (
-            <tr key={index} onClick={() => handleRowClick(paciente.id)}>
-                <td>{paciente.id}</td>
+            <tr key={index} onClick={() => handleRowClick(paciente.id_paciente)}>
+                <td>{paciente.id_paciente}</td>
                 <td>{paciente.nome}</td>
                 <td>{paciente.mail}</td>
                 <td>{paciente.telemovel}</td>
@@ -68,6 +66,7 @@ export default function Homepage() {
                         </tr>
                     </thead>
                     <tbody>
+                        
                         {listaPacientes.map(renderPaciente)}
                     </tbody>
                 </ReactBootStrap.Table>

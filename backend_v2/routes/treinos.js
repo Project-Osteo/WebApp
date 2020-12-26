@@ -44,7 +44,7 @@ router.post('/', (req, res, next) => {
                 req.body.data, 
                 req.body.descricao, 
                 req.body.tipo,
-                req.body.obs           
+                req.body.obs
             ],
             (error, result, fields) => {
                 conn.release();
