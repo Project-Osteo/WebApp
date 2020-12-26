@@ -23,11 +23,11 @@ export default function Consulta () {
     return(
         <div className="consultas-container">
             <div className="consultas">
-                <p><b>Id:</b> {consultaInfo.id}</p>
+                <p><b>Id:</b> {consultaInfo.id_consulta}</p>
 
                 <p><b>Data da consulta:</b> {consultaInfo.data_consulta}</p>
 
-                <p><b>Descrição:</b> {consultaInfo.descricao}</p>
+                <p><b>Descrição:</b> {consultaInfo.descricao_consulta}</p>
                 
 
                 <div className="tratamento">
@@ -35,7 +35,7 @@ export default function Consulta () {
 
                     <p><b>Tratamento realizado:</b> {consultaInfo.tratamento}</p>
 
-                    <p><b>Observações:</b> {consultaInfo.obs}</p>
+                    <p><b>Observações:</b> {consultaInfo.obs_consulta}</p>
                 </div>
 
                 <p><b>Recomendações:</b> {consultaInfo.recomendacao}</p>

@@ -34,7 +34,7 @@ export default function Pacientes() {
             <tr key={index} onClick={() => handleRowClickConsulta(consulta.id_consulta)}>
                 <td>{consulta.id_consulta}</td>
                 <td>{consulta.data_consulta}</td>
-                <td>{consulta.descricao}</td>
+                <td>{consulta.descricao_consulta}</td>
             </tr>
         )
     }
@@ -48,7 +48,7 @@ export default function Pacientes() {
             <tr key={index} onClick={() => handleRowClickTreino(treino.id_treino)}>
                 <td>{treino.id_treino}</td>
                 <td>{treino.data_treino}</td>
-                <td>{treino.tipo}</td>
+                <td>{treino.tipo_treino}</td>
             </tr>
         )
     }
@@ -114,11 +114,19 @@ export default function Pacientes() {
                 </div>
             </div> */}
 
+            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3></div>
+                <div class="card-body">
+                    <h5 class="card-title">Secondary card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+
 
             <div className="info-paciente">
             <div class="w3-card-4">
                 <header class="w3-container w3-light-grey">
-                    <h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3>
+                    
                 </header>
 
                 <div class="w3-container">

@@ -23,16 +23,16 @@ export default function Treino () {
     return(
         <div className="treinos-container">
             <div className="treinos">
-                <p><b>Id:</b> {treinoInfo.id}</p>
+                <p><b>Id:</b> {treinoInfo.id_treino}</p>
 
                 <p><b>Data da treino:</b> {treinoInfo.data_treino}</p>
 
-                <p><b>Tipo de treino:</b> {treinoInfo.tipo}</p>
+                <p><b>Tipo de treino:</b> {treinoInfo.tipo_treino}</p>
                 
                 <div className="info-treinos">
-                    <p><b>Descrição:</b> {treinoInfo.descricao}</p>
+                    <p><b>Descrição:</b> {treinoInfo.descricao_treino}</p>
 
-                    <p><b>Observações:</b> {treinoInfo.obs}</p>
+                    <p><b>Observações:</b> {treinoInfo.obs_treino}</p>
                 </div>
             </div>         
         </div>
