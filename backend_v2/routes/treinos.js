@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
         conn.query(
             'SELECT * FROM Treinos;',
             (error, result, fields) => {
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send(result);
             }
@@ -24,6 +25,7 @@ router.get('/:id', (req, res, next) => {
             'SELECT * FROM Treinos WHERE id = ?;',
             [req.params.id],
             (error, result, fields) => {
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send(result);
             }

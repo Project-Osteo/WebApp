@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
         conn.query(
             'SELECT * FROM Utilizadores;',
             (error, result, fields) => {
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send({response: result});
             }
@@ -25,6 +26,7 @@ router.get('/:id', (req, res, next) => {
             'SELECT * FROM Utilizadores WHERE id = ?;',
             [req.params.id],
             (error, result, fields) => {
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send({response: result})
             }

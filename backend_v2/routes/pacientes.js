@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
         conn.query(
             'SELECT * FROM Pacientes;',
             (error, result, fields) => {
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send(result);
             }
@@ -25,6 +26,7 @@ router.get('/:id', (req, res, next) => {
             'SELECT * FROM Pacientes WHERE id_paciente = ?;',
             [req.params.id],
             (error, result, fields) => {
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send(result)
             }
@@ -40,6 +42,7 @@ router.get('/:id/consultas', (req, res, next) => {
             'SELECT * FROM Consultas WHERE paciente_id = ?;', /* SELECT Consultas.*, Pacientes.* FROM Consultas INNER JOIN Pacientes ON Consultas.paciente_id = Pacientes.id WHERE Consultas.paciente_id = ?; */
             [req.params.id],
             (error, result, fields) => {
+                
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send(result)
             }
@@ -56,6 +59,7 @@ router.get('/:id/treinos', (req, res, next) => {
             'SELECT * FROM Treinos WHERE paciente_id = ?;',
             [req.params.id],
             (error, result, fields) => {
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send(result)
             }
