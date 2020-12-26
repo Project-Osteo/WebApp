@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
             'SELECT * FROM Treinos;',
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result})
+                return res.status(200).send(result);
             }
         )
     });
@@ -25,7 +25,7 @@ router.get('/:id', (req, res, next) => {
             [req.params.id],
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result})
+                return res.status(200).send(result);
             }
         )
     });
@@ -36,7 +36,7 @@ router.post('/', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            `INSERT INTO Treino 
+            `INSERT INTO Treinos 
             (paciente_id, data_treino, descricao_treino, tipo_treino, obs_treino) 
             VALUES (?, ?, ?, ?, ?);`,
             [                

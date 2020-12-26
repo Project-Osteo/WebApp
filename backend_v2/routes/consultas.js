@@ -11,7 +11,8 @@ router.get('/', (req, res, next) => {
             "SELECT * FROM Consultas;",
             (error, result, fields) => {
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result})
+                console.log(result);
+                return res.status(200).send(result);
             }
         )
     });
@@ -24,7 +25,7 @@ router.get('/:id', (req, res, next) => {
             'SELECT * FROM Consultas WHERE id = ?;',
             [req.params.id],
             (error, result, fields) => {
-                return res.status(200).send({response: result})
+                return res.status(200).send(result);
             }
         )
     });
@@ -37,7 +38,7 @@ router.post('/', (req, res, next) => {
         conn.query(
             `INSERT INTO Consultas 
             (paciente_id, data_consulta, descricao_consulta, peso, tratamento, obs_consulta, recomendacao) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+            VALUES (?, ?, ?, ?, ?, ?, ?);`,
             [
                 req.body.paciente_id,
                 req.body.data, 
