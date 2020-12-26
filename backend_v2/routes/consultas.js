@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         conn.query(
-            'SELECT * FROM Consultas WHERE id = ?;',
+            'SELECT * FROM Consultas WHERE id_consulta = ?;',
             [req.params.id],
             (error, result, fields) => {
                 return res.status(200).send(result);
