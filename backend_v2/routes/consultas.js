@@ -62,5 +62,38 @@ router.post('/', (req, res, next) => {
     });
 });
 
+//UPDATE CONSULTA
+router.patch('/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `UPDATE Consultas SET 
+                data_consulta = ?,
+                descricao_consulta = ?,
+                peso = ?,
+                tratamento = ?, 
+                obs_consulta = ?,
+                recomendacao = ?
+            WHERE paciente_id = ?`,
+            [
+                req.body.data, 
+                req.body.descricao,
+                req.body.peso,
+                req.body.tratamento,
+                req.body.obs,
+                req.body.recomendacao,
+                req.params.id
+            ],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                res.status(202).send({
+                    mensagem: 'Paciente alterado com sucesso',
+                })
+            }
+        )
+    });   
+});
+
 
 module.exports = router;
