@@ -42,7 +42,7 @@ router.get('/:id/consultas', (req, res, next) => {
             'SELECT * FROM Consultas WHERE paciente_id = ?;', /* SELECT Consultas.*, Pacientes.* FROM Consultas INNER JOIN Pacientes ON Consultas.paciente_id = Pacientes.id WHERE Consultas.paciente_id = ?; */
             [req.params.id],
             (error, result, fields) => {
-                
+                conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 return res.status(200).send(result)
             }
