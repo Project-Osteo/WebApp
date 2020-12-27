@@ -114,32 +114,18 @@ export default function Pacientes() {
                 </div>
             </div> */}
 
-            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card text-white bg-secondary mb-3"> 
                 <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3></div>
                 <div class="card-body">
-                    <h5 class="card-title">Secondary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-
-
-            <div className="info-paciente">
-            <div class="w3-card-4">
-                <header class="w3-container w3-light-grey">
-                    
-                </header>
-
-                <div class="w3-container">
                     <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
                     <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
                     <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
                     <p><b>Altura:</b> {pacienteInfo.altura}</p>
                     <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
                     <p><b>Genero:</b> {pacienteInfo.genero}</p>
+                    <p><b>Email:</b> {pacienteInfo.mail}</p>
                 </div>
             </div>
-            </div>
-
 
             <div className="btn-container">                
                 <button type="buton"  onClick={() => showConsultas()}>
