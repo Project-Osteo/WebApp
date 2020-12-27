@@ -8,6 +8,13 @@ import './styles.css';
 
 export default function NovoPaciente () {
 
+    const submitPaciente = async () => {
+        let res = await Axios.post('http://localhost:3001/pacientes',
+        {nome: nome, mail: mail, genero: genero, nacionalidade: nacionalidade, 
+            localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
+            console.log(res);
+    }
+
     function handleNovoPaciente(e){
         e.preventDefault();
 
@@ -73,7 +80,6 @@ export default function NovoPaciente () {
     }, []); */
 
     return(
-        
         <div className="novoPaciente-container">
 
             <header>
@@ -121,7 +127,7 @@ export default function NovoPaciente () {
                         onClick={submitPaciente}>ADICIONAR</button>
                 </form>  */}
                 
-                <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm" onSubmit={handleNovoPaciente}>
+                <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     
 
@@ -185,7 +191,7 @@ export default function NovoPaciente () {
                         </label>
                     </p> */}
 
-                    <p><Link type="submit" to="/homepage">Adicionar Paciente</Link></p>
+                    <p><Link type="submit" onClick={submitPaciente}>Adicionar Paciente</Link></p>
 
                 </form>
             </div>
