@@ -39,12 +39,11 @@ router.post('/', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'INSERT INTO Utilizadores (mail, pwd, token, telemovel) VALUES (?,?,?, ?);',
+            'INSERT INTO Utilizadores (mail, pwd, token) VALUES (?,?,?);',
             [
                 req.body.mail, 
                 req.body.pwd, 
                 req.body.token, 
-                req.body.telemovel
             ],
             (error, result, fields) => {
                 conn.release();
@@ -65,13 +64,11 @@ router.patch('/:id', (req, res, next) => {
         conn.query(
             `UPDATE Utilizadores SET 
                 mail = ?,
-                pwd = ?,
-                telemovel = ?
+                pwd = ?
             WHERE id_user = ?`,
             [
                 req.body.mail,
                 req.body.pwd,
-                req.body.telemovel,
                 req.params.id
             ],
             (error, result, fields) => {
