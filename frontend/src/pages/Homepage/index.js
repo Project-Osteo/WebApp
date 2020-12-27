@@ -38,7 +38,7 @@ export default function Homepage() {
     return(
         <div className="homepage-container">
             <header>
-                <span>OSTEOCLINIC</span>
+                <span><b>OSTEOCLINIC</b></span>
 
                 <div className="btn-group">
                     <Link type="button" to="/novoPaciente">
