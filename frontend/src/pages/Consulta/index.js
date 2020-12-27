@@ -25,11 +25,15 @@ export default function Consulta () {
         <div className="consultas-container">
 
             <header>
-                <span>OSTEOCLINIC</span>
+                <span><b>OSTEOCLINIC</b></span>
 
                 <div className="btn-group">
                     <Link type="button" to={'/pacientes/' + consultaInfo.paciente_id}>
                         <FiArrowLeft size={55} color="#41414d" />
+                    </Link>
+
+                    <Link type="button" to="/homepage">
+                        <FiHome size={55} color="#41414d"></FiHome>
                     </Link>
 
                     <Link type="button" to="/settings">
