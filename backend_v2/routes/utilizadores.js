@@ -23,7 +23,7 @@ router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Utilizadores WHERE id = ?;',
+            'SELECT * FROM Utilizadores WHERE id_user = ?;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
@@ -67,7 +67,7 @@ router.patch('/:id', (req, res, next) => {
                 mail = ?,
                 pwd = ?,
                 telemovel = ?
-            WHERE id = ?`,
+            WHERE id_user = ?`,
             [
                 req.body.mail,
                 req.body.pwd,
@@ -78,9 +78,8 @@ router.patch('/:id', (req, res, next) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(202).send({
-                    mensagem: 'Utilizador alterado com sucesso',
-                })
-                
+                    mensagem: 'Utilizador alterado com sucesso'
+                });
             }
         )
     });   
@@ -91,7 +90,7 @@ router.delete('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'DELETE FROM Utilizadores WHERE id = ?',
+            'DELETE FROM Utilizadores WHERE id_user = ?',
             [req.params.id], 
             (error, result, field) => {
                 conn.release();

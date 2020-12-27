@@ -113,7 +113,7 @@ router.patch('/:id', (req, res, next) => {
                 data_nascimento = ?, 
                 altura = ?, 
                 telemovel = ?
-            WHERE id = ?`,
+            WHERE id_paciente = ?`,
             [
                 req.body.user_id, 
                 req.body.nome, 
@@ -142,7 +142,7 @@ router.delete('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'DELETE FROM Pacientes WHERE id = ?',
+            'DELETE FROM Pacientes WHERE id_paciente = ?',
             [req.params.id], 
             (error, result, field) => {
                 conn.release();
