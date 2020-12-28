@@ -127,7 +127,7 @@ export default function NovoPaciente () {
                         onClick={submitPaciente}>ADICIONAR</button>
                 </form>  */}
                 
-                <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+                <form class="myForm" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     
 
