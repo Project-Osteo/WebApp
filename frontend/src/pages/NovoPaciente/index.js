@@ -8,33 +8,7 @@ import './styles.css';
 
 export default function NovoPaciente () {
 
-    const submitPaciente = async () => {
-        let res = await Axios.post('http://localhost:3001/pacientes',
-        {nome: nome, mail: mail, genero: genero, nacionalidade: nacionalidade, 
-            localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
-            console.log(res);
-    }
-
-    function handleNovoPaciente(e){
-        e.preventDefault();
-
-        const data = {
-            nome,
-            mail,
-            genero,
-            nacionalidade,
-            localidade,
-            dataNascimento,
-            altura,
-            telemovel,
-        };
-
-        Axios.post('http://localhost:3001/pacientes', data);
-    }
-
-    const [pacienteId, setPacienteId] = useState(null);
     const [nome, setNome] = useState('');
-    const [mail, setMail] = useState('');
     const [genero, setGenero] = useState('');
     const [nacionalidade, setNacionalidade] = useState('');
     const [localidade, setLocalidade] = useState('');
@@ -42,42 +16,12 @@ export default function NovoPaciente () {
     const [altura, setAltura] = useState('');
     const [telemovel, setTelemovel] = useState('');
 
-
-    /* const SubmitPaciente = () => {
-    
-            Axios.post('http://localhost:3001/pacientes', {
-                
-                nome: nome,
-                mail: mail,
-                genero: genero,
-                nacionalidade: nacionalidade,
-                localidade: localidade,
-                data_nascimento: dataNascimento,
-                altura: altura,
-                telemovel: telemovel
-            });
-
-                setPaciente([...paciente, {nome: nome, mail: mail,
-                genero: genero, nacionalidade: nacionalidade, localidade: localidade,
-            data_nascimento: dataNascimento, altura: altura, telemovel: telemovel}
-                ]);
-        }; */
-    
-
-    /*useEffect(() => {
-        const paciente = {
-            nome: nome,
-            mail: mail,
-            genero: genero,
-            nacionalidade: nacionalidade,
-            localidade: localidade,
-            data_nascimento: dataNascimento,
-            altura: altura,
-            telemovel: telemovel,
-        };
-        Axios.post('http://localhost:3001/pacientes', paciente)
-        .then(response => setPacienteId(response.data.id));
-    }, []); */
+    const submitPaciente = async () => {
+        let res = await Axios.post('http://localhost:3001/pacientes',
+        {nome: nome, genero: genero, nacionalidade: nacionalidade, 
+            localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
+            console.log(res);
+    }
 
     return(
         <div className="novoPaciente-container">
@@ -136,10 +80,10 @@ export default function NovoPaciente () {
                        onChange={(e) => setNome(e.target.value)} />
                     </label>
 
-                    <label>Email 
+                 {/*    <label>Email 
                     <input type="email" name="mail" required value={mail}
                        onChange={(e) => setMail(e.target.value)}/>
-                    </label>
+                    </label> */}
                         
                     <label>Genero 
                     {/* <input type="text" name="Sexo" list="optionslist"/>
