@@ -22,8 +22,8 @@ export default function Routes() {
             <Route path="/treinos/:id" component={Treino} />
             <Route path="/settings" component={Settings} />
             <Route path="/novoPaciente" component={NovoPaciente} />
-            <Route path="/novaConsulta" component={NovaConsulta} />
-            <Route path="/novoTreino" component={NovoTreino} />
+            <Route path="/novaConsulta/:id" component={NovaConsulta} />
+            <Route path="/novoTreino/:id" component={NovoTreino} />
         </Switch>
       </BrowserRouter>  
     );

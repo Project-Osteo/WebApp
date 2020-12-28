@@ -138,7 +138,7 @@ export default function Pacientes() {
             </div>
 
             <div className="consultas"  id="listaConsultas">
-                <Link type="button" to="/novaConsulta">
+                <Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
                 
@@ -159,7 +159,7 @@ export default function Pacientes() {
             </div>
 
             <div className="treinos"  id="listaTreinos">
-                <Link type="button" to="/novoTreino">
+                <Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
 

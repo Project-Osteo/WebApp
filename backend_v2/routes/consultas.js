@@ -34,7 +34,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 //NEW CONSULTA
-router.post('/', (req, res, next) => {
+router.post('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
             (paciente_id, data_consulta, descricao_consulta, peso, tratamento, obs_consulta, recomendacao) 
             VALUES (?, ?, ?, ?, ?, ?, ?);`,
             [
-                req.body.paciente_id,
+                req.params.id,
                 req.body.data, 
                 req.body.descricao, 
                 req.body.peso, 
@@ -52,6 +52,7 @@ router.post('/', (req, res, next) => {
             ],
             (error, result, fields) => {
                 conn.release();
+                console.log(result);
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(201).send({
                     mensagem: 'Consulta criada com sucesso!',

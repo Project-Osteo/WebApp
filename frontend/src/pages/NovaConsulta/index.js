@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 import Axios from 'axios';
 
@@ -7,6 +7,22 @@ import Axios from 'axios';
 import './styles.css';
 
 export default function NovaConsulta (){
+    let { id } = useParams();
+
+    const [data, setData] = useState('');
+    const [peso, setPeso] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const [tratamento, setTratamento] = useState('');
+    const [rec, setRec] = useState('');
+    const [obs, setObs] = useState('');
+    
+
+    const submitConsulta = async () => {
+        let res = await Axios.post(`http://localhost:3001/consultas/${id}`,
+        { data: data, descricao: descricao, peso: peso, tratamento: tratamento, obs: obs, recomendacao: rec })
+            console.log(res);
+    }
+
     return(
         <div className="novaConsulta-container">
             <section>
@@ -18,26 +34,36 @@ export default function NovaConsulta (){
                 <form class="myForm2" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     <label>Peso
-                    <input type="number" name="Peso" />
+                    <input type="number" name="Peso" value={peso}
+                       onChange={(e) => setPeso(e.target.value)}/>
                     </label>
 
                     <label>Descrição da consulta
-                    <textarea type="text" name="descricao Consulta" cols="40" rows="5" />
+                    <textarea type="text" name="descricao Consulta" cols="40" rows="5" value={descricao}
+                       onChange={(e) => setDescricao(e.target.value)}/>
                     </label>
 
                     <label>Tratamento
-                    <textarea type="text" name="tratamento" cols="40" rows="5" />
+                    <textarea type="text" name="tratamento" cols="40" rows="5" value={tratamento}
+                       onChange={(e) => setTratamento(e.target.value)}/>
                     </label>
 
                     <label>Recomendações
-                    <textarea type="text" name="recomendacoes" cols="40" rows="5" />
+                    <textarea type="text" name="recomendacoes" cols="40" rows="5" value={rec}
+                       onChange={(e) => setRec(e.target.value)}/>
                     </label>
 
                     <label>Observações
-                    <textarea type="text" name="observacoes" cols="40" rows="5" />
+                    <textarea type="text" name="observacoes" cols="40" rows="5" value={obs}
+                       onChange={(e) => setObs(e.target.value)}/>
                     </label>
 
-                    <p><Link type="submit" to="/pacientes">ADICIONAR CONSULTA</Link></p>
+                    <label>Data da Consulta
+                    <textarea type="text" name="observacoes" cols="40" rows="5" value={data}
+                       onChange={(e) => setData(e.target.value)}/>
+                    </label>
+
+                    <p><Link type="submit" onClick={submitConsulta}>ADICIONAR CONSULTA</Link></p>
                 </form>
             </div>
         </div>
