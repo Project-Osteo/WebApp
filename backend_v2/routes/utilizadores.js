@@ -35,7 +35,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 //NEW USER
-router.post('/', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
