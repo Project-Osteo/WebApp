@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPlusSquare, FiPower } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import { useHistory} from "react-router-dom";
@@ -129,16 +129,36 @@ export default function Pacientes() {
             </div> */}
 
             <div class="card text-white bg-secondary mb-3"> 
-                <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3>
+                <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b>
+                    <FiEdit2 type="button" size={20} onClick={updatePaciente}></FiEdit2>
+                </h3>
                     
                 </div>
                 <div class="card-body">
                     <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
+                    <input type="text" name="pickup_time" required value={dataNascimento}
+                       onChange={(e) => setDataNascimento(e.target.value)} />
+
                     <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
+                    <input type="text" name="localidade" value={localidade}
+                       onChange={(e) => setLocalidade(e.target.value)} />
+
                     <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
+                    <input type="text" name="nacionalidade" value={nacionalidade}
+                       onChange={(e) => setNacionalidade(e.target.value)} />
+
                     <p><b>Altura:</b> {pacienteInfo.altura}</p>
+                    <input type="number" name="altura" value={altura}
+                       onChange={(e) => setAltura(e.target.value)} />
+                       
                     <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
+                    <input type="tel" name="telemovel" required value={telemovel}
+                       onChange={(e) => setTelemovel(e.target.value)} />
+
                     <p><b>Genero:</b> {pacienteInfo.genero}</p>
+                    <input type="text" name="genero" required value={genero}
+                       onChange={(e) => setGenero(e.target.value)} />
+
                     <p><b>Email:</b> {pacienteInfo.mail}</p>
                 </div>
             </div>
