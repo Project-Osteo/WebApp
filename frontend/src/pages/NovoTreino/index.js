@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiFilePlus, FiPower } from 'react-icons/fi';
-import Axios from 'axios';
+import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
+import axios from 'axios';
 
 import './styles.css';
 
@@ -14,20 +14,44 @@ export default function NovoTreino (){
     const [obs, setObs] = useState('');
 
     const submitTreino = async () => {
-        let res = await Axios.post(`http://localhost:3001/treinos/${id}`,
+        let res = await axios.post(`http://localhost:3001/treinos/${id}`,
         { data: data, descricao: descricao, tipo: tipo, obs: obs})
             console.log(res);
     }
 
     return(
        <div className="novoTreino-container">
+
+            <header>
+                <span><b>OSTEOCLINIC</b></span>
+
+                <div className="btn-group">
+                    <Link type="button" to={'/pacientes/' + id}>
+                        <FiArrowLeft size={55} color="#41414d" />
+                    </Link>
+
+                    <Link type="button" to="/homepage">
+                        <FiHome size={55} color="#41414d"></FiHome>
+                    </Link>
+
+                    <Link type="button" to="/settings">
+                        <FiSettings size={55} color="#41414d"></FiSettings>
+                    </Link>
+
+                    <Link type="button" to="/">
+                        <FiPower size={55} color="#41414d"></FiPower>
+                    </Link>
+                </div>
+            </header>
+
+
             <section>
                 <h1>ADICIONAR NOVO TREINO</h1>
             </section>
 
             <div className="content">
                 
-                <form class="myForm2" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+                <form className="myForm2" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     <label>Tipo de Treino
                     <input type="text" name="tipo" list="optionslist" value={tipo}
@@ -50,7 +74,7 @@ export default function NovoTreino (){
                     </label>
 
                     <label>Data do Treino
-                    <textarea type="text" name="observacoes" cols="40" rows="5" value={data}
+                    <input type="text" name="observacoes" cols="40" rows="5" value={data}
                        onChange={(e) => setData(e.target.value)}/>
                     </label>
 

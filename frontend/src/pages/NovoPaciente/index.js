@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 import Axios from 'axios';
-import { State } from "module";
 
 import './styles.css';
 

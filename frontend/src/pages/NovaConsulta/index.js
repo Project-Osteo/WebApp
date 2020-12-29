@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
-import Axios from 'axios';
+import axios from 'axios';
 
 
 import './styles.css';
 
 export default function NovaConsulta (){
     let { id } = useParams();
+
+    const history = useHistory();
 
     const [data, setData] = useState('');
     const [peso, setPeso] = useState('');
@@ -18,8 +20,9 @@ export default function NovaConsulta (){
     
 
     const submitConsulta = async () => {
-        let res = await Axios.post(`http://localhost:3001/consultas/${id}`,
+        let res = await axios.post(`http://localhost:3001/consultas/${id}`,
         { data: data, descricao: descricao, peso: peso, tratamento: tratamento, obs: obs, recomendacao: rec })
+            history.push(`/pacientes/${id}`);
             console.log(res);
     }
 
@@ -49,7 +52,7 @@ export default function NovaConsulta (){
             </header>
 
             <section>
-                <h1>Adiconar nova consulta</h1>
+                <h1>ADICIONAR NOVA CONSULTA</h1>
             </section>
 
             <div className="content">
@@ -82,7 +85,7 @@ export default function NovaConsulta (){
                     </label>
 
                     <label>Data da Consulta
-                    <textarea type="text" name="observacoes" cols="40" rows="5" value={data}
+                    <input type="text" name="observacoes" cols="40" rows="5" value={data}
                        onChange={(e) => setData(e.target.value)}/>
                     </label>
 
