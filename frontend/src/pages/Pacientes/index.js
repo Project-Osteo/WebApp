@@ -144,27 +144,27 @@ export default function Pacientes() {
                     
                 </div>
                 <div className="card-body">
-                    <p type="text" contentEditable="true"><b>Data de nascimento:</b></p>
+                    <p><b>Data de nascimento:</b></p>
                     <input type="text" name="pickup_time" value={pacienteInfo.data_nascimento}
                        onChange={(e) => setDataNascimento(e.target.value)} />
 
-                    <p type="text" contentEditable="true"><b>Localidade:</b></p>
+                    <p><b>Localidade:</b></p>
                     <input type="text" name="localidade" value={pacienteInfo.localidade}
                        onChange={(e) => setLocalidade(e.target.value)} />
 
-                    <p type="text" contentEditable="true"><b>Nacionalidade:</b></p>
+                    <p><b>Nacionalidade:</b></p>
                     <input type="text" name="nacionalidade" value={pacienteInfo.nacionalidade}
                        onChange={(e) => setNacionalidade(e.target.value)} />
 
-                    <p type="text" contentEditable="true"><b>Altura:</b></p>
+                    <p><b>Altura:</b></p>
                     <input type="number" name="altura" value={pacienteInfo.altura}
                        onChange={(e) => setAltura(e.target.value)} />
 
-                    <p type="text" contentEditable="true"><b>Contacto:</b></p>
+                    <p><b>Contacto:</b></p>
                     <input type="tel" name="telemovel" value={pacienteInfo.telemovel}
                        onChange={(e) => setTelemovel(e.target.value)} />
 
-                    <p type="text" contentEditable="true"><b>Genero:</b></p>
+                    <p><b>Genero:</b></p>
                     <input type="text" name="genero" value= {pacienteInfo.genero}
                        onChange={(e) => setGenero(e.target.value)} />
 
