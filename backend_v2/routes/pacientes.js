@@ -87,6 +87,7 @@ router.post('/', (req, res, next) => {
             ],
             (error, result, fields) => {
                 conn.release();
+                console.log(result);
                 console.log(error);
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(201).send({

@@ -16,13 +16,13 @@ export default function Pacientes() {
     const [listaconsultas, setListaConsultas] = useState([]);
     const [listatreinos, setListaTreinos] = useState([]);
 
-    const [nome, setNome] = useState('');
-    const [genero, setGenero] = useState('');
-    const [nacionalidade, setNacionalidade] = useState('');
-    const [localidade, setLocalidade] = useState('');
-    const [dataNascimento, setDataNascimento] = useState('');
-    const [altura, setAltura] = useState('');
-    const [telemovel, setTelemovel] = useState('');
+    const [nome, setNome] = useState(pacienteInfo.nome);
+    const [genero, setGenero] = useState(pacienteInfo.genero);
+    const [nacionalidade, setNacionalidade] = useState(pacienteInfo.nacionalidade);
+    const [localidade, setLocalidade] = useState(pacienteInfo.localidade);
+    const [dataNascimento, setDataNascimento] = useState(pacienteInfo.dataNascimento);
+    const [altura, setAltura] = useState(pacienteInfo.altura);
+    const [telemovel, setTelemovel] = useState(pacienteInfo.telemovel);
 
     const updatePaciente = async () => {
         let res = await axios.patch(`http://localhost:3001/pacientes/${id}`,
@@ -135,35 +135,37 @@ export default function Pacientes() {
             </div> */}
 
             <div className="card text-white bg-secondary mb-3"> 
-                <div className="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b>
+                <div className="card-header"><h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
+                <input type="text" name="nome" value={pacienteInfo.nome}
+                       onChange={(e) => setNome(e.target.value)} />
                     <FiEdit2 type="button" size={20} onClick={updatePaciente}></FiEdit2>
                     <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>  
                 </h3>
                     
                 </div>
                 <div className="card-body">
-                    <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
-                    <input type="text" name="pickup_time" required value={dataNascimento}
+                    <p type="text" contentEditable="true"><b>Data de nascimento:</b></p>
+                    <input type="text" name="pickup_time" value={pacienteInfo.data_nascimento}
                        onChange={(e) => setDataNascimento(e.target.value)} />
 
-                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
-                    <input type="text" name="localidade" value={localidade}
+                    <p type="text" contentEditable="true"><b>Localidade:</b></p>
+                    <input type="text" name="localidade" value={pacienteInfo.localidade}
                        onChange={(e) => setLocalidade(e.target.value)} />
 
-                    <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
-                    <input type="text" name="nacionalidade" value={nacionalidade}
+                    <p type="text" contentEditable="true"><b>Nacionalidade:</b></p>
+                    <input type="text" name="nacionalidade" value={pacienteInfo.nacionalidade}
                        onChange={(e) => setNacionalidade(e.target.value)} />
 
-                    <p><b>Altura:</b> {pacienteInfo.altura}</p>
-                    <input type="number" name="altura" value={altura}
+                    <p type="text" contentEditable="true"><b>Altura:</b></p>
+                    <input type="number" name="altura" value={pacienteInfo.altura}
                        onChange={(e) => setAltura(e.target.value)} />
 
-                    <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
-                    <input type="tel" name="telemovel" required value={telemovel}
+                    <p type="text" contentEditable="true"><b>Contacto:</b></p>
+                    <input type="tel" name="telemovel" value={pacienteInfo.telemovel}
                        onChange={(e) => setTelemovel(e.target.value)} />
 
-                    <p><b>Genero:</b> {pacienteInfo.genero}</p>
-                    <input type="text" name="genero" required value={genero}
+                    <p type="text" contentEditable="true"><b>Genero:</b></p>
+                    <input type="text" name="genero" value= {pacienteInfo.genero}
                        onChange={(e) => setGenero(e.target.value)} />
 
                     <p><b>Email:</b> {pacienteInfo.mail}</p>
