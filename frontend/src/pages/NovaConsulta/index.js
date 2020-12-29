@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
 import Axios from 'axios';
 
 
@@ -25,6 +25,29 @@ export default function NovaConsulta (){
 
     return(
         <div className="novaConsulta-container">
+
+            <header>
+                <span><b>OSTEOCLINIC</b></span>
+
+                <div className="btn-group">
+                    <Link type="button" to={'/pacientes/' + id}>
+                        <FiArrowLeft size={55} color="#41414d" />
+                    </Link>
+
+                    <Link type="button" to="/homepage">
+                        <FiHome size={55} color="#41414d"></FiHome>
+                    </Link>
+
+                    <Link type="button" to="/settings">
+                        <FiSettings size={55} color="#41414d"></FiSettings>
+                    </Link>
+
+                    <Link type="button" to="/">
+                        <FiPower size={55} color="#41414d"></FiPower>
+                    </Link>
+                </div>
+            </header>
+
             <section>
                 <h1>Adiconar nova consulta</h1>
             </section>

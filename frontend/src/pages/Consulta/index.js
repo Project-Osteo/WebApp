@@ -12,8 +12,6 @@ export default function Consulta () {
     let { id } = useParams();
     const [consultaInfo, setConsultaInfo] = useState({});
 
-    const deleteConsulta = axios.delete
-    
     useEffect(() => {
         axios
         .get(`http://localhost:3001/consultas/${id}`)

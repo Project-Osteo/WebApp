@@ -2,11 +2,34 @@
     width: 100%;
     max-width: 1120px;
     height: 100vh;
-    margin: 0 auto;
+    margin: 32px auto;
+}
 
+.novaConsulta-container header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.novaConsulta-container header span {
+    font-size: 40px;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.novoPaciente-container header .btn-group a {
+    height: 60px;
+    width: 60px;
+    border-radius: 8px;
+    border: 2px solid #dcdce6;
+    background: transparent;
+    margin-left: 2px;
+    margin-right: 2px;
+    transition: border-color 0.2s;
+    text-align: center;
+    float: left;
 }
 
 .novaConsulta-container .content {
