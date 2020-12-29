@@ -1,5 +1,5 @@
 .novoPaciente-container {
-    width: 100%;
+    width: 50%;
     max-width: 1120px;
     height: 100vh;
     margin: 32px auto;
@@ -54,7 +54,6 @@
 
 .novoPaciente-container .content form {
     width: 100%;
-    max-width: 600px;
     padding: 25px;
     border-radius: 10px;
 }

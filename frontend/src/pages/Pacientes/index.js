@@ -134,14 +134,14 @@ export default function Pacientes() {
                 </div>
             </div> */}
 
-            <div class="card text-white bg-secondary mb-3"> 
-                <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b>
+            <div className="card text-white bg-secondary mb-3"> 
+                <div className="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b>
                     <FiEdit2 type="button" size={20} onClick={updatePaciente}></FiEdit2>
                     <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>  
                 </h3>
                     
                 </div>
-                <div class="card-body">
+                <div className="card-body">
                     <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
                     <input type="text" name="pickup_time" required value={dataNascimento}
                        onChange={(e) => setDataNascimento(e.target.value)} />

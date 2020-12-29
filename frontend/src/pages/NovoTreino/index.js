@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
 import axios from 'axios';
 
@@ -7,6 +7,8 @@ import './styles.css';
 
 export default function NovoTreino (){
     let { id } = useParams();
+
+    const history = useHistory();
 
     const [data, setData] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -16,6 +18,7 @@ export default function NovoTreino (){
     const submitTreino = async () => {
         let res = await axios.post(`http://localhost:3001/treinos/${id}`,
         { data: data, descricao: descricao, tipo: tipo, obs: obs})
+            history.push(`/pacientes/${id}`);
             console.log(res);
     }
 

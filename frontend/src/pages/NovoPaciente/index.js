@@ -47,7 +47,7 @@ export default function NovoPaciente () {
             </header>
 
             <section> 
-                <h1>Adicionar novo paciente</h1>
+                <h1>ADICIONAR NOVO PACIENTE</h1>
              </section> 
 
             <div className="content">
@@ -73,7 +73,7 @@ export default function NovoPaciente () {
                         onClick={submitPaciente}>ADICIONAR</button>
                 </form>  */}
                 
-                <form class="myForm" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+                <form className="myForm" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     
 
