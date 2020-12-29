@@ -93,7 +93,7 @@ export default function NovoPaciente () {
                     </datalist> */}
 
                     <input type="text" name="genero" required value={genero}
-                       onChange={(e) => setGenero(e.target.value)}/>
+                       onChange={(e) => setGenero(e.target.value)} />
                     </label> 
                   
                     {/* <fieldset>
@@ -104,28 +104,28 @@ export default function NovoPaciente () {
 
                     <label>Nacionalidade 
                     <input type="text" name="nacionalidade" value={nacionalidade}
-                       onChange={(e) => setNacionalidade(e.target.value)}/>
+                       onChange={(e) => setNacionalidade(e.target.value)} />
                     </label>
                 
                     <label>Localidade 
                     <input type="text" name="localidade" value={localidade}
-                       onChange={(e) => setLocalidade(e.target.value)}/>
+                       onChange={(e) => setLocalidade(e.target.value)} />
                     </label>
                 
                     <label>Data nascimento 
                     {/* <input type="date" name="pickup_time" required placeholder=""/> */}
                     <input type="text" name="pickup_time" required value={dataNascimento}
-                       onChange={(e) => setDataNascimento(e.target.value)}/>
+                       onChange={(e) => setDataNascimento(e.target.value)} />
                     </label>
                 
                     <label>Altura (cm)
                     <input type="number" name="altura" value={altura}
-                       onChange={(e) => setAltura(e.target.value)}/>
+                       onChange={(e) => setAltura(e.target.value)} />
                     </label>
                 
                     <label>Contacto telemóvel 
                     <input type="tel" name="telemovel" required value={telemovel}
-                       onChange={(e) => setTelemovel(e.target.value)}/>
+                       onChange={(e) => setTelemovel(e.target.value)} />
                     </label>
                     
 

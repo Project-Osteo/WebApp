@@ -14,8 +14,22 @@ export default function Pacientes() {
     const [listaconsultas, setListaConsultas] = useState([]);
     const [listatreinos, setListaTreinos] = useState([]);
 
+    const [nome, setNome] = useState('');
+    const [genero, setGenero] = useState('');
+    const [nacionalidade, setNacionalidade] = useState('');
+    const [localidade, setLocalidade] = useState('');
+    const [dataNascimento, setDataNascimento] = useState('');
+    const [altura, setAltura] = useState('');
+    const [telemovel, setTelemovel] = useState('');
+
+    const updatePaciente = async () => {
+        let res = await axios.patch(`http://localhost:3001/pacientes/${id}`,
+        {nome: nome, genero: genero, nacionalidade: nacionalidade, 
+            localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
+            console.log(res);
+    }
+
     const history = useHistory();
-    
 
     useEffect(() => {
         axios
@@ -115,7 +129,9 @@ export default function Pacientes() {
             </div> */}
 
             <div class="card text-white bg-secondary mb-3"> 
-                <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3></div>
+                <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3>
+                    
+                </div>
                 <div class="card-body">
                     <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
                     <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
