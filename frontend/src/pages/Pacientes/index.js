@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2 } from 'react-icons/fi';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
-import { useHistory} from "react-router-dom";
 import axios from "axios";
 
 import './styles.css';
 
 export default function Pacientes() {
     let { id } = useParams(); 
+
+    const history = useHistory();
+
     const [pacienteInfo, setPacienteInfo] = useState({});
     const [listaconsultas, setListaConsultas] = useState([]);
     const [listatreinos, setListaTreinos] = useState([]);
@@ -29,7 +31,11 @@ export default function Pacientes() {
             console.log(res);
     }
 
-    const history = useHistory();
+    const deletePaciente = async () => {
+        let res = await axios.delete(`http://localhost:3001/pacientes/${id}`)
+        history.push('/homepage')
+        console.log(res);
+    } 
 
     useEffect(() => {
         axios
@@ -131,6 +137,7 @@ export default function Pacientes() {
             <div class="card text-white bg-secondary mb-3"> 
                 <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b>
                     <FiEdit2 type="button" size={20} onClick={updatePaciente}></FiEdit2>
+                    <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>  
                 </h3>
                     
                 </div>
@@ -150,7 +157,7 @@ export default function Pacientes() {
                     <p><b>Altura:</b> {pacienteInfo.altura}</p>
                     <input type="number" name="altura" value={altura}
                        onChange={(e) => setAltura(e.target.value)} />
-                       
+
                     <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
                     <input type="tel" name="telemovel" required value={telemovel}
                        onChange={(e) => setTelemovel(e.target.value)} />

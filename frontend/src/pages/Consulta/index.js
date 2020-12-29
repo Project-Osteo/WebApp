@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPower, FiArrowLeft, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import { useHistory} from "react-router-dom";
@@ -11,6 +11,8 @@ import './styles.css';
 export default function Consulta () {
     let { id } = useParams();
     const [consultaInfo, setConsultaInfo] = useState({});
+
+    const deleteConsulta = axios.delete
     
     useEffect(() => {
         axios

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter, Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 import Axios from 'axios';
 import { State } from "module";
@@ -7,6 +7,8 @@ import { State } from "module";
 import './styles.css';
 
 export default function NovoPaciente () {
+
+    const history = useHistory();
 
     const [nome, setNome] = useState('');
     const [genero, setGenero] = useState('');
@@ -20,6 +22,7 @@ export default function NovoPaciente () {
         let res = await Axios.post('http://localhost:3001/pacientes',
         {nome: nome, genero: genero, nacionalidade: nacionalidade, 
             localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
+            history.push('/homepage')
             console.log(res);
     }
 
