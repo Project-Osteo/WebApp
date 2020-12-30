@@ -136,7 +136,7 @@ export default function Pacientes() {
 
             <div className="card text-white bg-secondary mb-3"> 
                 <div className="card-header"><h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
-                <input type="text" name="nome" value={pacienteInfo.nome}
+                <input type="text" name="nome" defaultValue={pacienteInfo.nome}
                        onChange={(e) => setNome(e.target.value)} />
                     <FiEdit2 type="button" size={20} onClick={updatePaciente}></FiEdit2>
                     <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>  
@@ -145,27 +145,27 @@ export default function Pacientes() {
                 </div>
                 <div className="card-body">
                     <p><b>Data de nascimento:</b></p>
-                    <input type="text" name="pickup_time" value={pacienteInfo.data_nascimento}
+                    <input type="text" name="pickup_time" defaultValue={pacienteInfo.data_nascimento}
                        onChange={(e) => setDataNascimento(e.target.value)} />
 
                     <p><b>Localidade:</b></p>
-                    <input type="text" name="localidade" value={pacienteInfo.localidade}
+                    <input type="text" name="localidade" defaultValue={pacienteInfo.localidade}
                        onChange={(e) => setLocalidade(e.target.value)} />
 
                     <p><b>Nacionalidade:</b></p>
-                    <input type="text" name="nacionalidade" value={pacienteInfo.nacionalidade}
+                    <input type="text" name="nacionalidade" defaultValue={pacienteInfo.nacionalidade}
                        onChange={(e) => setNacionalidade(e.target.value)} />
 
                     <p><b>Altura:</b></p>
-                    <input type="number" name="altura" value={pacienteInfo.altura}
+                    <input type="number" name="altura" defaultValue={pacienteInfo.altura}
                        onChange={(e) => setAltura(e.target.value)} />
 
                     <p><b>Contacto:</b></p>
-                    <input type="tel" name="telemovel" value={pacienteInfo.telemovel}
+                    <input type="tel" name="telemovel"  defaultValue={pacienteInfo.telemovel}
                        onChange={(e) => setTelemovel(e.target.value)} />
 
                     <p><b>Genero:</b></p>
-                    <input type="text" name="genero" value= {pacienteInfo.genero}
+                    <input type="text" name="genero" defaultValue= {pacienteInfo.genero}
                        onChange={(e) => setGenero(e.target.value)} />
 
                     <p><b>Email:</b> {pacienteInfo.mail}</p>
