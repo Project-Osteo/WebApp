@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
-import { useHistory} from "react-router-dom";
 import axios from "axios";
 
 import './styles.css';
 
 export default function Consulta () {
     let { id } = useParams();
+
+    const history = useHistory();
+
     const [consultaInfo, setConsultaInfo] = useState({});
+
+    const deleteConsulta = async () => {
+        let res = await axios.delete(`http://localhost:3001/consultas/${id}`)
+        history.push('/pacientes/' + consultaInfo.paciente_id)
+        console.log(res);
+    } 
 
     useEffect(() => {
         axios
@@ -47,6 +55,8 @@ export default function Consulta () {
             </header>
 
             <div className="consultas">
+                <FiTrash2 type="button" size={20} onClick={deleteConsulta}></FiTrash2>
+
                 <p><b>Id:</b> {consultaInfo.id_consulta}</p>
 
                 <p><b>Data da consulta:</b> {consultaInfo.data_consulta}</p>

@@ -149,7 +149,9 @@ export default function Pacientes() {
                        onChange={(e) => setDataNascimento(e.target.value)} />
 
                     <p><b>Localidade:</b></p>
-                    <input type="text" name="localidade" defaultValue={pacienteInfo.localidade}
+                    <input type="text" name="localidade" defaultValue={pacienteInfo.localidade} 
+                    value={pacienteInfo.localidade}
+                    placeholder={pacienteInfo.localidade}
                        onChange={(e) => setLocalidade(e.target.value)} />
 
                     <p><b>Nacionalidade:</b></p>
