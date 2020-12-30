@@ -55,6 +55,7 @@ export default function Consulta () {
             </header>
 
             <div className="consultas">
+                
                 <FiTrash2 type="button" size={20} onClick={deleteConsulta}></FiTrash2>
 
                 <p><b>Id:</b> {consultaInfo.id_consulta}</p>

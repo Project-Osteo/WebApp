@@ -60,4 +60,23 @@ router.post('/:id', (req, res, next) => {
     });
 });
 
+//DELETE TREINO     
+router.delete('/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            'DELETE FROM Treinos WHERE id_treino = ?',
+            [req.params.id], 
+            (error, result, field) => {
+                conn.release();
+                console.log(error);
+                if (error) { return res.status(500).send({ error: error }) }
+                res.status(202).send({
+                    mensagem: 'Treino removido com sucesso',
+                });
+            }
+        )
+    });
+});
+
 module.exports = router;
