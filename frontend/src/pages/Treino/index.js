@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
+import { Link, useParams,useHistory } from 'react-router-dom';
+import { FiHome, FiSettings, FiPower, FiArrowLeft, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
-import { useHistory} from "react-router-dom";
 import axios from "axios";
 
 import './styles.css';
 
 export default function Treino () {
     let { id } = useParams();
+
+    const history = useHistory();
+
     const [treinoInfo, setTreinoInfo] = useState({});
+
+    const deleteTreino = async () => {
+        let res = await axios.delete(`http://localhost:3001/treinos/${id}`)
+        history.push('/pacientes/' + treinoInfo.paciente_id)
+        console.log(res);
+    } 
     
     useEffect(() => {
         axios
@@ -46,6 +54,9 @@ export default function Treino () {
             </header>
 
             <div className="treinos">
+
+                <FiTrash2 type="button" size={20} onClick={deleteTreino}></FiTrash2>
+
                 <p><b>Id:</b> {treinoInfo.id_treino}</p>
 
                 <p><b>Data da treino:</b> {treinoInfo.data_treino}</p>

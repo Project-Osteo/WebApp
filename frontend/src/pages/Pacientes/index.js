@@ -1,21 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPlusSquare, FiPower } from 'react-icons/fi';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
-import { useHistory} from "react-router-dom";
 import axios from "axios";
 
 import './styles.css';
 
 export default function Pacientes() {
     let { id } = useParams(); 
+
+    const history = useHistory();
+
     const [pacienteInfo, setPacienteInfo] = useState({});
     const [listaconsultas, setListaConsultas] = useState([]);
     const [listatreinos, setListaTreinos] = useState([]);
 
-    const history = useHistory();
-    
+    const [nome, setNome] = useState(pacienteInfo.nome);
+    const [genero, setGenero] = useState(pacienteInfo.genero);
+    const [nacionalidade, setNacionalidade] = useState(pacienteInfo.nacionalidade);
+    const [localidade, setLocalidade] = useState(pacienteInfo.localidade);
+    const [dataNascimento, setDataNascimento] = useState(pacienteInfo.dataNascimento);
+    const [altura, setAltura] = useState(pacienteInfo.altura);
+    const [telemovel, setTelemovel] = useState(pacienteInfo.telemovel);
+
+    const updatePaciente = async () => {
+        let res = await axios.patch(`http://localhost:3001/pacientes/${id}`,
+        {nome: nome, genero: genero, nacionalidade: nacionalidade, 
+            localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
+            console.log(res);
+    }
+
+    const deletePaciente = async () => {
+        let res = await axios.delete(`http://localhost:3001/pacientes/${id}`)
+        history.push('/homepage')
+        console.log(res);
+    } 
 
     useEffect(() => {
         axios
@@ -114,15 +134,42 @@ export default function Pacientes() {
                 </div>
             </div> */}
 
-            <div class="card text-white bg-secondary mb-3"> 
-                <div class="card-header"><h3>{pacienteInfo.id_paciente}.  <b>{pacienteInfo.nome}</b></h3></div>
-                <div class="card-body">
-                    <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
-                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
-                    <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
-                    <p><b>Altura:</b> {pacienteInfo.altura}</p>
-                    <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
-                    <p><b>Genero:</b> {pacienteInfo.genero}</p>
+            <div className="card text-white bg-secondary mb-3"> 
+                <div className="card-header"><h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
+                <input type="text" name="nome" defaultValue={pacienteInfo.nome}
+                       onChange={(e) => setNome(e.target.value)} />
+                    <FiEdit2 type="button" size={20} onClick={updatePaciente}></FiEdit2>
+                    <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>  
+                </h3>
+                    
+                </div>
+                <div className="card-body">
+                    <p><b>Data de nascimento:</b></p>
+                    <input type="text" name="pickup_time" defaultValue={pacienteInfo.data_nascimento}
+                       onChange={(e) => setDataNascimento(e.target.value)} />
+
+                    <p><b>Localidade:</b></p>
+                    <input type="text" name="localidade" defaultValue={pacienteInfo.localidade} 
+                    value={pacienteInfo.localidade}
+                    placeholder={pacienteInfo.localidade}
+                       onChange={(e) => setLocalidade(e.target.value)} />
+
+                    <p><b>Nacionalidade:</b></p>
+                    <input type="text" name="nacionalidade" defaultValue={pacienteInfo.nacionalidade}
+                       onChange={(e) => setNacionalidade(e.target.value)} />
+
+                    <p><b>Altura:</b></p>
+                    <input type="number" name="altura" defaultValue={pacienteInfo.altura}
+                       onChange={(e) => setAltura(e.target.value)} />
+
+                    <p><b>Contacto:</b></p>
+                    <input type="tel" name="telemovel"  defaultValue={pacienteInfo.telemovel}
+                       onChange={(e) => setTelemovel(e.target.value)} />
+
+                    <p><b>Genero:</b></p>
+                    <input type="text" name="genero" defaultValue= {pacienteInfo.genero}
+                       onChange={(e) => setGenero(e.target.value)} />
+
                     <p><b>Email:</b> {pacienteInfo.mail}</p>
                 </div>
             </div>
@@ -138,7 +185,7 @@ export default function Pacientes() {
             </div>
 
             <div className="consultas"  id="listaConsultas">
-                <Link type="button" to="/novaConsulta">
+                <Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
                 
@@ -159,7 +206,7 @@ export default function Pacientes() {
             </div>
 
             <div className="treinos"  id="listaTreinos">
-                <Link type="button" to="/novoTreino">
+                <Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
 

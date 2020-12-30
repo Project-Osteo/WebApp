@@ -2,18 +2,19 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const rotaUtilizadores = require('./routes/utilizadores');
 const rotaConsultas = require('./routes/consultas');
 const rotaPacientes = require('./routes/pacientes');
 const rotaTreinos = require('./routes/treinos');
 
-
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false})); //apenas dados simples
 app.use(bodyParser.json()); //apenas dados json no body
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
         'Access-Control-Allow-Header', 
@@ -26,7 +27,7 @@ app.use((req, res, next) => {
     }
 
     next();
-});
+}); */
 
 app.use('/utilizadores', rotaUtilizadores);
 app.use('/consultas', rotaConsultas);

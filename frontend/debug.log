@@ -1,3 +1,7 @@
 [1122/233704.189:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não conseguiu localizar o caminho especificado. (0x3)
 [1126/132600.327:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não conseguiu localizar o caminho especificado. (0x3)
 [1218/113130.809:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não conseguiu localizar o caminho especificado. (0x3)
+[1229/001435.926:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não conseguiu localizar o caminho especificado. (0x3)
+[1229/040035.062:ERROR:process_info.cc(329)] VirtualQueryEx: Acesso negado. (0x5)
+[1229/040035.062:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[1229/040035.062:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Foi efetuada uma tentativa de aceder a um processo de saída. (0xc000010a)
