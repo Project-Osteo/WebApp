@@ -24,6 +24,17 @@ export default function Pacientes() {
     const [altura, setAltura] = useState(pacienteInfo.altura);
     const [telemovel, setTelemovel] = useState(pacienteInfo.telemovel);
 
+    const [test, setTest] = useState({
+        localidade: pacienteInfo.localidade, nacionalidade: pacienteInfo.nacionalidade
+    });
+
+    function handle(e) {
+        setTest({
+            localidade: e.target.value,
+            nacionalidade: e.target.value
+        })
+    }
+
     const updatePaciente = async () => {
         let res = await axios.patch(`http://localhost:3001/pacientes/${id}`,
         {nome: nome, genero: genero, nacionalidade: nacionalidade, 
@@ -149,9 +160,7 @@ export default function Pacientes() {
                        onChange={(e) => setDataNascimento(e.target.value)} />
 
                     <p><b>Localidade:</b></p>
-                    <input type="text" name="localidade" defaultValue={pacienteInfo.localidade} 
-                    value={pacienteInfo.localidade}
-                    placeholder={pacienteInfo.localidade}
+                    <input type="text" name="localidade" defaultValue={pacienteInfo.localidade}
                        onChange={(e) => setLocalidade(e.target.value)} />
 
                     <p><b>Nacionalidade:</b></p>
@@ -160,14 +169,14 @@ export default function Pacientes() {
 
                     <p><b>Altura:</b></p>
                     <input type="number" name="altura" defaultValue={pacienteInfo.altura}
-                       onChange={(e) => setAltura(e.target.value)} />
+                       onChange={(e) => setAltura(e.target.valueAsNumber)} />
 
                     <p><b>Contacto:</b></p>
-                    <input type="tel" name="telemovel"  defaultValue={pacienteInfo.telemovel}
+                    <input type="text" name="telemovel"  defaultValue={pacienteInfo.telemovel}
                        onChange={(e) => setTelemovel(e.target.value)} />
 
                     <p><b>Genero:</b></p>
-                    <input type="text" name="genero" defaultValue= {pacienteInfo.genero}
+                    <input type="text" name="genero" defaultValue={pacienteInfo.genero}
                        onChange={(e) => setGenero(e.target.value)} />
 
                     <p><b>Email:</b> {pacienteInfo.mail}</p>
