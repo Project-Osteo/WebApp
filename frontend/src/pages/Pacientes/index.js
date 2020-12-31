@@ -24,17 +24,6 @@ export default function Pacientes() {
     const [altura, setAltura] = useState(pacienteInfo.altura);
     const [telemovel, setTelemovel] = useState(pacienteInfo.telemovel);
 
-    const [test, setTest] = useState({
-        localidade: pacienteInfo.localidade, nacionalidade: pacienteInfo.nacionalidade
-    });
-
-    function handle(e) {
-        setTest({
-            localidade: e.target.value,
-            nacionalidade: e.target.value
-        })
-    }
-
     const updatePaciente = async () => {
         let res = await axios.patch(`http://localhost:3001/pacientes/${id}`,
         {nome: nome, genero: genero, nacionalidade: nacionalidade, 
@@ -166,7 +155,7 @@ export default function Pacientes() {
                 </div>
                 <div className="card-body">
                     <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
-                    <input type="text" name="pickup_time" value={dataNascimento}
+                    <input type="text" name="data_nascimento" value={dataNascimento}
                        onChange={(e) => setDataNascimento(e.target.value)} />
 
                     <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
