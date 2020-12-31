@@ -75,7 +75,7 @@ router.patch('/:id', (req, res, next) => {
                 tratamento = ?, 
                 obs_consulta = ?,
                 recomendacao = ?
-            WHERE paciente_id = ?`,
+            WHERE id_consulta = ?`,
             [
                 req.body.data, 
                 req.body.descricao,
@@ -89,7 +89,7 @@ router.patch('/:id', (req, res, next) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(202).send({
-                    mensagem: 'Paciente alterado com sucesso',
+                    mensagem: 'Consulta alterado com sucesso',
                 })
             }
         )
