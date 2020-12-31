@@ -14,17 +14,17 @@ export default function Consulta () {
 
     const [consultaInfo, setConsultaInfo] = useState({});
 
-    const [data_consulta, setData] = useState(consultaInfo.data_consulta);
+    const [dataConsulta, setData] = useState(consultaInfo.dataConsulta);
     const [peso, setPeso] = useState(consultaInfo.peso);
-    const [descricao_consulta, setDescricao] = useState(consultaInfo.descricao_consulta);
+    const [descricaoConsulta, setDescricao] = useState(consultaInfo.descricaoConsulta);
     const [tratamento, setTratamento] = useState(consultaInfo.tratamento);
     const [recomendacao, setRec] = useState(consultaInfo.recomendacao);
-    const [obs_consulta, setObs] = useState(consultaInfo.obs_consulta);
+    const [obsConsulta, setObs] = useState(consultaInfo.obsConsulta);
 
     const updateConsulta = async () => {
         let res = await axios.patch(`http://localhost:3001/consultas/${id}`,
-        {data_consulta: data_consulta, peso: peso, descricao_consulta: descricao_consulta, 
-            tratamento: tratamento, recomendacao: recomendacao, obs_consulta: obs_consulta})
+        {data: dataConsulta, peso: peso, descricao: descricaoConsulta, 
+            tratamento: tratamento, recomendacao: recomendacao, obs: obsConsulta})
             console.log(res);
     }
 
@@ -38,14 +38,14 @@ export default function Consulta () {
         axios
         .get(`http://localhost:3001/consultas/${id}`)
         .then((response) => {
-            var result = response.data[0]
+            var result = response.data[0];
             setConsultaInfo(result);
-            setData(result.data_consulta);
+            setData(result.data);
+            setDescricao(result.descricao);
             setPeso(result.peso);
-            setDescricao(result.descricao_consulta);
             setTratamento(result.tratamento);
+            setObs(result.obs);
             setRec(result.recomendacao);
-            setObs(result.obs_consulta);
         });
     }, []);
 
@@ -84,11 +84,11 @@ export default function Consulta () {
                 <p><b>Id:</b> {consultaInfo.id_consulta}</p>
 
                 <p><b>Data da consulta:</b> {consultaInfo.data_consulta}</p>
-                <input type="text" name="data" value={data_consulta}
+                <input type="text" name="data" value={dataConsulta}
                        onChange={(e) => setData(e.target.value)} />
 
                 <p><b>Descrição:</b> {consultaInfo.descricao_consulta}</p>
-                <input type="text" name="descricao" value={descricao_consulta}
+                <input type="text" name="descricao" value={descricaoConsulta}
                        onChange={(e) => setDescricao(e.target.value)} />
 
                 <div className="tratamento">
@@ -101,7 +101,7 @@ export default function Consulta () {
                        onChange={(e) => setTratamento(e.target.value)} />
 
                     <p><b>Observações:</b> {consultaInfo.obs_consulta}</p>
-                    <input type="text" name="obs" value={obs_consulta}
+                    <input type="text" name="obs" value={obsConsulta}
                        onChange={(e) => setObs(e.target.value)} />
                 </div>
 
