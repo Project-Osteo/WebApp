@@ -77,11 +77,11 @@ router.patch('/:id', (req, res, next) => {
                 recomendacao = ?
             WHERE id_consulta = ?`,
             [
-                req.body.data, 
-                req.body.descricao,
+                req.body.data_consulta, 
+                req.body.descricao_consulta,
                 req.body.peso,
                 req.body.tratamento,
-                req.body.obs,
+                req.body.obs_consulta,
                 req.body.recomendacao,
                 req.params.id
             ],

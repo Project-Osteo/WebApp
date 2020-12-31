@@ -23,8 +23,8 @@ export default function Consulta () {
 
     const updateConsulta = async () => {
         let res = await axios.patch(`http://localhost:3001/consultas/${id}`,
-        {data: dataConsulta, peso: peso, descricao: descricaoConsulta, 
-            tratamento: tratamento, recomendacao: recomendacao, obs: obsConsulta})
+        {data_consulta: dataConsulta, peso: peso, descricao_consulta: descricaoConsulta, 
+            tratamento: tratamento, recomendacao: recomendacao, obs_consulta: obsConsulta})
             console.log(res);
     }
 
@@ -40,11 +40,11 @@ export default function Consulta () {
         .then((response) => {
             var result = response.data[0];
             setConsultaInfo(result);
-            setData(result.data);
-            setDescricao(result.descricao);
+            setData(result.data_consulta);
+            setDescricao(result.descricao_consulta);
             setPeso(result.peso);
             setTratamento(result.tratamento);
-            setObs(result.obs);
+            setObs(result.obs_consulta);
             setRec(result.recomendacao);
         });
     }, []);
