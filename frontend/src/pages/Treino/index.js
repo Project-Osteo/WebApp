@@ -14,6 +14,18 @@ export default function Treino () {
 
     const [treinoInfo, setTreinoInfo] = useState({});
 
+    const [dataTreino, setData] = useState(treinoInfo.data);
+    const [descricaoTreino, setDescricao] = useState(treinoInfo.descricaoTreino);
+    const [obsTreino, setObs] = useState(treinoInfo.obs);
+    const [tipoTreino, setTipo] = useState(treinoInfo.tipoTreino);
+    
+    const updateTreino = async () => {
+        let res = await axios.patch(`http://localhost:3001/treinos/${id}`,
+            {data_treino: dataTreino, tipo_treino: tipoTreino, descricao_treino: descricaoTreino, obs_treino: obsTreino})
+        console.log(res)
+    }
+
+
     const deleteTreino = async () => {
         let res = await axios.delete(`http://localhost:3001/treinos/${id}`)
         history.push('/pacientes/' + treinoInfo.paciente_id)
@@ -24,7 +36,12 @@ export default function Treino () {
         axios
         .get(`http://localhost:3001/treinos/${id}`)
         .then((response) => {
-            setTreinoInfo(response.data[0]);
+            var result = response.data[0];
+            setTreinoInfo(result);
+            setData(result.data_treino);
+            setTipo(result.tipo_treino);
+            setDescricao(result.descricao_treino);
+            setObs(result.obs_treino);
         });
     }, []);
 
@@ -55,18 +72,29 @@ export default function Treino () {
 
             <div className="treinos">
 
+            <FiEdit2 type="button" size={20} onClick={updateTreino}></FiEdit2>
+
                 <FiTrash2 type="button" size={20} onClick={deleteTreino}></FiTrash2>
 
                 <p><b>Id:</b> {treinoInfo.id_treino}</p>
 
-                <p><b>Data da treino:</b> {treinoInfo.data_treino}</p>
+                <p><b>Data da consulta:</b> {treinoInfo.data_treino}</p>
+                <input type="text" name="data" value={dataTreino}
+                       onChange={(e) => setData(e.target.value)} />
 
                 <p><b>Tipo de treino:</b> {treinoInfo.tipo_treino}</p>
+                <input type="text" name="tipo" value={tipoTreino}
+                       onChange={(e) => setTipo(e.target.value)} />
                 
                 <div className="info-treinos">
                     <p><b>Descrição:</b> {treinoInfo.descricao_treino}</p>
+                    <input type="text" name="descricao" value={descricaoTreino}
+                       onChange={(e) => setDescricao(e.target.value)} />
 
                     <p><b>Observações:</b> {treinoInfo.obs_treino}</p>
+                    <input type="text" name="obs" value={obsTreino}
+                       onChange={(e) => setObs(e.target.value)} />
+
                 </div>
             </div>         
         </div>

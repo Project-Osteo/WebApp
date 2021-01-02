@@ -25,7 +25,7 @@ export default function Consulta () {
         let res = await axios.patch(`http://localhost:3001/consultas/${id}`,
         {data_consulta: dataConsulta, peso: peso, descricao_consulta: descricaoConsulta, 
             tratamento: tratamento, recomendacao: recomendacao, obs_consulta: obsConsulta})
-            console.log(res);
+        console.log(res);
     }
 
     const deleteConsulta = async () => {
