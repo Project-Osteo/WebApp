@@ -39,15 +39,14 @@ router.post('/:id', (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `INSERT INTO Consultas 
-            (paciente_id, data_consulta, descricao_consulta, peso, tratamento, obs_consulta, recomendacao) 
+            (paciente_id, data_consulta, descricao_consulta, tratamento, obs_consulta, recomendacao) 
             VALUES (?, ?, ?, ?, ?, ?, ?);`,
             [
                 req.params.id,
                 req.body.data, 
                 req.body.descricao, 
-                req.body.peso, 
                 req.body.tratamento, 
-                req.body.obs,
+                req.body.obs_consulta,
                 req.body.recomendacao  
             ],
             (error, result, fields) => {
@@ -71,7 +70,6 @@ router.patch('/:id', (req, res, next) => {
             `UPDATE Consultas SET 
                 data_consulta = ?,
                 descricao_consulta = ?,
-                peso = ?,
                 tratamento = ?, 
                 obs_consulta = ?,
                 recomendacao = ?
@@ -79,7 +77,6 @@ router.patch('/:id', (req, res, next) => {
             [
                 req.body.data_consulta, 
                 req.body.descricao_consulta,
-                req.body.peso,
                 req.body.tratamento,
                 req.body.obs_consulta,
                 req.body.recomendacao,
