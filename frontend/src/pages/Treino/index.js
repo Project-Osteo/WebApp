@@ -88,7 +88,7 @@ export default function Treino () {
                 
                 <div className="info-treinos">
                     <p><b>Descrição:</b> {treinoInfo.descricao_treino}</p>
-                    <input type="text" name="descricao" value={descricaoTreino}
+                    <textarea type="text" name="descricao" cols="40" rows="5" value={descricaoTreino}
                        onChange={(e) => setDescricao(e.target.value)} />
 
                     <p><b>Observações:</b> {treinoInfo.obs_treino}</p>

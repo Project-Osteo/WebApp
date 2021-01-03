@@ -17,18 +17,17 @@ export default function Pacientes() {
     const [listatreinos, setListaTreinos] = useState([]);
 
     const [nome, setNome] = useState(pacienteInfo.nome);
-    const [genero, setGenero] = useState(pacienteInfo.genero);
+    const [sexo, setSexo] = useState(pacienteInfo.sexo);
     const [nacionalidade, setNacionalidade] = useState(pacienteInfo.nacionalidade);
     const [localidade, setLocalidade] = useState(pacienteInfo.localidade);
-    const [dataNascimento, setDataNascimento] = useState(pacienteInfo.dataNascimento);
-    const [altura, setAltura] = useState(pacienteInfo.altura);
     const [telemovel, setTelemovel] = useState(pacienteInfo.telemovel);
+    const [peso, setPeso] = useState(pacienteInfo.peso);
+    const [altura, setAltura] = useState(pacienteInfo.altura);
 
     const updatePaciente = async () => {
         let res = await axios.patch(`http://localhost:3001/pacientes/${id}`,
-        {nome: nome, genero: genero, nacionalidade: nacionalidade, 
-            localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
-            history.push('/pacientes/' + pacienteInfo.id_paciente);
+        {nome: nome, sexo: sexo, nacionalidade: nacionalidade, 
+            localidade: localidade, telemovel: telemovel, peso: peso, altura: altura})
             console.log(res);
 
         window.location.reload();
@@ -48,12 +47,12 @@ export default function Pacientes() {
            var result = response.data[0];
            setPacienteInfo(result);
            setNome(result.nome);
-           setGenero(result.genero);
+           setSexo(result.sexo);
            setNacionalidade(result.nacionalidade);
            setLocalidade(result.localidade);
-           setDataNascimento(result.data_nascimento);
-           setAltura(result.altura);
            setTelemovel(result.telemovel);
+           setPeso(result.peso);
+           setAltura(result.altura);
         });
     }, []);
 
@@ -146,42 +145,41 @@ export default function Pacientes() {
                     
                 </div>
                 <div className="card-body" id="infoPaciente">
-                    <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
-
-                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
+                    <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
 
                     <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
 
-                    <p><b>Altura (m):</b> {pacienteInfo.altura}</p>
+                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
 
-                    <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
+                    <p><b>Telemóvel:</b> {pacienteInfo.telemovel}</p>
 
-                    <p><b>Sexo:</b> {pacienteInfo.genero}</p>
+                    <p><b>Peso(kg):</b> {pacienteInfo.peso}</p>
+
+                    <p><b>Altura(m):</b> {pacienteInfo.altura}</p>
+
                 </div>
 
                 <div className="formUpdate" id="updatePaciente">
                     <p><b>Nome:</b> <input type="text" name="nome" value={nome} 
                         onChange={(e) => setNome(e.target.value)} /></p>
-                    
 
-                    <p><b>Data de nascimento:</b> <input type="text" id="dtaNasc" name="data_nascimento" value={dataNascimento} 
-                        onChange={(e) => setDataNascimento(e.target.value)} /></p>
-                   
+                    <p><b>Sexo:</b> <input type="text" name="sexo" value={sexo}
+                       onChange={(e) => setSexo(e.target.value)} /></p>    
 
-                    <p><b>Localidade:</b> <input type="text" id="loc" name="localidade" value={localidade}
+                    <p><b>Nacionalidade:</b> <input type="text" name="nacionalidade" value={nacionalidade}
+                        onChange={(e) => setNacionalidade(e.target.value)} /></p>    
+
+                    <p><b>Localidade:</b> <input type="text" name="localidade" value={localidade}
                         onChange={(e) => setLocalidade(e.target.value)} /></p>
 
-                    <p><b>Nacionalidade:</b> <input type="text" id="nacio" name="nacionalidade" value={nacionalidade}
-                        onChange={(e) => setNacionalidade(e.target.value)} /></p>
-
-                    <p><b>Altura (m):</b> <input type="number" id="alt" name="altura" value={altura}
-                        onChange={(e) => setAltura(e.target.valueAsNumber)} /></p>
-
-                    <p><b>Contacto:</b> <input type="text" id="tele" name="telemovel"  value={telemovel}
+                    <p><b>Telemóvel:</b> <input type="text" name="telemovel" value={telemovel}
                        onChange={(e) => setTelemovel(e.target.value)} /></p>
-                        
-                    <p><b>Sexo:</b> <input type="text" id="sexo" name="genero" defaultValue={genero}
-                       onChange={(e) => setGenero(e.target.value)} /></p>
+
+                    <p><b>Peso(kg):</b> <input type="number" name="peso" value={peso}
+                       onChange={(e) => setPeso(e.target.valueAsNumber)} /></p>       
+
+                    <p><b>Altura(m):</b> <input type="number" name="altura" value={altura}
+                        onChange={(e) => setAltura(e.target.valueAsNumber)} /></p>
 
                     <FiSave type="button" size={20} onClick={updatePaciente}></FiSave>
                 </div>

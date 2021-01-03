@@ -10,17 +10,17 @@ export default function NovoPaciente () {
     const history = useHistory();
 
     const [nome, setNome] = useState('');
-    const [genero, setGenero] = useState('');
+    const [sexo, setSexo] = useState('');
     const [nacionalidade, setNacionalidade] = useState('');
     const [localidade, setLocalidade] = useState('');
-    const [dataNascimento, setDataNascimento] = useState('');
+    const [peso, setPeso] = useState('');
     const [altura, setAltura] = useState('');
     const [telemovel, setTelemovel] = useState('');
 
     const submitPaciente = async () => {
         let res = await Axios.post('http://localhost:3001/pacientes',
-        {nome: nome, genero: genero, nacionalidade: nacionalidade, 
-            localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
+        {nome: nome, sexo: sexo, nacionalidade: nacionalidade, 
+            localidade: localidade, altura: altura, telemovel: telemovel})
             history.push('/homepage')
             console.log(res);
     }
@@ -51,27 +51,6 @@ export default function NovoPaciente () {
              </section> 
 
             <div className="content">
-
-                {/* <h1>Adicionar novo paciente</h1> */}
-
-                {/* <form>
-                    <input type="text" name="nome" placeholder="Nome" 
-                        onChange={(e) => {
-                            setNome(e.target.value);
-                        }} />
-                    <input type="text" placeholder="E-mail" />
-                    <input placeholder="Sexo" />
-                    <input type="text" placeholder="Nacionalidade" />
-                    <input type="text" placeholder="Localidade" />
-                    <input placeholder="Data de nascimento" />
-                    <input placeholder="Altura" />
-                    <input type="text" placeholder="Contacto" />
-                    <Link type="submit" to="/homepage">ADICIONAR</Link>
-                    <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={submitPaciente}>ADICIONAR</button>
-                </form>  */}
                 
                 <form className="myForm" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
@@ -81,28 +60,11 @@ export default function NovoPaciente () {
                     <input type="text" name="nome" required value={nome}
                        onChange={(e) => setNome(e.target.value)} />
                     </label>
-
-                 {/*    <label>Email 
-                    <input type="email" name="mail" required value={mail}
-                       onChange={(e) => setMail(e.target.value)}/>
-                    </label> */}
                         
-                    <label>Genero 
-                    {/* <input type="text" name="Sexo" list="optionslist"/>
-                    <datalist id="optionslist">
-                        <option value="Masculino"/>
-                        <option value="Feminino"/>
-                    </datalist> */}
-
-                    <input type="text" name="genero" required value={genero}
-                       onChange={(e) => setGenero(e.target.value)} />
+                    <label>Sexo 
+                    <input type="text" name="sexo" required value={sexo}
+                       onChange={(e) => setSexo(e.target.value)} />
                     </label> 
-                  
-                    {/* <fieldset>
-                        <legend>Sexo</legend> 
-                            <label class="choice"><input type="radio" name="sex" required value="masculino"/> Masculino </label>
-                            <label class="choice"><input type="radio" name="sex" required value="feminino"/> Feminino </label>
-                    </fieldset> */}
 
                     <label>Nacionalidade 
                     <input type="text" name="nacionalidade" value={nacionalidade}
@@ -113,29 +75,22 @@ export default function NovoPaciente () {
                     <input type="text" name="localidade" value={localidade}
                        onChange={(e) => setLocalidade(e.target.value)} />
                     </label>
-                
-                    <label>Data nascimento 
-                    {/* <input type="date" name="pickup_time" required placeholder=""/> */}
-                    <input type="text" name="pickup_time" required value={dataNascimento}
-                       onChange={(e) => setDataNascimento(e.target.value)} />
-                    </label>
-                
-                    <label>Altura (cm)
-                    <input type="number" name="altura" value={altura}
-                       onChange={(e) => setAltura(e.target.value)} />
-                    </label>
-                
-                    <label>Contacto telemóvel 
+
+                    <label>Telemóvel 
                     <input type="tel" name="telemovel" required value={telemovel}
                        onChange={(e) => setTelemovel(e.target.value)} />
                     </label>
-                    
 
-                    {/* <p>
-                        <label>Enquiry 
-                        <textarea name="comments" maxlength="500"></textarea>
-                        </label>
-                    </p> */}
+                    <label>Peso(m)
+                    <input type="number" name="peso" value={peso}
+                       onChange={(e) => setPeso(e.target.value)} />
+                    </label>
+                
+                    <label>Altura(m)
+                    <input type="number" name="altura" value={altura}
+                       onChange={(e) => setAltura(e.target.value)} />
+                    </label>
+                    
 
                     <p><Link type="submit" onClick={submitPaciente}>Adicionar Paciente</Link></p>
 

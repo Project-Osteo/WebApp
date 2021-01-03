@@ -15,7 +15,6 @@ export default function Consulta () {
     const [consultaInfo, setConsultaInfo] = useState({});
 
     const [dataConsulta, setData] = useState(consultaInfo.dataConsulta);
-    const [peso, setPeso] = useState(consultaInfo.peso);
     const [descricaoConsulta, setDescricao] = useState(consultaInfo.descricaoConsulta);
     const [tratamento, setTratamento] = useState(consultaInfo.tratamento);
     const [recomendacao, setRec] = useState(consultaInfo.recomendacao);
@@ -23,7 +22,7 @@ export default function Consulta () {
 
     const updateConsulta = async () => {
         let res = await axios.patch(`http://localhost:3001/consultas/${id}`,
-        {data_consulta: dataConsulta, peso: peso, descricao_consulta: descricaoConsulta, 
+        {data_consulta: dataConsulta, descricao_consulta: descricaoConsulta, 
             tratamento: tratamento, recomendacao: recomendacao, obs_consulta: obsConsulta})
         console.log(res);
     }
@@ -42,7 +41,6 @@ export default function Consulta () {
             setConsultaInfo(result);
             setData(result.data_consulta);
             setDescricao(result.descricao_consulta);
-            setPeso(result.peso);
             setTratamento(result.tratamento);
             setObs(result.obs_consulta);
             setRec(result.recomendacao);
@@ -92,9 +90,6 @@ export default function Consulta () {
                        onChange={(e) => setDescricao(e.target.value)} />
 
                 <div className="tratamento">
-                    <p><b>Peso:</b> {consultaInfo.peso}</p>
-                    <input type="text" name="peso" value={peso}
-                       onChange={(e) => setPeso(e.target.value)} />
 
                     <p><b>Tratamento realizado:</b> {consultaInfo.tratamento}</p>
                     <input type="text" name="tratamento" value={tratamento}

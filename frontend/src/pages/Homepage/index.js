@@ -29,7 +29,6 @@ export default function Homepage() {
             <tr key={index} onClick={() => handleRowClick(paciente.id_paciente)}>
                 <td>{paciente.id_paciente}</td>
                 <td>{paciente.nome}</td>
-                <td>{paciente.mail}</td>
                 <td>{paciente.telemovel}</td>
             </tr>
         )
@@ -61,7 +60,6 @@ export default function Homepage() {
                         <tr>
                             <th>Ident.</th>
                             <th>Nome</th>
-                            <th>E-mail</th>
                             <th>Telemóvel</th>
                         </tr>
                     </thead>

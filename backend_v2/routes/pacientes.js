@@ -107,19 +107,19 @@ router.patch('/:id', (req, res, next) => {
                 nome = ?, 
                 sexo = ?, 
                 nacionalidade = ?, 
-                localidade = ?, 
-                data_nascimento = ?, 
-                altura = ?, 
-                telemovel = ?
+                localidade = ?,
+                telemovel = ?,
+                peso = ?, 
+                altura = ?             
             WHERE id_paciente = ?`,
             [
                 req.body.nome, 
                 req.body.sexo,
                 req.body.nacionalidade, 
-                req.body.localidade, 
-                req.body.data_nascimento, 
+                req.body.localidade,
+                req.body.telemovel, 
+                req.body.peso, 
                 req.body.altura,
-                req.body.telemovel,
                 req.params.id
             ],
             (error, result, fields) => {

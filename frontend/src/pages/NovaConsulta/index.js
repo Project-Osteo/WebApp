@@ -11,7 +11,6 @@ export default function NovaConsulta (){
     const history = useHistory();
 
     const [data, setData] = useState('');
-    const [peso, setPeso] = useState('');
     const [descricao, setDescricao] = useState('');
     const [tratamento, setTratamento] = useState('');
     const [rec, setRec] = useState('');
@@ -20,7 +19,7 @@ export default function NovaConsulta (){
 
     const submitConsulta = async () => {
         let res = await axios.post(`http://localhost:3001/consultas/${id}`,
-        { data: data, descricao: descricao, peso: peso, tratamento: tratamento, obs: obs, recomendacao: rec })
+        { data_consulta: data, descricao_consulta: descricao, tratamento: tratamento, obs_consulta: obs, recomendacao: rec })
             history.push(`/pacientes/${id}`);
             console.log(res);
     }
@@ -57,11 +56,6 @@ export default function NovaConsulta (){
             <div className="content">
                 
                 <form class="myForm2" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
-
-                    <label>Peso
-                    <input type="number" name="Peso" value={peso}
-                       onChange={(e) => setPeso(e.target.value)}/>
-                    </label>
 
                     <label>Descrição da consulta
                     <textarea type="text" name="descricao Consulta" cols="40" rows="5" value={descricao}

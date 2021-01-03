@@ -80,6 +80,7 @@ router.patch('/:id', (req, res, next) => {
             ],
             (error, result, fields) => {
                 conn.release();
+                console.log(error);
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(202).send({
                     mensagem: 'Treino alterado com sucesso',
