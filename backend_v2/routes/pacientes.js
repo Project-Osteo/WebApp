@@ -73,17 +73,16 @@ router.post('/', (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `INSERT INTO Pacientes 
-            (user_id, nome, genero, nacionalidade, localidade, data_nascimento, altura, telemovel) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+            (nome, sexo, nacionalidade, localidade, telemovel, peso, altura) 
+            VALUES (?, ?, ?, ?, ?, ?, ?);`,
             [
-                req.body.user_id, 
                 req.body.nome, 
-                req.body.genero,
+                req.body.sexo, 
                 req.body.nacionalidade, 
                 req.body.localidade, 
-                req.body.data_nascimento, 
-                req.body.altura,
-                req.body.telemovel  
+                req.body.telemovel, 
+                req.body.peso, 
+                req.body.altura
             ],
             (error, result, fields) => {
                 conn.release();
@@ -105,9 +104,8 @@ router.patch('/:id', (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `UPDATE Pacientes SET 
-                user_id = ?, 
                 nome = ?, 
-                genero = ?, 
+                sexo = ?, 
                 nacionalidade = ?, 
                 localidade = ?, 
                 data_nascimento = ?, 
@@ -115,9 +113,8 @@ router.patch('/:id', (req, res, next) => {
                 telemovel = ?
             WHERE id_paciente = ?`,
             [
-                req.body.user_id, 
                 req.body.nome, 
-                req.body.genero,
+                req.body.sexo,
                 req.body.nacionalidade, 
                 req.body.localidade, 
                 req.body.data_nascimento, 
