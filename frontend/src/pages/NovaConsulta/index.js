@@ -3,7 +3,6 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
 import axios from 'axios';
 
-
 import './styles.css';
 
 export default function NovaConsulta (){
