@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2, FiSave } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import axios from "axios";
@@ -30,6 +30,8 @@ export default function Pacientes() {
             localidade: localidade, data_nascimento: dataNascimento, altura: altura, telemovel: telemovel})
             history.push('/pacientes/' + pacienteInfo.id_paciente);
             console.log(res);
+
+        window.location.reload();
     }
 
     const deletePaciente = async () => {
@@ -107,6 +109,11 @@ export default function Pacientes() {
         });
     }
 
+    function showPacienteInputUpdate () {
+        document.getElementById("updatePaciente").style.display = 'block';
+        document.getElementById("infoPaciente").style.display = 'none';
+    }
+
     return(
         <div className="pacientes-container">
 
@@ -130,55 +137,53 @@ export default function Pacientes() {
                 
             </header>
 
-            {/* <div className="info-paciente">
-                <div>
-                    <p><b>Id:</b> {pacienteInfo.id_paciente}</p>
-                    <p><b>Nome:</b> </p>
-                    <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
-                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
-                    <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
-                    <p><b>Altura:</b> {pacienteInfo.altura}</p>
-                    <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
-                    <p><b>Genero:</b> {pacienteInfo.genero}</p>
-                    <p><b>Email:</b> {pacienteInfo.mail}</p>  
-                </div>
-            </div> */}
-
             <div className="card text-white bg-secondary mb-3"> 
-                <div className="card-header"><h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
-                <input type="text" name="nome" value={nome}
-                       onChange={(e) => setNome(e.target.value)} />
-                    <FiEdit2 type="button" size={20} onClick={updatePaciente}></FiEdit2>
-                    <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>  
-                </h3>
+                <div className="card-header">
+                    <h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
+                        <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
+                        <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>
+                    </h3>
                     
                 </div>
-                <div className="card-body">
+                <div className="card-body" id="infoPaciente">
                     <p><b>Data de nascimento:</b> {pacienteInfo.data_nascimento}</p>
-                    <input type="text" name="data_nascimento" value={dataNascimento}
-                       onChange={(e) => setDataNascimento(e.target.value)} />
 
                     <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
-                    <input type="text" name="localidade" value={localidade}
-                       onChange={(e) => setLocalidade(e.target.value)} />
 
                     <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
-                    <input type="text" name="nacionalidade" value={nacionalidade}
-                       onChange={(e) => setNacionalidade(e.target.value)} />
 
-                    <p><b>Altura:</b> {pacienteInfo.altura}</p>
-                    <input type="number" name="altura" value={altura}
-                       onChange={(e) => setAltura(e.target.valueAsNumber)} />
+                    <p><b>Altura (m):</b> {pacienteInfo.altura}</p>
 
                     <p><b>Contacto:</b> {pacienteInfo.telemovel}</p>
-                    <input type="text" name="telemovel"  value={telemovel}
-                       onChange={(e) => setTelemovel(e.target.value)} />
 
-                    <p><b>Genero:</b> {pacienteInfo.genero}</p>
-                    <input type="text" name="genero" defaultValue={genero}
-                       onChange={(e) => setGenero(e.target.value)} />
+                    <p><b>Sexo:</b> {pacienteInfo.genero}</p>
+                </div>
 
-                    <p><b>Email:</b> {pacienteInfo.mail}</p>
+                <div className="formUpdate" id="updatePaciente">
+                    <p><b>Nome:</b> <input type="text" name="nome" value={nome} 
+                        onChange={(e) => setNome(e.target.value)} /></p>
+                    
+
+                    <p><b>Data de nascimento:</b> <input type="text" id="dtaNasc" name="data_nascimento" value={dataNascimento} 
+                        onChange={(e) => setDataNascimento(e.target.value)} /></p>
+                   
+
+                    <p><b>Localidade:</b> <input type="text" id="loc" name="localidade" value={localidade}
+                        onChange={(e) => setLocalidade(e.target.value)} /></p>
+
+                    <p><b>Nacionalidade:</b> <input type="text" id="nacio" name="nacionalidade" value={nacionalidade}
+                        onChange={(e) => setNacionalidade(e.target.value)} /></p>
+
+                    <p><b>Altura (m):</b> <input type="number" id="alt" name="altura" value={altura}
+                        onChange={(e) => setAltura(e.target.valueAsNumber)} /></p>
+
+                    <p><b>Contacto:</b> <input type="text" id="tele" name="telemovel"  value={telemovel}
+                       onChange={(e) => setTelemovel(e.target.value)} /></p>
+                        
+                    <p><b>Sexo:</b> <input type="text" id="sexo" name="genero" defaultValue={genero}
+                       onChange={(e) => setGenero(e.target.value)} /></p>
+
+                    <FiSave type="button" size={20} onClick={updatePaciente}></FiSave>
                 </div>
             </div>
 
