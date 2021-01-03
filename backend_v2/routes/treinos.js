@@ -43,10 +43,10 @@ router.post('/:id', (req, res, next) => {
             VALUES (?, ?, ?, ?, ?);`,
             [                
                 req.params.id,
-                req.body.data, 
-                req.body.descricao, 
-                req.body.tipo,
-                req.body.obs
+                req.body.data_treino, 
+                req.body.descricao_treino, 
+                req.body.tipo_treino,
+                req.body.obs_treino
             ],
             (error, result, fields) => {
                 conn.release();
