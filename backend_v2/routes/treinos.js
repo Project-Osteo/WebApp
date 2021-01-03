@@ -60,6 +60,35 @@ router.post('/:id', (req, res, next) => {
     });
 });
 
+//UPDATE TREINO
+router.patch('/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `UPDATE Treinos SET 
+                data_treino = ?,
+                descricao_treino = ?,
+                tipo_treino = ?, 
+                obs_treino = ?
+            WHERE id_treino = ?`,
+            [
+                req.body.data_treino, 
+                req.body.descricao_treino,
+                req.body.tipo_treino,
+                req.body.obs_treino,
+                req.params.id
+            ],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                res.status(202).send({
+                    mensagem: 'Treino alterado com sucesso',
+                })
+            }
+        )
+    });   
+});
+
 //DELETE TREINO     
 router.delete('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
