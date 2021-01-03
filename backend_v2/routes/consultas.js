@@ -43,8 +43,8 @@ router.post('/:id', (req, res, next) => {
             VALUES (?, ?, ?, ?, ?, ?, ?);`,
             [
                 req.params.id,
-                req.body.data, 
-                req.body.descricao, 
+                req.body.data_consulta, 
+                req.body.descricao_consulta, 
                 req.body.tratamento, 
                 req.body.obs_consulta,
                 req.body.recomendacao  
