@@ -56,7 +56,7 @@ export default function NovoTreino (){
                 
                 <form className="myForm2" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
-                    <label>Tipo de Treino
+                    <label>TIPO DE TREINO
                     <input type="text" name="tipo" list="optionslist" value={tipo}
                        onChange={(e) => setTipo(e.target.value)}/>
                     <datalist id="optionslist">
@@ -66,17 +66,17 @@ export default function NovoTreino (){
                     </datalist>
                     </label>
 
-                    <label>Descrição do treino
+                    <label>DESCRIÇÃO DO TREINO
                     <textarea type="text" name="descricao" cols="40" rows="5" value={descricao}
                        onChange={(e) => setDescricao(e.target.value)}/>
                     </label>
 
-                    <label>Observações
+                    <label>OBSERVAÇÕES
                     <textarea type="text" name="observacoes" cols="40" rows="5" value={obs}
                        onChange={(e) => setObs(e.target.value)}/>
                     </label>
 
-                    <label>Data do Treino
+                    <label>DATA DO TREINO(AAAA-MM-DD)
                     <input type="text" name="observacoes" cols="40" rows="5" value={data}
                        onChange={(e) => setData(e.target.value)}/>
                     </label>

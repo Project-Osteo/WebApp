@@ -20,7 +20,7 @@ export default function NovoPaciente () {
     const submitPaciente = async () => {
         let res = await Axios.post('http://localhost:3001/pacientes',
         {nome: nome, sexo: sexo, nacionalidade: nacionalidade, 
-            localidade: localidade, altura: altura, telemovel: telemovel})
+            localidade: localidade, peso: peso, altura: altura, telemovel: telemovel})
             history.push('/homepage')
             console.log(res);
     }
@@ -55,7 +55,6 @@ export default function NovoPaciente () {
                 <form className="myForm" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     
-
                     <label>Nome 
                     <input type="text" name="nome" required value={nome}
                        onChange={(e) => setNome(e.target.value)} />

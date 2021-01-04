@@ -77,7 +77,7 @@ export default function NovaConsulta (){
                        onChange={(e) => setObs(e.target.value)}/>
                     </label>
 
-                    <label>Data da Consulta
+                    <label>Data da Consulta(AAAA-MM-DD)
                     <input type="text" name="observacoes" cols="40" rows="5" value={data}
                        onChange={(e) => setData(e.target.value)}/>
                     </label>

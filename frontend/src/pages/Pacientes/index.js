@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2, FiSave } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2, FiSave, FiSearch } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import axios from "axios";
@@ -142,8 +142,8 @@ export default function Pacientes() {
                         <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
                         <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>
                     </h3>
-                    
                 </div>
+
                 <div className="card-body" id="infoPaciente">
                     <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
 
@@ -156,7 +156,6 @@ export default function Pacientes() {
                     <p><b>Peso(kg):</b> {pacienteInfo.peso}</p>
 
                     <p><b>Altura(m):</b> {pacienteInfo.altura}</p>
-
                 </div>
 
                 <div className="formUpdate" id="updatePaciente">
@@ -199,13 +198,15 @@ export default function Pacientes() {
                 <Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
+
+                <FiSearch size={55} color="#41414d"></FiSearch>
                 
                 <div>
                     <ReactBootStrap.Table striped bordered hover>
                         <thead>
                             <tr>
                                 <th>Ident.</th>
-                                <th>Data</th>
+                                <th>Data da Consulta</th>
                                 <th>Descrição da Consulta</th>
                             </tr>
                         </thead>
@@ -226,7 +227,7 @@ export default function Pacientes() {
                         <thead>
                             <tr>
                                 <th>Ident.</th>
-                                <th>Data</th>
+                                <th>Data do Treino</th>
                                 <th>Tipo de Treino</th>
                             </tr>
                         </thead>

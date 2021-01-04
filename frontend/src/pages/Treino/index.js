@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams,useHistory } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower, FiArrowLeft, FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPower, FiArrowLeft, FiEdit2, FiTrash2, FiSave } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import axios from "axios";
@@ -18,11 +18,14 @@ export default function Treino () {
     const [descricaoTreino, setDescricao] = useState(treinoInfo.descricaoTreino);
     const [obsTreino, setObs] = useState(treinoInfo.obs);
     const [tipoTreino, setTipo] = useState(treinoInfo.tipoTreino);
+    const [nomePaciente, setNomePaciente] = useState(treinoInfo.nome)
     
     const updateTreino = async () => {
         let res = await axios.patch(`http://localhost:3001/treinos/${id}`,
-            {data_treino: dataTreino, tipo_treino: tipoTreino, descricao_treino: descricaoTreino, obs_treino: obsTreino})
+            {data_treino: dataTreino, tipo_treino: tipoTreino, descricao_treino: descricaoTreino, obs_treino: obsTreino, nome: nomePaciente})
         console.log(res)
+
+        window.location.reload();
     }
 
 
@@ -42,8 +45,14 @@ export default function Treino () {
             setTipo(result.tipo_treino);
             setDescricao(result.descricao_treino);
             setObs(result.obs_treino);
+            setNomePaciente(result.nome);
         });
     }, []);
+    
+    function showTreinoInputUpdate () {
+        document.getElementById("updateTreino").style.display = 'block';
+        document.getElementById("infoTreino").style.display = 'none';
+    }
 
     return(
         <div className="treinos-container">
@@ -70,31 +79,39 @@ export default function Treino () {
                 </div>
             </header>
 
-            <div className="treinos">
+            <div className="card text-white bg-secondary mb-3">
 
-            <FiEdit2 type="button" size={20} onClick={updateTreino}></FiEdit2>
+                <div className="card-header">
+                    <h3>{treinoInfo.id_treino}. <b>{treinoInfo.nome} ({treinoInfo.data_treino})</b> 
+                        <FiEdit2 type="button" size={20} onClick={showTreinoInputUpdate}></FiEdit2>
+                        <FiTrash2 type="button" size={20} onClick={deleteTreino}></FiTrash2>
+                    </h3>
+                </div>
 
-                <FiTrash2 type="button" size={20} onClick={deleteTreino}></FiTrash2>
+                <div className="card-body" id="infoTreino">
+                    <p><b>Tipo de Treino:</b> {treinoInfo.tipo_treino}</p>
 
-                <p><b>Id:</b> {treinoInfo.id_treino}</p>
-
-                <p><b>Data da consulta:</b> {treinoInfo.data_treino}</p>
-                <input type="text" name="data" value={dataTreino}
-                       onChange={(e) => setData(e.target.value)} />
-
-                <p><b>Tipo de treino:</b> {treinoInfo.tipo_treino}</p>
-                <input type="text" name="tipo" value={tipoTreino}
-                       onChange={(e) => setTipo(e.target.value)} />
-                
-                <div className="info-treinos">
-                    <p><b>Descrição:</b> {treinoInfo.descricao_treino}</p>
-                    <textarea type="text" name="descricao" cols="40" rows="5" value={descricaoTreino}
-                       onChange={(e) => setDescricao(e.target.value)} />
+                    <p><b>Descricção:</b> {treinoInfo.descricao_treino}</p>
 
                     <p><b>Observações:</b> {treinoInfo.obs_treino}</p>
-                    <input type="text" name="obs" value={obsTreino}
+                </div>
+
+                <div className="formUpdate" id="updateTreino">
+                    <p><b>Data da consulta:</b> <input type="text" name="data" value={dataTreino} maxlength={10}
+                        onChange={(e) => setData(e.target.value)} /></p>
+
+                    <p><b>Tipo de treino:</b> <input type="text" name="tipo" value={tipoTreino}
+                       onChange={(e) => setTipo(e.target.value)} /></p>
+
+                    <p><b>Descrição:</b></p>
+                    <textarea type="text" name="descricao" cols="142" rows="5" value={descricaoTreino}
+                       onChange={(e) => setDescricao(e.target.value)} />
+
+                    <p><b>Observações:</b></p>
+                    <textarea type="text" name="obs" cols="142" rows="5" value={obsTreino}
                        onChange={(e) => setObs(e.target.value)} />
 
+                    <FiSave type="button" size={20} onClick={updateTreino}></FiSave>   
                 </div>
             </div>         
         </div>

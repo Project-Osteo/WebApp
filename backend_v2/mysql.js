@@ -3,6 +3,7 @@ var pool = mysql.createPool({
     "user": "root",
     "password": "admin",
     "database": "osteoclinic",
-    "host": "localhost"
+    "host": "localhost",
+    "dateStrings": "true"
 });
 exports.pool = pool;
