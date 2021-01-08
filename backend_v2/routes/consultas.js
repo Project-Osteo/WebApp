@@ -22,7 +22,10 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         conn.query(
-            'SELECT Consultas.id_consulta, Consultas.paciente_id, Consultas.data_consulta, Consultas.descricao_consulta, Consultas.tratamento, Consultas.obs_consulta, Consultas.recomendacao, Pacientes.nome FROM Consultas JOIN Pacientes ON Consultas.paciente_id = Pacientes.id_paciente WHERE id_consulta = ?;',
+            "SELECT Consultas.id_consulta, Consultas.paciente_id, Consultas.data_consulta, " + 
+            "Consultas.descricao_consulta, Consultas.tratamento, Consultas.obs_consulta, Consultas.recomendacao, " +
+            "Pacientes.nome FROM Consultas JOIN Pacientes ON Consultas.paciente_id = Pacientes.id_paciente " + 
+            "WHERE id_consulta = ?;",
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
