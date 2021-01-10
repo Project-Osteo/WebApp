@@ -122,14 +122,33 @@ router.delete('/:id', (req, res, next) => {
 
 
 router.post('/login', (req, res, next) => {
-    if(req.body.user === 'nelsan' && req.body.password === '1234'){
-      const token = jwt.sign({ id }, process.env.SECRET, {
-        expiresIn: 300 // expires in 5min
-      });
-      return res.json({ auth: true, token: token });
-    }
-    
-    res.status(500).json({message: 'Login inválido!'});
-})
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            'SELECT * FROM Utilizadores WHERE mail = ?',
+            [req.body.mail],
+            (error, results) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                console.log("res:" + results[0].pwd)
+                console.log("leng:" + results.length)
+                if (results.length < 1) {
+                    return res.status(401).send({ mensagem: "Falha no email"});
+                }
+                bcrypt.compare(req.body.pwd, results[0].pwd, (error, result) => {
+                    console.log("oi")
+                    if (error) {
+                        console.log("erro a verificar pw");
+                        return res.status(401).send({ mensagem: "Falha na password"});
+                    }
+                    if (result) {
+                        console.log("verificar pw");
+                        return res.status(200).send({ mensagem: "Login efetuado com successo"});
+                    }
+                    return res.status(401).send({ mensagem: "Falha na autenticação"});
+                });
+        });
+    });
+});
 
 module.exports = router;
