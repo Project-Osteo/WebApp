@@ -11,6 +11,7 @@ const rotaUtilizadores = require('./routes/utilizadores');
 const rotaConsultas = require('./routes/consultas');
 const rotaPacientes = require('./routes/pacientes');
 const rotaTreinos = require('./routes/treinos');
+const rotaFeedbacks = require('./routes/feedbacks');
 
 app.use(cors());
 app.use(morgan('dev'));
@@ -36,6 +37,7 @@ app.use('/utilizadores', rotaUtilizadores);
 app.use('/consultas', rotaConsultas);
 app.use('/pacientes', rotaPacientes);
 app.use('/treinos', rotaTreinos);
+app.use('/feedbacks', rotaFeedbacks);
 
 //quando não encontra rota
 app.use((req, res, next) => {
