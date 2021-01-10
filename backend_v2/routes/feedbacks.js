@@ -108,4 +108,24 @@ router.patch('/:id', (req, res, next) => {
     });   
 });
 
+
+//DELETE FEEDBACK
+router.delete('/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            'DELETE FROM Feedbacks WHERE id_feedback = ?',
+            [req.params.id], 
+            (error, result, field) => {
+                conn.release();
+                console.log(error);
+                if (error) { return res.status(500).send({ error: error }) }
+                res.status(202).send({
+                    mensagem: 'Feedback apagado',
+                });
+            }
+        )
+    });
+});
+
 module.exports = router;
