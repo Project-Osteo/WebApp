@@ -37,20 +37,24 @@ router.get('/:id', (req, res, next) => {
 //NEW USER
 router.post('/register', (req, res, next) => {
     mysql.getConnection((error, conn) => {
+        const sql ="INSERT INTO Utilizadores (mail, pwd, token) VALUES (?,?,?);SELECT Pacientes.nome, Pacientes.telemovel FROM Pacientes WHERE telemovel = ?;"
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'INSERT INTO Utilizadores (mail, pwd, token) VALUES (?,?,?);',
+            sql,
             [
                 req.body.mail, 
                 req.body.pwd, 
-                req.body.token, 
+                req.body.token,
+                req.body.telemovel
             ],
             (error, result, fields) => {
-                conn.release();
+                
+                console.log(result);
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(201).send({
                     mensagem: 'Utilizador registado com sucesso!',
-                    user_id: result.insertId
+                    user_id: result.insertId,
+                    res: result
                 });
             }
         )
@@ -99,5 +103,20 @@ router.delete('/:id', (req, res, next) => {
         )
     });
 });
+
+/* 
+app.post('/login', (req, res, next) => {
+    //esse teste abaixo deve ser feito no seu banco de dados
+    if(req.body.user === 'nelsan' && req.body.password === '1234'){
+      //auth ok
+      const id = 1; //esse id viria do banco de dados
+      const token = jwt.sign({ id }, process.env.SECRET, {
+        expiresIn: 300 // expires in 5min
+      });
+      return res.json({ auth: true, token: token });
+    }
+    
+    res.status(500).json({message: 'Login inválido!'});
+}) */
 
 module.exports = router;

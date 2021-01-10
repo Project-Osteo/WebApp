@@ -4,6 +4,7 @@ var pool = mysql.createPool({
     "password": "admin",
     "database": "osteoclinic",
     "host": "localhost",
-    "dateStrings": "true"
+    "dateStrings": "true",
+    "multipleStatements": "true"
 });
 exports.pool = pool;
