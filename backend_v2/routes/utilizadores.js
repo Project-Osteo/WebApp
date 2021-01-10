@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
+const bcrypt = require('bcrypt');
 
 
 //GETALL USERS
@@ -12,7 +13,7 @@ router.get('/', (req, res, next) => {
             (error, result, fields) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
-                return res.status(200).send({response: result});
+                return res.status(200).send(result);
             }
         )
     });
@@ -20,8 +21,8 @@ router.get('/', (req, res, next) => {
 
 //GETONE USER
 router.get('/:id', (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-        if (error) { return res.status(500).send({ error: error }) }
+    mysql.getConnection((err, conn) => {
+        if (err) { return res.status(500).send({ error: err }) }
         conn.query(
             'SELECT * FROM Utilizadores WHERE id_user = ?;',
             [req.params.id],
@@ -34,30 +35,45 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
+
 //NEW USER
 router.post('/register', (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-        const sql ="INSERT INTO Utilizadores (mail, pwd, token) VALUES (?,?,?);SELECT Pacientes.nome, Pacientes.telemovel FROM Pacientes WHERE telemovel = ?;"
-        if (error) { return res.status(500).send({ error: error }) }
-        conn.query(
-            sql,
-            [
-                req.body.mail, 
-                req.body.pwd, 
-                req.body.token,
-                req.body.telemovel
-            ],
-            (error, result, fields) => {
-                
-                console.log(result);
-                if (error) { return res.status(500).send({ error: error }) }
-                res.status(201).send({
-                    mensagem: 'Utilizador registado com sucesso!',
-                    user_id: result.insertId,
-                    res: result
+    mysql.getConnection((err, conn) => {
+        if (err) { return res.status(500).send({ error: err }) }
+        conn.query('SELECT * FROM Utilizadores WHERE mail = ?',
+        [req.body.mail],
+        (error, result) => {
+            if (error) { return res.status(500).send({ error: error }) }
+            console.log("resultado:" + result);
+            if (result.length > 0) {
+                res.status(409).send({ mensagem: 'Esse email já se encontra registado'})
+            } else {
+                bcrypt.hash(req.body.pwd, 10, (errBcrypt, hash) => {
+                    if (errBcrypt) { return res.status(500).send({ error: errBcrypt }) }
+                    conn.query(
+                        "INSERT INTO Utilizadores (mail, pwd, token) VALUES (?,?,?);",
+                        [
+                            req.body.mail, 
+                            hash,
+                            req.body.token
+                        ],
+                        (error, result) => {
+                            conn.release();
+                            if (error) { return res.status(500).send({ error: error }) }
+                            const response = {
+                                mensagem: 'Utilizador registado com sucesso!',
+                                novoUtilizador: {
+                                    user_id: result.insertId,
+                                    mail: req.body.mail
+                                }
+                            }
+                            return res.status(201).send(response);
+                        }
+                    )
                 });
             }
-        )
+        })
+        
     });
 });
 
@@ -104,12 +120,9 @@ router.delete('/:id', (req, res, next) => {
     });
 });
 
-/* 
-app.post('/login', (req, res, next) => {
-    //esse teste abaixo deve ser feito no seu banco de dados
+
+router.post('/login', (req, res, next) => {
     if(req.body.user === 'nelsan' && req.body.password === '1234'){
-      //auth ok
-      const id = 1; //esse id viria do banco de dados
       const token = jwt.sign({ id }, process.env.SECRET, {
         expiresIn: 300 // expires in 5min
       });
@@ -117,6 +130,6 @@ app.post('/login', (req, res, next) => {
     }
     
     res.status(500).json({message: 'Login inválido!'});
-}) */
+})
 
 module.exports = router;

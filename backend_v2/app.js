@@ -3,6 +3,8 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require("dotenv-safe").config();
+var jwt = require('jsonwebtoken');
 
 
 const rotaUtilizadores = require('./routes/utilizadores');
