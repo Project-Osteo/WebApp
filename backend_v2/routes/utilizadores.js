@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 //GETALL USERS
@@ -121,29 +122,36 @@ router.delete('/:id', (req, res, next) => {
 });
 
 
+
 router.post('/login', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Utilizadores WHERE mail = ?',
+            `SELECT * FROM Utilizadores WHERE mail = ?`,
             [req.body.mail],
             (error, results) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
-                console.log("res:" + results[0].pwd)
-                console.log("leng:" + results.length)
                 if (results.length < 1) {
-                    return res.status(401).send({ mensagem: "Falha no email"});
+                    return res.status(401).send({ mensagem: "Falha na autenticação"});
                 }
-                bcrypt.compare(req.body.pwd, results[0].pwd, (error, result) => {
-                    console.log("oi")
-                    if (error) {
-                        console.log("erro a verificar pw");
+                bcrypt.compare(req.body.pwd, results[0].pwd, (err, result) => {
+                    if (err) {
                         return res.status(401).send({ mensagem: "Falha na password"});
                     }
                     if (result) {
-                        console.log("verificar pw");
-                        return res.status(200).send({ mensagem: "Login efetuado com successo"});
+                        const token = jwt.sign({
+                            id_user: results[0].id_user,
+                            mail: results[0].mail
+                        }, 
+                        process.env.JWT_KEY, 
+                        {
+                            expiresIn: "1h"
+                        });
+                        return res.status(200).send({ 
+                            mensagem: "Login efetuado com successo",
+                            token: token
+                        });
                     }
                     return res.status(401).send({ mensagem: "Falha na autenticação"});
                 });
