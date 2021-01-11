@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
+const login = require('../middleware/login');
 
 router.get('/', (req, res, next) => {
     mysql.getConnection((error, conn) => {
@@ -17,7 +18,7 @@ router.get('/', (req, res, next) => {
 });
 
 //GET FEEDBACKS DA CONSULTA = ID
-router.get('/consulta/:id', (req, res, next) => {
+router.get('/consulta/:id', login, (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -33,7 +34,7 @@ router.get('/consulta/:id', (req, res, next) => {
 });
 
 //GET FEEDBACKS DO TREINO = ID
-router.get('/treino/:id', (req, res, next) => {
+router.get('/treino/:id', login, (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -50,7 +51,7 @@ router.get('/treino/:id', (req, res, next) => {
 
 
 //GETONE FEEDBACK BY ID
-router.get('/:id', (req, res, next) =>  { 
+router.get('/:id', login, (req, res, next) =>  { 
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -66,7 +67,7 @@ router.get('/:id', (req, res, next) =>  {
 });
 
 //POST FEEDBACK DA CONSULTA 
-router.post('/consulta/', (req, res, next) => {
+router.post('/consulta/', login, (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -92,7 +93,7 @@ router.post('/consulta/', (req, res, next) => {
 });
 
 //POST FEEDBACK DO TREINO
-router.post('/treino/', (req, res, next) => {
+router.post('/treino/', login, (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -118,7 +119,7 @@ router.post('/treino/', (req, res, next) => {
 });
 
 //UPDATE FEEDBACK
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', login, (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -143,7 +144,7 @@ router.patch('/:id', (req, res, next) => {
 
 
 //DELETE FEEDBACK
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', login, (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
