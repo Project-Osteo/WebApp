@@ -16,6 +16,38 @@ router.get('/', (req, res, next) => {
     });
 });
 
+//GET FEEDBACKS DA CONSULTA = ID
+router.get('/consulta/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            "SELECT * FROM Feedbacks WHERE consulta_id = ?",
+            [req.params.id],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                return res.status(200).send(result);
+            }
+        )
+    });
+});
+
+//GET FEEDBACKS DO TREINO = ID
+router.get('/treino/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            "SELECT * FROM Feedbacks WHERE treino_id = ?",
+            [req.params.id],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                return res.status(200).send(result);
+            }
+        )
+    });
+});
+
 
 //GETONE FEEDBACK BY ID
 router.get('/:id', (req, res, next) =>  { 
@@ -23,6 +55,7 @@ router.get('/:id', (req, res, next) =>  {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             "SELECT * FROM Feedbacks WHERE id_feedback = ?",
+            [req.params.id],
             (error, result,fields) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
