@@ -38,7 +38,7 @@ router.get('/:id', (req, res, next) => {
 
 
 //NEW USER
-router.post('/register', (req, res, next) => {
+router.post('/registar', (req, res, next) => {
     mysql.getConnection((err, conn) => {
         if (err) { return res.status(500).send({ error: err }) }
         conn.query('SELECT * FROM Utilizadores WHERE mail = ?',
@@ -61,11 +61,8 @@ router.post('/register', (req, res, next) => {
                             conn.release();
                             if (error) { return res.status(500).send({ error: error }) }
                             const response = {
-                                mensagem: 'Utilizador registado com sucesso!',
-                                novoUtilizador: {
-                                    user_id: result.insertId,
-                                    mail: req.body.mail
-                                }
+                                success: true,
+                                user_id: result.insertId
                             }
                             return res.status(201).send(response);
                         }
