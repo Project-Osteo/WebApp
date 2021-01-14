@@ -52,11 +52,10 @@ router.post('/register', (req, res, next) => {
                 bcrypt.hash(req.body.pwd, 10, (errBcrypt, hash) => {
                     if (errBcrypt) { return res.status(500).send({ error: errBcrypt }) }
                     conn.query(
-                        "INSERT INTO Utilizadores (mail, pwd, token) VALUES (?,?,?);",
+                        "INSERT INTO Utilizadores (mail, pwd) VALUES (?,?);",
                         [
                             req.body.mail, 
-                            hash,
-                            req.body.token
+                            hash
                         ],
                         (error, result) => {
                             conn.release();
