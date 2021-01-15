@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
+const login = require('../middleware/login');
 
 
 //GETALL PACIENTES
@@ -23,7 +24,7 @@ router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Pacientes WHERE id_paciente = ?;',
+            'SELECT * FROM Pacientes WHERE user_id = ?;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
@@ -39,7 +40,7 @@ router.get('/:id/consultas', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Consultas WHERE paciente_id = ?;', /* SELECT Consultas.*, Pacientes.* FROM Consultas INNER JOIN Pacientes ON Consultas.paciente_id = Pacientes.id WHERE Consultas.paciente_id = ?; */
+            'SELECT Consultas.* FROM Consultas JOIN Pacientes ON Consultas.paciente_id = Pacientes.id_paciente WHERE Pacientes.id_paciente = ?;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
@@ -92,7 +93,7 @@ router.post('/:id', (req, res, next) => {
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(201).send({
                     mensagem: 'Paciente inserido com sucesso!',
-                    user_id: result.insertId
+                    paciente_id: result.insertId
                 });
             }
         )
