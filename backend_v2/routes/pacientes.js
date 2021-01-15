@@ -68,14 +68,15 @@ router.get('/:id/treinos', (req, res, next) => {
 });
 
 //NEW PACIENTE
-router.post('/', (req, res, next) => {
+router.post('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `INSERT INTO Pacientes 
-            (nome, sexo, nacionalidade, localidade, telemovel, peso, altura) 
-            VALUES (?, ?, ?, ?, ?, ?, ?);`,
+            (user_id, nome, sexo, nacionalidade, localidade, telemovel, peso, altura) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
             [
+                req.params.id,
                 req.body.nome, 
                 req.body.sexo, 
                 req.body.nacionalidade, 
