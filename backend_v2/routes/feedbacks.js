@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
 const login = require('../middleware/login');
+const dateFormat = require('dateformat');
 
 router.get('/', (req, res, next) => {
     mysql.getConnection((error, conn) => {
@@ -72,19 +73,21 @@ router.post('/consulta/', (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `INSERT INTO Feedbacks 
-            (consulta_id, mensagem) 
+            (consulta_id, mensagem)
             VALUES (?, ?);`,
             [
-                req.body.consulta_id, 
+                req.body.consulta_id,
                 req.body.mensagem
             ],
             (error, result, fields) => {
                 conn.release();
-                console.log(result);
                 if (error) { return res.status(500).send({ error: error }) }
+                var dataehora = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
                 res.status(201).send({
-                    mensagem: 'Feedback adicionado com sucesso!',
-                    feedback_id: result.insertId
+                    id_feedback: result.insertId,
+                    consulta_id: req.body.consulta_id,
+                    mensagem: req.body.mensagem,
+                    dataehora: dataehora
                 });
             }
         )
@@ -133,12 +136,16 @@ router.patch('/:id', (req, res, next) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(202).send({
-                    mensagem: 'Feedback alterado com sucesso',
+
+                    mensagem: req.body.mensagem,
                 })
             }
         )
     });   
 });
+
+
+
 
 
 //DELETE FEEDBACK
