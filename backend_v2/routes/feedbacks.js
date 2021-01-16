@@ -34,7 +34,7 @@ router.get('/consulta/:id', (req, res, next) => {
 });
 
 //GET FEEDBACKS DO TREINO = ID
-router.get('/treino/:id', login, (req, res, next) => {
+router.get('/treino/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -51,7 +51,7 @@ router.get('/treino/:id', login, (req, res, next) => {
 
 
 //GETONE FEEDBACK BY ID
-router.get('/:id', login, (req, res, next) =>  { 
+router.get('/:id', (req, res, next) =>  { 
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -67,15 +67,14 @@ router.get('/:id', login, (req, res, next) =>  {
 });
 
 //POST FEEDBACK DA CONSULTA 
-router.post('/consulta/', login, (req, res, next) => {
+router.post('/consulta/', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `INSERT INTO Feedbacks 
-            (user_id, consulta_id, mensagem) 
-            VALUES (?, ?, ?);`,
+            (consulta_id, mensagem) 
+            VALUES (?, ?);`,
             [
-                req.body.user_id,
                 req.body.consulta_id, 
                 req.body.mensagem
             ],
@@ -93,15 +92,14 @@ router.post('/consulta/', login, (req, res, next) => {
 });
 
 //POST FEEDBACK DO TREINO
-router.post('/treino/', login, (req, res, next) => {
+router.post('/treino/', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `INSERT INTO Feedbacks 
-            (user_id, treino_id, mensagem) 
-            VALUES (?, ?, ?);`,
+            (treino_id, mensagem) 
+            VALUES (?, ?);`,
             [
-                req.body.user_id,
                 req.body.treino_id, 
                 req.body.mensagem
             ],
@@ -119,7 +117,7 @@ router.post('/treino/', login, (req, res, next) => {
 });
 
 //UPDATE FEEDBACK
-router.patch('/:id', login, (req, res, next) => {
+router.patch('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
@@ -144,7 +142,7 @@ router.patch('/:id', login, (req, res, next) => {
 
 
 //DELETE FEEDBACK
-router.delete('/:id', login, (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(

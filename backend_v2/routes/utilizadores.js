@@ -73,17 +73,39 @@ router.post('/registar', (req, res, next) => {
     });
 });
 
-//UPDATE USER
-router.patch('/:id', (req, res, next) => {
+//UPDATE USER EMAIL
+router.patch('/:id/email', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `UPDATE Utilizadores SET 
-                mail = ?,
-                pwd = ?
+                mail = ?
             WHERE id_user = ?`,
             [
                 req.body.mail,
+                req.params.id
+            ],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                res.status(202).send({
+                    mensagem: 'E-mail alterado com sucesso'
+                });
+            }
+        )
+    });   
+});
+
+
+//UPDATE USER EMAIL
+router.patch('/:id/password', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `UPDATE Utilizadores SET 
+                pwd = ?
+            WHERE id_user = ?`,
+            [
                 req.body.pwd,
                 req.params.id
             ],
@@ -91,12 +113,13 @@ router.patch('/:id', (req, res, next) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 res.status(202).send({
-                    mensagem: 'Utilizador alterado com sucesso'
+                    mensagem: 'Password alterado com sucesso'
                 });
             }
         )
     });   
 });
+
 
 //DELETE USER
 router.delete('/:id', (req, res, next) => {
