@@ -57,7 +57,7 @@ router.get('/:id/treinos', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Treinos WHERE paciente_id = ?;',
+            'SELECT Treinos.* FROM Treinos JOIN Pacientes ON Treinos.paciente_id = Pacientes.id_paciente WHERE Pacientes.id_paciente = ?;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
