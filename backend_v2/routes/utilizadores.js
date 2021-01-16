@@ -45,9 +45,8 @@ router.post('/registar', (req, res, next) => {
         [req.body.mail],
         (error, result) => {
             if (error) { return res.status(500).send({ error: error }) }
-            console.log("resultado:" + result);
             if (result.length > 0) {
-                res.status(409).send({ mensagem: 'Esse email já se encontra registado'})
+                res.status(409).send({ mensagem: 'Email inválido !'})
             } else {
                 bcrypt.hash(req.body.pwd, 10, (errBcrypt, hash) => {
                     if (errBcrypt) { return res.status(500).send({ error: errBcrypt }) }

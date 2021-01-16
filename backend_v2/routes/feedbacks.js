@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 });
 
 //GET FEEDBACKS DA CONSULTA = ID
-router.get('/consulta/:id', login, (req, res, next) => {
+router.get('/consulta/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
