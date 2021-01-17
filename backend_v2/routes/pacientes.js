@@ -90,7 +90,8 @@ router.post('/:id', (req, res, next) => {
                 conn.release();
                 console.log(result);
                 console.log(error);
-                if (error) { return res.status(500).send({ error: error }) }
+                if (error) { return res.status(500).send({ error: error,
+                mensagem: 'Este user_id já está a ser utilizado' }) }
                 res.status(201).send({
                     mensagem: 'Paciente inserido com sucesso!',
                     paciente_id: result.insertId
