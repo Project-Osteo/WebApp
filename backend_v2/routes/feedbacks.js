@@ -83,12 +83,13 @@ router.post('/consulta/', (req, res, next) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 var dataehora = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-                res.status(201).send({
+                const response = {
                     id_feedback: result.insertId,
                     consulta_id: req.body.consulta_id,
                     mensagem: req.body.mensagem,
                     dataehora: dataehora
-                });
+                }
+                res.status(201).send(response);
             }
         )
     });
@@ -135,10 +136,14 @@ router.patch('/:id', (req, res, next) => {
             (error, result, fields) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
-                res.status(202).send({
-
+                var dataehora = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+                const response = {
+                    id_feedback: req.params.id,
+                    consulta_id: req.body.consulta_id,
                     mensagem: req.body.mensagem,
-                })
+                    dataehora: dataehora
+                }
+                res.status(202).send(response)
             }
         )
     });   
