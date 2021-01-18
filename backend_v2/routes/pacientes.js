@@ -51,7 +51,7 @@ router.get('/:id/consultas', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT Consultas.* FROM Consultas JOIN Pacientes ON Consultas.paciente_id = Pacientes.id_paciente WHERE Pacientes.id_paciente = ?;',
+            'SELECT * FROM Consultas WHERE paciente_id = ?;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
@@ -68,7 +68,7 @@ router.get('/:id/treinos', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT Treinos.* FROM Treinos JOIN Pacientes ON Treinos.paciente_id = Pacientes.id_paciente WHERE Pacientes.id_paciente = ?;',
+            'SELECT * FROM Treinos WHERE paciente_id = ?;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
@@ -99,8 +99,6 @@ router.post('/:id', (req, res, next) => {
             ],
             (error, result, fields) => {
                 conn.release();
-                console.log(result);
-                console.log(error);
                 if (error) { return res.status(500).send({ error: error,
                 mensagem: 'Este user_id já está a ser utilizado' }) }
                 res.status(201).send({
