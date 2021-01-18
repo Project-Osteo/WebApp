@@ -51,7 +51,7 @@ router.get('/:id/consultas', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Consultas WHERE paciente_id = ?;',
+            'SELECT * FROM Consultas WHERE paciente_id = ? ORDER BY id_consulta DESC;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
@@ -68,7 +68,7 @@ router.get('/:id/treinos', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            'SELECT * FROM Treinos WHERE paciente_id = ?;',
+            'SELECT * FROM Treinos WHERE paciente_id = ? ORDER BY id_treino DESC;',
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
