@@ -23,7 +23,7 @@ router.get('/consulta/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            "SELECT * FROM Feedbacks WHERE consulta_id = ?",
+            "SELECT * FROM Feedbacks WHERE consulta_id = ? ORDER BY id_feedback DESC",
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
@@ -39,7 +39,7 @@ router.get('/treino/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            "SELECT * FROM Feedbacks WHERE treino_id = ?",
+            "SELECT * FROM Feedbacks WHERE treino_id = ? ORDER BY id_feedback DESC",
             [req.params.id],
             (error, result, fields) => {
                 conn.release();
