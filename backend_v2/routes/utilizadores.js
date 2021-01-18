@@ -101,22 +101,25 @@ router.patch('/:id/email', (req, res, next) => {
 router.patch('/:id/password', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
-        conn.query(
-            `UPDATE Utilizadores SET 
-                pwd = ?
-            WHERE id_user = ?`,
-            [
-                req.body.pwd,
-                req.params.id
-            ],
-            (error, result, fields) => {
-                conn.release();
-                if (error) { return res.status(500).send({ error: error }) }
-                res.status(202).send({
-                    mensagem: 'Password alterado com sucesso'
-                });
-            }
-        )
+        bcrypt.hash(req.body.pwd, 10, (errBcrypt, hash) => {
+            if (errBcrypt) { return res.status(500).send({ error: errBcrypt }) }
+            conn.query(
+                `UPDATE Utilizadores SET 
+                    pwd = ?
+                WHERE id_user = ?`,
+                [
+                    hash,
+                    req.params.id
+                ],
+                (error, result, fields) => {
+                    conn.release();
+                    if (error) { return res.status(500).send({ error: error }) }
+                    res.status(202).send({
+                        mensagem: 'Password alterado com sucesso'
+                    });
+                }
+            )
+        })
     });   
 });
 
