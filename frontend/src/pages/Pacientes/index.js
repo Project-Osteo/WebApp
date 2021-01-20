@@ -29,7 +29,6 @@ export default function Pacientes() {
         {nome: nome, sexo: sexo, nacionalidade: nacionalidade, 
             localidade: localidade, telemovel: telemovel, peso: peso, altura: altura})
             console.log(res);
-
         window.location.reload();
     }
 
@@ -43,8 +42,7 @@ export default function Pacientes() {
         axios
         .get(`http://localhost:3001/pacientes/${id}`)
         .then((response) => {
-           /*  setPacienteInfo(response.data[0]); */
-           var result = response.data[0];
+           var result = response.data;
            setPacienteInfo(result);
            setNome(result.nome);
            setSexo(result.sexo);

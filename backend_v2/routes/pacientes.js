@@ -40,6 +40,7 @@ router.get('/:id', (req, res, next) => {
                     peso: result[0].peso, 
                     altura:  result[0].altura
                 }
+                console.log(response);
                 return res.status(200).send(response)
             }
         )
