@@ -3,6 +3,9 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2, FiSave, FiSearch } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
+import Card from 'react-bootstrap/Card'
+import Navbar from 'react-bootstrap/Navbar';
+import {Nav, ListGroup} from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -118,7 +121,7 @@ export default function Pacientes() {
 
             <header>
 
-                <span><h1>OSTEOCLINIC</h1></span>
+                {/*<span><h1>OSTEOCLINIC</h1></span>
 
                 <div className="btn-group">
                     <Link type="button" to="/homepage">
@@ -132,9 +135,41 @@ export default function Pacientes() {
                     <Link type="button">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
-                </div>
+                </div>*/}
+
+                <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+                crossOrigin="anonymous"
+                />
+
+                <Navbar bg="light" expand="lg">
+                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                    <Nav.Link href="/homepage">Homepage</Nav.Link>
+                    <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
                 
             </header>
+
+            <div className="dadosPaciente">
+                <Card style={{ width: '20rem' }}>
+                    <Card.Header>{pacienteInfo.id_paciente}. {pacienteInfo.nome}</Card.Header>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>Sexo: {pacienteInfo.sexo}</ListGroup.Item>
+                        <ListGroup.Item>Nacionalidade: {pacienteInfo.nacionalidade}</ListGroup.Item>
+                        <ListGroup.Item>Localidade: {pacienteInfo.localidade}</ListGroup.Item>
+                        <ListGroup.Item>Telemóvel: {pacienteInfo.telemovel}</ListGroup.Item>
+                        <ListGroup.Item>Peso(kg): {pacienteInfo.peso}</ListGroup.Item>
+                        <ListGroup.Item>Altura(m): {pacienteInfo.altura}</ListGroup.Item>
+                    </ListGroup>
+                </Card>
+            </div>
 
             <div className="card text-white bg-secondary mb-3"> 
                 <div className="card-header">

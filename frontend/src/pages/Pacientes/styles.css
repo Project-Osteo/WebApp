@@ -6,17 +6,9 @@
 }
 
 .pacientes-container header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.pacientes-container span {
-    font-size: 40px;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .pacientes-container header .btn-group a {
