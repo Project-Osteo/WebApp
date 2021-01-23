@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import * as ReactBootStrap from "react-bootstrap";
+import Navbar from 'react-bootstrap/Navbar';
+import { Nav } from 'react-bootstrap';
 import Axios from 'axios';
 
 import './styles.css';
@@ -29,9 +33,7 @@ export default function NovoPaciente () {
         <div className="novoPaciente-container">
 
             <header>
-                <span><b>OSTEOCLINIC</b></span>
-
-                <div className="btn-group">
+                {/*<div className="btn-group">
                     <Link type="button" to="/homepage">
                         <FiHome size={55} color="#41414d"></FiHome>
                     </Link>
@@ -43,7 +45,26 @@ export default function NovoPaciente () {
                     <Link type="button" to="/">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
-                </div>
+                </div>*/}
+
+                <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+                crossOrigin="anonymous"
+                />
+
+                <Navbar bg="light" expand="lg">
+                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                    <Nav.Link href="/homepage">Homepage</Nav.Link>
+                    <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+
             </header>
 
             <section> 

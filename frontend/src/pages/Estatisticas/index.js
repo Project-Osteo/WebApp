@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 
-export default function Settings () {
+export default function Estatisticas () {
     return(
-        <h1>Settings</h1>
+      <h1>Estatísticas</h1>
     );
 }

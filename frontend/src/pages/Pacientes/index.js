@@ -44,7 +44,7 @@ export default function Pacientes() {
         .get(`http://localhost:3001/pacientes/${id}`)
         .then((response) => {
            /*  setPacienteInfo(response.data[0]); */
-           var result = response.data[0];
+            var result = response.data;
            setPacienteInfo(result);
            setNome(result.nome);
            setSexo(result.sexo);

@@ -6,17 +6,9 @@
 }
 
 .homepage-container header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.homepage-container header span {
-    font-size: 40px;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .homepage-container header .btn-group a {
