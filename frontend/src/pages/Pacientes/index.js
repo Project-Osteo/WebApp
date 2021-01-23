@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar';
-import {Nav, ListGroup} from 'react-bootstrap';
+import { Nav, NavDropdown, ListGroup} from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -151,6 +151,16 @@ export default function Pacientes() {
                     <Nav className="mr-auto">
                     <Nav.Link href="/homepage">Homepage</Nav.Link>
                     <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    <NavDropdown title="Consultas" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Histórico</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="/novaConsulta">Adicionar</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Treinos" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Histórico</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="/novoTreino">Adicionar</NavDropdown.Item>
+                    </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
                 </Navbar>
@@ -171,7 +181,7 @@ export default function Pacientes() {
                 </Card>
             </div>
 
-            <div className="card text-white bg-secondary mb-3"> 
+            {/*<div className="card text-white bg-secondary mb-3"> 
                 <div className="card-header">
                     <h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
                         <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
@@ -217,7 +227,7 @@ export default function Pacientes() {
 
                     <FiSave type="button" size={20} onClick={updatePaciente}></FiSave>
                 </div>
-            </div>
+            </div>*/}
 
             <div className="btn-container">                
                 <button type="buton"  onClick={() => showConsultas()}>
