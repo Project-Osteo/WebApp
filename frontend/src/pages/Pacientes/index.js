@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar';
+import Table from 'react-bootstrap/Table'
 import { Nav, NavDropdown, ListGroup} from 'react-bootstrap';
 import axios from "axios";
 
@@ -68,7 +69,7 @@ export default function Pacientes() {
             <tr key={index} onClick={() => handleRowClickConsulta(consulta.id_consulta)}>
                 <td>{consulta.id_consulta}</td>
                 <td>{consulta.data_consulta}</td>
-                <td>{consulta.descricao_consulta}</td>
+                <td>{consulta.descricao_consulta.slice(0, 60)}</td>
             </tr>
         )
     }
@@ -185,35 +186,35 @@ export default function Pacientes() {
 
                 <div className="consultas"  id="listaConsultas">
                     <div>
-                        <ReactBootStrap.Table striped bordered hover>
+                        <Table striped bordered hover> 
                             <thead>
                                 <tr>
                                     <th>Ident.</th>
                                     <th>Data da Consulta</th>
-                                    <th>Descrição da Consulta</th>
+                                    <th width="500" tdStyle={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>Descrição da Consulta</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {listaconsultas.map(renderConsulta)}
                             </tbody>
-                        </ReactBootStrap.Table>
+                        </Table>
                     </div>
                 </div>    
                 
                 <div className="treinos"  id="listaTreinos">
                     <div>
-                        <ReactBootStrap.Table striped bordered hover>
-                            <thead>
+                        <Table striped bordered hover>
+                            {/*<thead>
                                 <tr>
                                     <th>Ident.</th>
                                     <th>Data do Treino</th>
                                     <th>Tipo de Treino</th>
                                 </tr>
-                            </thead>
+                            </thead>*/}
                             <tbody>
                                 {listatreinos.map(renderTreino)}
                             </tbody>
-                        </ReactBootStrap.Table>
+                        </Table>
                     </div>
                 </div>
                     

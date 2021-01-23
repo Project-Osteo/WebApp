@@ -69,6 +69,7 @@ export default function Homepage() {
                     <Nav className="mr-auto">
                     <Nav.Link href="/novoPaciente">Adicionar Paciente</Nav.Link>
                     <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    <Nav.Link>Logout</Nav.Link>
                     </Nav>
                     <Form inline>
                     <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" />
