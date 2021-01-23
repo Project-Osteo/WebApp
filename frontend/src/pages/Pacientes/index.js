@@ -152,14 +152,14 @@ export default function Pacientes() {
                     <Nav.Link href="/homepage">Homepage</Nav.Link>
                     <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
                     <NavDropdown title="Consultas" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Histórico</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => showConsultas()}>Histórico</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/novaConsulta">Adicionar</NavDropdown.Item>
+                        <NavDropdown.Item href={'/novaConsulta/' + pacienteInfo.id_paciente}>Adicionar</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Treinos" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Histórico</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => showTreinos()}>Histórico</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/novoTreino">Adicionar</NavDropdown.Item>
+                        <NavDropdown.Item href={'/novoTreino/' + pacienteInfo.id_paciente}>Adicionar</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -229,7 +229,7 @@ export default function Pacientes() {
                 </div>
             </div>*/}
 
-            <div className="btn-container">                
+            {/*<div className="btn-container">                
                 <button type="buton"  onClick={() => showConsultas()}>
                     CONSULTAS
                 </button>
@@ -237,14 +237,14 @@ export default function Pacientes() {
                 <button type="buton" onClick={() => showTreinos()}>
                     TREINOS
                 </button>
-            </div>
+        </div>*/}
 
             <div className="consultas"  id="listaConsultas">
-                <Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
+                {/*<Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
 
-                <FiSearch size={55} color="#41414d"></FiSearch>
+                <FiSearch size={55} color="#41414d"></FiSearch>*/}
                 
                 <div>
                     <ReactBootStrap.Table striped bordered hover>
@@ -263,9 +263,9 @@ export default function Pacientes() {
             </div>
 
             <div className="treinos"  id="listaTreinos">
-                <Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
+                {/*<Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
-                </Link>
+                </Link>*/}
 
                 <div>
                     <ReactBootStrap.Table striped bordered hover>
