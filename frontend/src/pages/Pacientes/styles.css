@@ -1,6 +1,7 @@
 .pacientes-container {
     width: 100%;
     max-width: 1180px;
+    min-width: 500px;
     padding: 0 30px;
     margin: 32px auto;
 }
@@ -22,6 +23,19 @@
     transition: border-color 0.2s;
     text-align: center;
     float: left;
+}
+
+.pacientesContainerInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+#listaConsultas {
+    width: 70%;
+}
+
+#listaTreinos {
+    width: 70%;
 }
 
 #updatePaciente {

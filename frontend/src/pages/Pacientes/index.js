@@ -167,21 +167,59 @@ export default function Pacientes() {
                 
             </header>
 
-            <div className="dadosPaciente">
-                <Card style={{ width: '20rem' }}>
-                    <Card.Header>{pacienteInfo.id_paciente}. {pacienteInfo.nome}</Card.Header>
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>Sexo: {pacienteInfo.sexo}</ListGroup.Item>
-                        <ListGroup.Item>Nacionalidade: {pacienteInfo.nacionalidade}</ListGroup.Item>
-                        <ListGroup.Item>Localidade: {pacienteInfo.localidade}</ListGroup.Item>
-                        <ListGroup.Item>Telemóvel: {pacienteInfo.telemovel}</ListGroup.Item>
-                        <ListGroup.Item>Peso(kg): {pacienteInfo.peso}</ListGroup.Item>
-                        <ListGroup.Item>Altura(m): {pacienteInfo.altura}</ListGroup.Item>
-                    </ListGroup>
-                </Card>
+            <div className="pacientesContainerInfo">
+
+                <div className="dadosPaciente">
+                    <Card style={{ width: '20rem' }}>
+                        <Card.Header>{pacienteInfo.id_paciente}. {pacienteInfo.nome}</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>Sexo: {pacienteInfo.sexo}</ListGroup.Item>
+                            <ListGroup.Item>Nacionalidade: {pacienteInfo.nacionalidade}</ListGroup.Item>
+                            <ListGroup.Item>Localidade: {pacienteInfo.localidade}</ListGroup.Item>
+                            <ListGroup.Item>Telemóvel: {pacienteInfo.telemovel}</ListGroup.Item>
+                            <ListGroup.Item>Peso(kg): {pacienteInfo.peso}</ListGroup.Item>
+                            <ListGroup.Item>Altura(m): {pacienteInfo.altura}</ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                </div>
+
+                <div className="consultas"  id="listaConsultas">
+                    <div>
+                        <ReactBootStrap.Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>Ident.</th>
+                                    <th>Data da Consulta</th>
+                                    <th>Descrição da Consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listaconsultas.map(renderConsulta)}
+                            </tbody>
+                        </ReactBootStrap.Table>
+                    </div>
+                </div>    
+                
+                <div className="treinos"  id="listaTreinos">
+                    <div>
+                        <ReactBootStrap.Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>Ident.</th>
+                                    <th>Data do Treino</th>
+                                    <th>Tipo de Treino</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listatreinos.map(renderTreino)}
+                            </tbody>
+                        </ReactBootStrap.Table>
+                    </div>
+                </div>
+                    
             </div>
 
-            {/*<div className="card text-white bg-secondary mb-3"> 
+                   {/*<div className="card text-white bg-secondary mb-3"> 
                 <div className="card-header">
                     <h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
                         <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
@@ -237,14 +275,14 @@ export default function Pacientes() {
                 <button type="buton" onClick={() => showTreinos()}>
                     TREINOS
                 </button>
-        </div>*/}
+            </div>*/}
 
-            <div className="consultas"  id="listaConsultas">
-                {/*<Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
+            {/*<div className="consultas"  id="listaConsultas">
+                <Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
 
-                <FiSearch size={55} color="#41414d"></FiSearch>*/}
+                <FiSearch size={55} color="#41414d"></FiSearch>
                 
                 <div>
                     <ReactBootStrap.Table striped bordered hover>
@@ -260,12 +298,12 @@ export default function Pacientes() {
                         </tbody>
                     </ReactBootStrap.Table>
                 </div>
-            </div>
+            </div>*/}
 
-            <div className="treinos"  id="listaTreinos">
-                {/*<Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
+            {/*<div className="treinos"  id="listaTreinos">
+                <Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
-                </Link>*/}
+                </Link>*
 
                 <div>
                     <ReactBootStrap.Table striped bordered hover>
@@ -281,7 +319,8 @@ export default function Pacientes() {
                         </tbody>
                     </ReactBootStrap.Table>
                 </div>
-            </div>
+        </div>*/}
+
         </div>
     );
 }
