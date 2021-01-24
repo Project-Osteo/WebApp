@@ -3,6 +3,10 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2, FiSave, FiSearch } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
+import Card from 'react-bootstrap/Card'
+import Navbar from 'react-bootstrap/Navbar';
+import Table from 'react-bootstrap/Table'
+import { Nav, NavDropdown, ListGroup} from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -42,7 +46,12 @@ export default function Pacientes() {
         axios
         .get(`http://localhost:3001/pacientes/${id}`)
         .then((response) => {
+<<<<<<< HEAD
            var result = response.data;
+=======
+           /*  setPacienteInfo(response.data[0]); */
+            var result = response.data;
+>>>>>>> abc2c7dd1cc2845fe352656e57f55c2d3daa7a55
            setPacienteInfo(result);
            setNome(result.nome);
            setSexo(result.sexo);
@@ -63,7 +72,7 @@ export default function Pacientes() {
             <tr key={index} onClick={() => handleRowClickConsulta(consulta.id_consulta)}>
                 <td>{consulta.id_consulta}</td>
                 <td>{consulta.data_consulta}</td>
-                <td>{consulta.descricao_consulta}</td>
+                <td>{consulta.descricao_consulta.slice(0, 60)}</td>
             </tr>
         )
     }
@@ -116,7 +125,7 @@ export default function Pacientes() {
 
             <header>
 
-                <span><h1>OSTEOCLINIC</h1></span>
+                {/*<span><h1>OSTEOCLINIC</h1></span>
 
                 <div className="btn-group">
                     <Link type="button" to="/homepage">
@@ -130,11 +139,91 @@ export default function Pacientes() {
                     <Link type="button">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
-                </div>
+                </div>*/}
+
+                <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+                crossOrigin="anonymous"
+                />
+
+                <Navbar bg="light" expand="lg">
+                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                    <Nav.Link href="/homepage">Homepage</Nav.Link>
+                    <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    <NavDropdown title="Consultas" id="basic-nav-dropdown">
+                        <NavDropdown.Item onClick={() => showConsultas()}>Histórico</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href={'/novaConsulta/' + pacienteInfo.id_paciente}>Adicionar</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Treinos" id="basic-nav-dropdown">
+                        <NavDropdown.Item onClick={() => showTreinos()}>Histórico</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href={'/novoTreino/' + pacienteInfo.id_paciente}>Adicionar</NavDropdown.Item>
+                    </NavDropdown>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
                 
             </header>
 
-            <div className="card text-white bg-secondary mb-3"> 
+            <div className="pacientesContainerInfo">
+
+                <div className="dadosPaciente">
+                    <Card style={{ width: '20rem' }}>
+                        <Card.Header>{pacienteInfo.id_paciente}. {pacienteInfo.nome}</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>Sexo: {pacienteInfo.sexo}</ListGroup.Item>
+                            <ListGroup.Item>Nacionalidade: {pacienteInfo.nacionalidade}</ListGroup.Item>
+                            <ListGroup.Item>Localidade: {pacienteInfo.localidade}</ListGroup.Item>
+                            <ListGroup.Item>Telemóvel: {pacienteInfo.telemovel}</ListGroup.Item>
+                            <ListGroup.Item>Peso(kg): {pacienteInfo.peso}</ListGroup.Item>
+                            <ListGroup.Item>Altura(m): {pacienteInfo.altura}</ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                </div>
+
+                <div className="consultas"  id="listaConsultas">
+                    <div>
+                        <Table striped bordered hover> 
+                            <thead>
+                                <tr>
+                                    <th>Ident.</th>
+                                    <th>Data da Consulta</th>
+                                    <th width="500" tdStyle={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>Descrição da Consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listaconsultas.map(renderConsulta)}
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>    
+                
+                <div className="treinos"  id="listaTreinos">
+                    <div>
+                        <Table striped bordered hover>
+                            {/*<thead>
+                                <tr>
+                                    <th>Ident.</th>
+                                    <th>Data do Treino</th>
+                                    <th>Tipo de Treino</th>
+                                </tr>
+                            </thead>*/}
+                            <tbody>
+                                {listatreinos.map(renderTreino)}
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>
+                    
+            </div>
+
+                   {/*<div className="card text-white bg-secondary mb-3"> 
                 <div className="card-header">
                     <h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
                         <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
@@ -180,9 +269,9 @@ export default function Pacientes() {
 
                     <FiSave type="button" size={20} onClick={updatePaciente}></FiSave>
                 </div>
-            </div>
+            </div>*/}
 
-            <div className="btn-container">                
+            {/*<div className="btn-container">                
                 <button type="buton"  onClick={() => showConsultas()}>
                     CONSULTAS
                 </button>
@@ -190,9 +279,9 @@ export default function Pacientes() {
                 <button type="buton" onClick={() => showTreinos()}>
                     TREINOS
                 </button>
-            </div>
+            </div>*/}
 
-            <div className="consultas"  id="listaConsultas">
+            {/*<div className="consultas"  id="listaConsultas">
                 <Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
                 </Link>
@@ -213,12 +302,12 @@ export default function Pacientes() {
                         </tbody>
                     </ReactBootStrap.Table>
                 </div>
-            </div>
+            </div>*/}
 
-            <div className="treinos"  id="listaTreinos">
+            {/*<div className="treinos"  id="listaTreinos">
                 <Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
                     <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
-                </Link>
+                </Link>*
 
                 <div>
                     <ReactBootStrap.Table striped bordered hover>
@@ -234,7 +323,8 @@ export default function Pacientes() {
                         </tbody>
                     </ReactBootStrap.Table>
                 </div>
-            </div>
+        </div>*/}
+
         </div>
     );
 }

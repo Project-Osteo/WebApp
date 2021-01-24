@@ -5,18 +5,11 @@
     margin: 32px auto;
 }
 
-.novoPaciente-container header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
 
-.novoPaciente-container header span {
-    font-size: 40px;
+.novoPaciente-container header {
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .novoPaciente-container header .btn-group a {

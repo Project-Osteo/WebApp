@@ -1,22 +1,15 @@
 .pacientes-container {
     width: 100%;
     max-width: 1180px;
+    min-width: 500px;
     padding: 0 30px;
     margin: 32px auto;
 }
 
 .pacientes-container header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.pacientes-container span {
-    font-size: 40px;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .pacientes-container header .btn-group a {
@@ -30,6 +23,19 @@
     transition: border-color 0.2s;
     text-align: center;
     float: left;
+}
+
+.pacientesContainerInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+#listaConsultas {
+    width: 70%;
+}
+
+#listaTreinos {
+    width: 70%;
 }
 
 #updatePaciente {
