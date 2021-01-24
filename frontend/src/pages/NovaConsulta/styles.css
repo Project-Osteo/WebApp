@@ -6,17 +6,9 @@
 }
 
 .novaConsulta-container header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.novaConsulta-container header span {
-    font-size: 40px;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .novaConsulta-container header .btn-group a {
@@ -157,15 +149,7 @@ font-weight: bold;
     margin-left: 40%;
 }
     
-.myForm2 button {
-    padding: 1em;
-    border-radius: 0.5em;
-    background: #ccc;
-    border: #333;
-    font-weight: bold;
-    margin-left: 40%;
-    margin-top: 1.8em;
-}
+
     
 .myForm2 button:hover {
     color: #ccc;

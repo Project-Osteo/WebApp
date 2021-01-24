@@ -172,7 +172,10 @@ export default function Pacientes() {
 
                 <div className="dadosPaciente">
                     <Card style={{ width: '20rem' }}>
-                        <Card.Header>{pacienteInfo.id_paciente}. {pacienteInfo.nome}</Card.Header>
+                        <Card.Header><b>{pacienteInfo.id_paciente}. {pacienteInfo.nome}</b>
+                            <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
+                            <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>
+                        </Card.Header>
                         <ListGroup variant="flush">
                             <ListGroup.Item>Sexo: {pacienteInfo.sexo}</ListGroup.Item>
                             <ListGroup.Item>Nacionalidade: {pacienteInfo.nacionalidade}</ListGroup.Item>
@@ -189,7 +192,7 @@ export default function Pacientes() {
                         <Table striped bordered hover> 
                             <thead>
                                 <tr>
-                                    <th>Ident.</th>
+                                    <th>#</th>
                                     <th>Data da Consulta</th>
                                     <th width="500" tdStyle={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>Descrição da Consulta</th>
                                 </tr>
@@ -204,13 +207,13 @@ export default function Pacientes() {
                 <div className="treinos"  id="listaTreinos">
                     <div>
                         <Table striped bordered hover>
-                            {/*<thead>
+                            <thead>
                                 <tr>
-                                    <th>Ident.</th>
+                                    <th>#</th>
                                     <th>Data do Treino</th>
                                     <th>Tipo de Treino</th>
                                 </tr>
-                            </thead>*/}
+                            </thead>
                             <tbody>
                                 {listatreinos.map(renderTreino)}
                             </tbody>

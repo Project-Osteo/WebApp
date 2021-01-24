@@ -83,7 +83,7 @@ export default function Homepage() {
                 <ReactBootStrap.Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>Ident.</th>
+                            <th>#</th>
                             <th>Nome</th>
                             <th>Telemóvel</th>
                         </tr>
