@@ -149,7 +149,15 @@ font-weight: bold;
     margin-left: 40%;
 }
     
-
+.myForm2 button {
+    padding: 1em;
+    border-radius: 0.5em;
+    background: #ccc;
+    border: #333;
+    font-weight: bold;
+    margin-left: 40%;
+    margin-top: 1.8em;
+}
     
 .myForm2 button:hover {
     color: #ccc;
