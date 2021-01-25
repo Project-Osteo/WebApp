@@ -170,17 +170,17 @@ export default function Pacientes() {
 
                 <div className="dadosPaciente">
                     <Card style={{ width: '20rem' }}>
-                        <Card.Header><b>{pacienteInfo.id_paciente}. {pacienteInfo.nome}</b>
+                        <Card.Header><b>#{pacienteInfo.id_paciente} - {pacienteInfo.nome}</b>
                             <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
                             <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>
                         </Card.Header>
                         <ListGroup variant="flush">
-                            <ListGroup.Item>Sexo: {pacienteInfo.sexo}</ListGroup.Item>
-                            <ListGroup.Item>Nacionalidade: {pacienteInfo.nacionalidade}</ListGroup.Item>
-                            <ListGroup.Item>Localidade: {pacienteInfo.localidade}</ListGroup.Item>
-                            <ListGroup.Item>Telemóvel: {pacienteInfo.telemovel}</ListGroup.Item>
-                            <ListGroup.Item>Peso(kg): {pacienteInfo.peso}</ListGroup.Item>
-                            <ListGroup.Item>Altura(m): {pacienteInfo.altura}</ListGroup.Item>
+                            <ListGroup.Item><b>Sexo:</b> {pacienteInfo.sexo}</ListGroup.Item>
+                            <ListGroup.Item><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</ListGroup.Item>
+                            <ListGroup.Item><b>Localidade:</b> {pacienteInfo.localidade}</ListGroup.Item>
+                            <ListGroup.Item><b>Telemóvel:</b> {pacienteInfo.telemovel}</ListGroup.Item>
+                            <ListGroup.Item><b>Peso(kg):</b> {pacienteInfo.peso}</ListGroup.Item>
+                            <ListGroup.Item><b>Altura(m):</b> {pacienteInfo.altura}</ListGroup.Item>
                         </ListGroup>
                     </Card>
                 </div>

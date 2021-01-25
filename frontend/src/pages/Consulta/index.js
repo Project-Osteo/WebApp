@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card'
-import { Nav, ListGroup } from 'react-bootstrap';
+import { Nav, ListGroup, CardGroup } from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -22,11 +22,12 @@ export default function Consulta () {
     const [tratamento, setTratamento] = useState(consultaInfo.tratamento);
     const [recomendacao, setRec] = useState(consultaInfo.recomendacao);
     const [obsConsulta, setObs] = useState(consultaInfo.obsConsulta);
+    const [nomePaciente, setNomePaciente] = useState(consultaInfo.nome)
 
     const updateConsulta = async () => {
         let res = await axios.patch(`http://localhost:3001/consultas/${id}`,
         {data_consulta: dataConsulta, descricao_consulta: descricaoConsulta, 
-            tratamento: tratamento, recomendacao: recomendacao, obs_consulta: obsConsulta})
+            tratamento: tratamento, recomendacao: recomendacao, obs_consulta: obsConsulta, nome: nomePaciente})
         console.log(res);
     }
 
@@ -47,6 +48,7 @@ export default function Consulta () {
             setTratamento(result.tratamento);
             setObs(result.obs_consulta);
             setRec(result.recomendacao);
+            setNomePaciente(result.nome);
         });
     }, []);
 
@@ -130,12 +132,32 @@ export default function Consulta () {
 
             <Card>
                 <Card.Header><b>#{consultaInfo.id_consulta} - Data da Consulta:</b> {consultaInfo.data_consulta}</Card.Header>
-                <ListGroup variant="flush">
-                    <ListGroup.Item><b>Descrição:</b> {consultaInfo.descricao_consulta}</ListGroup.Item>
-                    <ListGroup.Item><b>Tratamento:</b> {consultaInfo.tratamento}</ListGroup.Item>
-                    <ListGroup.Item><b>Observações:</b> {consultaInfo.obs_consulta}</ListGroup.Item>
-                    <ListGroup.Item><b>Recomendações:</b> {consultaInfo.recomendacao}</ListGroup.Item>
-                </ListGroup>
+                <CardGroup>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Descrição:</Card.Title>
+                            <Card.Text>{consultaInfo.descricao_consulta}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Tratamento:</Card.Title>
+                            <Card.Text>{consultaInfo.tratamento}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Observações:</Card.Title>
+                            <Card.Text>{consultaInfo.obs_consulta}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Recomendações:</Card.Title>
+                            <Card.Text>{consultaInfo.recomendacao}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </CardGroup>
             </Card>
 
             </div>
