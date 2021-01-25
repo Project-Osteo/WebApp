@@ -20,7 +20,7 @@ export default function NovoTreino (){
     const submitTreino = async () => {
         let res = await axios.post(`http://localhost:3001/treinos/${id}`,
         { data_treino: data, descricao_treino: descricao, tipo_treino: tipo, obs_treino: obs})
-            history.push(`/pacientes/${id}`);
+            /*history.push(`/pacientes/${id}`);*/
             console.log(res);
     }
 
