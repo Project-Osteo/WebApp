@@ -3,6 +3,9 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft, FiEdit2, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
+import Navbar from 'react-bootstrap/Navbar';
+import Card from 'react-bootstrap/Card'
+import { Nav, ListGroup } from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -52,9 +55,7 @@ export default function Consulta () {
         <div className="consultas-container">
 
             <header>
-                <span><b>OSTEOCLINIC</b></span>
-
-                <div className="btn-group">
+                {/*<div className="btn-group">
                     <Link type="button" to={'/pacientes/' + consultaInfo.paciente_id}>
                         <FiArrowLeft size={55} color="#41414d" />
                     </Link>
@@ -70,10 +71,30 @@ export default function Consulta () {
                     <Link type="button" to="/">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
-                </div>
+                </div>*/}
+
+                <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+                crossOrigin="anonymous"
+                />
+
+                <Navbar bg="light" expand="lg">
+                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                    <Nav.Link href="/homepage">Homepage</Nav.Link>
+                    <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    <Nav.Link href={'/pacientes/' + consultaInfo.paciente_id}>Voltar</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+
             </header>
 
-            <div className="consultas">
+            {/*<div className="consultas">
 
                 <FiEdit2 type="button" size={20} onClick={updateConsulta}></FiEdit2>
                 
@@ -103,6 +124,20 @@ export default function Consulta () {
                 <p><b>Recomendações:</b> {consultaInfo.recomendacao}</p>
                 <input type="text" name="recomendacao" value={recomendacao}
                        onChange={(e) => setRec(e.target.value)} />
+            </div>*/}
+
+            <div className="container">
+
+            <Card>
+                <Card.Header><b>#{consultaInfo.id_consulta} - Data da Consulta:</b> {consultaInfo.data_consulta}</Card.Header>
+                <ListGroup variant="flush">
+                    <ListGroup.Item><b>Descrição:</b> {consultaInfo.descricao_consulta}</ListGroup.Item>
+                    <ListGroup.Item><b>Tratamento:</b> {consultaInfo.tratamento}</ListGroup.Item>
+                    <ListGroup.Item><b>Observações:</b> {consultaInfo.obs_consulta}</ListGroup.Item>
+                    <ListGroup.Item><b>Recomendações:</b> {consultaInfo.recomendacao}</ListGroup.Item>
+                </ListGroup>
+            </Card>
+
             </div>
             
         </div>
