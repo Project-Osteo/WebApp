@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
+import Navbar from 'react-bootstrap/Navbar';
+import { Form, Nav, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 import './styles.css';
@@ -26,9 +28,9 @@ export default function NovoTreino (){
        <div className="novoTreino-container">
 
             <header>
-                <span><b>OSTEOCLINIC</b></span>
 
-                <div className="btn-group">
+
+                {/*<div className="btn-group">
                     <Link type="button" to={'/pacientes/' + id}>
                         <FiArrowLeft size={55} color="#41414d" />
                     </Link>
@@ -44,17 +46,32 @@ export default function NovoTreino (){
                     <Link type="button" to="/">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
-                </div>
+                </div>*/}
+
+                <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+                crossOrigin="anonymous"
+                />
+
+                <Navbar bg="light" expand="lg">
+                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                    <Nav.Link href="/homepage">Homepage</Nav.Link>
+                    <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    <Nav.Link href={'/pacientes/' + id}>Voltar</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+
             </header>
-
-
-            <section>
-                <h1>ADICIONAR NOVO TREINO</h1>
-            </section>
 
             <div className="content">
                 
-                <form className="myForm2" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+                {/*<form className="myForm2" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     <label>TIPO DE TREINO
                     <input type="text" name="tipo" list="optionslist" value={tipo}
@@ -82,7 +99,47 @@ export default function NovoTreino (){
                     </label>
 
                     <p><Link type="submit" onClick={submitTreino}>ADICIONAR TREINO</Link></p>
-                </form>
+                </form>*/}
+
+
+                <Form>
+                <Form.Row>
+                    <Form.Group>
+                        <Col>
+                        <Form.Label>Data do Treino(AAAA-MM-DD)</Form.Label>
+                        <Form.Control type="text" value={data}
+                            onChange={(e) => setData(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="tipoTreino">
+                        <Col>
+                        <Form.Label>Tipo de Treino</Form.Label>
+                        <Form.Control type="text" value={tipo}
+                            onChange={(e) => setTipo(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                </Form.Row>    
+                <Form.Group controlId="descricaoTreino">
+                    <Col sm="12">
+                    <Form.Label>Descrição do Treino</Form.Label>
+                    <Form.Control as="textarea" rows={3} type="text" value={descricao} 
+                        onChange={(e) => setDescricao(e.target.value)} />
+                    </Col>
+                </Form.Group>
+                <Form.Group controlId="observacoes">
+                    <Col sm="12">
+                    <Form.Label>Observações</Form.Label>    
+                    <Form.Control as="textarea" rows={3} type="text" value={obs} 
+                       onChange={(e) => setObs(e.target.value)} /> 
+                    </Col>
+                </Form.Group>
+                <Col sm="2">
+                <Button variant="secondary" type="submit" onClick={submitTreino} href={'/pacientes/' + id}>
+                    Guardar
+                </Button>
+                </Col>
+                </Form>
+
             </div>
         </div>
     );

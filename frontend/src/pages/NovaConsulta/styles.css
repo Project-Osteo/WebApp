@@ -26,26 +26,8 @@
 
 .novaConsulta-container .content {
     width: 100%;
-    padding: 96px;
-    margin: auto;
-    background: #f0f0f5;;
-    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  
-    display: flex;
-    align-items: center;
-  }
-
-.novaConsulta-container .content section {
-    width: 100%;
-    max-width: 400px;
+    background: #f8f9fa;
 }
-
-.novaConsulta-container .content section h1 {
-    font-size: 40px;
-    margin-bottom: 40px;
-    text-align: center;
-}  
 
 .novaConsulta-container .content form {
     width: 100%;

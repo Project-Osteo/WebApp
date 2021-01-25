@@ -6,17 +6,10 @@
 }
 
 .novoTreino-container header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
 
-.novoTreino-container header span {
-    font-size: 40px;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .novoTreino-container header .btn-group a {
@@ -34,24 +27,8 @@
 
 .novoTreino-container .content {
     width: 100%;
-    padding: 96px;
-    margin: auto;
-    background: #f0f0f5;;
-    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  
-  }
-
-  .novoTreino-container .content section {
-    width: 100%;
-    max-width: 400px;
+    background: #f8f9fa;
 }
-
-.novoTreino-container .content section h1 {
-    font-size: 40px;
-    margin-bottom: 40px;
-    text-align: center;
-}  
 
 .novoTreino-container .content form {
     width: 100%;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
 import Navbar from 'react-bootstrap/Navbar';
-import { Form, Nav, Button, Col, Row } from 'react-bootstrap';
+import { Form, Nav, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 import './styles.css';
@@ -71,9 +71,9 @@ export default function NovaConsulta (){
 
             </header>
 
-            {/*<div className="content">
+            <div className="content">
                 
-                <form class="myForm2" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+                {/*<form class="myForm2" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
                     <label>Descrição da consulta
                     <textarea type="text" name="descricao Consulta" cols="40" rows="5" value={descricao}
@@ -101,52 +101,54 @@ export default function NovaConsulta (){
                     </label>
 
                     <p><Link type="submit" onClick={submitConsulta}>ADICIONAR CONSULTA</Link></p>
-                </form>
+                </form>*/}
 
-            </div>*/}
+            
 
-            <Form>
-            <Form.Group controlId="dataConsulta">
-                <Col sm="4">
-                <Form.Label>Data da Consulta(AAAA-MM-DD)</Form.Label>
-                <Form.Control type="text" value={data}
-                    onChange={(e) => setData(e.target.value)} />
+                <Form>
+                <Form.Group controlId="dataConsulta">
+                    <Col sm="4">
+                    <Form.Label>Data da Consulta(AAAA-MM-DD)</Form.Label>
+                    <Form.Control type="text" value={data}
+                        onChange={(e) => setData(e.target.value)} />
+                    </Col>
+                </Form.Group>
+                <Form.Group controlId="descricaoConsulta">
+                    <Col sm="12">
+                    <Form.Label>Descrição da Consulta</Form.Label>
+                    <Form.Control as="textarea" rows={3} type="text" value={descricao} 
+                        onChange={(e) => setDescricao(e.target.value)} />
+                    </Col>
+                </Form.Group>
+                <Form.Group controlId="tratamento">
+                    <Col sm="12">
+                    <Form.Label>Tratamento</Form.Label>    
+                    <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
+                        onChange={(e) => setTratamento(e.target.value)} /> 
+                    </Col>
+                </Form.Group>
+                <Form.Group controlId="recomendacoes">
+                    <Col sm="12">
+                    <Form.Label>Recomendações</Form.Label>   
+                    <Form.Control as="textarea" rows={3} type="text" value={rec}
+                        onChange={(e) => setRec(e.target.value)} />
+                    </Col>
+                </Form.Group>
+                <Form.Group controlId="observacoes">
+                    <Col sm="12">
+                    <Form.Label>Observações</Form.Label>
+                    <Form.Control as="textarea" rows={3} type="text" value={obs}
+                        onChange={(e) => setObs(e.target.value)} />
+                    </Col>
+                </Form.Group>
+                <Col sm="2">
+                <Button variant="secondary" type="submit" onClick={submitConsulta} href={'/pacientes/' + id}>
+                    Guardar
+                </Button>
                 </Col>
-            </Form.Group>
-            <Form.Group controlId="descricaoConsulta">
-                <Col sm="12">
-                <Form.Label>Descrição da Consulta</Form.Label>
-                <Form.Control as="textarea" rows={3} type="text" value={descricao} 
-                    onChange={(e) => setDescricao(e.target.value)} />
-                </Col>
-            </Form.Group>
-            <Form.Group controlId="tratamento">
-                <Col sm="12">
-                <Form.Label>Tratamento</Form.Label>    
-                <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
-                    onChange={(e) => setTratamento(e.target.value)} /> 
-                </Col>
-            </Form.Group>
-            <Form.Group controlId="recomendacoes">
-                <Col sm="12">
-                <Form.Label>Recomendações</Form.Label>   
-                <Form.Control as="textarea" rows={3} type="text" value={rec}
-                    onChange={(e) => setRec(e.target.value)} />
-                </Col>
-            </Form.Group>
-            <Form.Group controlId="observacoes">
-                <Col sm="12">
-                <Form.Label>Observações</Form.Label>
-                <Form.Control as="textarea" rows={3} type="text" value={obs}
-                    onChange={(e) => setObs(e.target.value)} />
-                </Col>
-            </Form.Group>
-            <Col sm="2">
-            <Button variant="secondary" type="submit" onClick={submitConsulta} href={'/pacientes/' + id}>
-                Guardar
-            </Button>
-            </Col>
-            </Form>
+                </Form>
+
+            </div>
         </div>
     );
 }
