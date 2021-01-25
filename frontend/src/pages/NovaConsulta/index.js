@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
+import Navbar from 'react-bootstrap/Navbar';
+import { Form, Nav, Button, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 
 import './styles.css';
@@ -20,7 +22,7 @@ export default function NovaConsulta (){
     const submitConsulta = async () => {
         let res = await axios.post(`http://localhost:3001/consultas/${id}`,
         { data_consulta: data, descricao_consulta: descricao, tratamento: tratamento, obs_consulta: obs, recomendacao: rec })
-            history.push(`/pacientes/${id}`);
+            /*history.push(`/pacientes/${id}`);*/
             console.log(res);
     }
 
@@ -28,7 +30,7 @@ export default function NovaConsulta (){
         <div className="novaConsulta-container">
 
             <header>
-                <span><b>OSTEOCLINIC</b></span>
+                {/*<span><b>OSTEOCLINIC</b></span>
 
                 <div className="btn-group">
                     <Link type="button" to={'/pacientes/' + id}>
@@ -46,14 +48,30 @@ export default function NovaConsulta (){
                     <Link type="button" to="/">
                         <FiPower size={55} color="#41414d"></FiPower>
                     </Link>
-                </div>
+                </div>*/}
+
+                <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+                crossOrigin="anonymous"
+                />
+
+                <Navbar bg="light" expand="lg">
+                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                    <Nav.Link href="/homepage">Homepage</Nav.Link>
+                    <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
+                    <Nav.Link href={'/pacientes/' + id}>Voltar</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+
             </header>
 
-            <section>
-                <h1>ADICIONAR NOVA CONSULTA</h1>
-            </section>
-
-            <div className="content">
+            {/*<div className="content">
                 
                 <form class="myForm2" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 
@@ -84,7 +102,51 @@ export default function NovaConsulta (){
 
                     <p><Link type="submit" onClick={submitConsulta}>ADICIONAR CONSULTA</Link></p>
                 </form>
-            </div>
+
+            </div>*/}
+
+            <Form>
+            <Form.Group controlId="dataConsulta">
+                <Col sm="4">
+                <Form.Label>Data da Consulta(AAAA-MM-DD)</Form.Label>
+                <Form.Control type="text" value={data}
+                    onChange={(e) => setData(e.target.value)} />
+                </Col>
+            </Form.Group>
+            <Form.Group controlId="descricaoConsulta">
+                <Col sm="12">
+                <Form.Label>Descrição da Consulta</Form.Label>
+                <Form.Control as="textarea" rows={3} type="text" value={descricao} 
+                    onChange={(e) => setDescricao(e.target.value)} />
+                </Col>
+            </Form.Group>
+            <Form.Group controlId="tratamento">
+                <Col sm="12">
+                <Form.Label>Tratamento</Form.Label>    
+                <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
+                    onChange={(e) => setTratamento(e.target.value)} /> 
+                </Col>
+            </Form.Group>
+            <Form.Group controlId="recomendacoes">
+                <Col sm="12">
+                <Form.Label>Recomendações</Form.Label>   
+                <Form.Control as="textarea" rows={3} type="text" value={rec}
+                    onChange={(e) => setRec(e.target.value)} />
+                </Col>
+            </Form.Group>
+            <Form.Group controlId="observacoes">
+                <Col sm="12">
+                <Form.Label>Observações</Form.Label>
+                <Form.Control as="textarea" rows={3} type="text" value={obs}
+                    onChange={(e) => setObs(e.target.value)} />
+                </Col>
+            </Form.Group>
+            <Col sm="2">
+            <Button variant="secondary" type="submit" onClick={submitConsulta} href={'/pacientes/' + id}>
+                Guardar
+            </Button>
+            </Col>
+            </Form>
         </div>
     );
 }
