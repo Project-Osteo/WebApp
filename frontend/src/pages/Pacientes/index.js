@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar';
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import Pagination from 'react-bootstrap/Pagination'
 import { Nav, NavDropdown, ListGroup} from 'react-bootstrap';
 import axios from "axios";
 
@@ -187,7 +188,7 @@ export default function Pacientes() {
 
                 <div className="consultas"  id="listaConsultas">
                     <div>
-                        <Table striped bordered hover> 
+                        <Table striped bordered hover>
                             <thead>
                                 <tr>
                                     <th>#</th>
