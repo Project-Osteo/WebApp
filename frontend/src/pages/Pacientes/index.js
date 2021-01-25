@@ -46,12 +46,7 @@ export default function Pacientes() {
         axios
         .get(`http://localhost:3001/pacientes/${id}`)
         .then((response) => {
-<<<<<<< HEAD
            var result = response.data;
-=======
-           /*  setPacienteInfo(response.data[0]); */
-            var result = response.data;
->>>>>>> abc2c7dd1cc2845fe352656e57f55c2d3daa7a55
            setPacienteInfo(result);
            setNome(result.nome);
            setSexo(result.sexo);
