@@ -18,7 +18,7 @@ export default function Homepage() {
     const [listaPacientes, setListaPacientes] = useState([]);
 
     const [paginaAtual, setPaginaAtual] = useState(1);
-    const [pacientesPorPagina, setPacientePorPagina] = useState(10);
+    const [pacientesPorPagina] = useState(12);
 
     const history = useHistory();
 

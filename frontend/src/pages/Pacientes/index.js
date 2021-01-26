@@ -9,6 +9,7 @@ import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination'
 import { Nav, NavDropdown, ListGroup} from 'react-bootstrap';
 import axios from "axios";
+import ItemsPage from '../../pagination.js';
 
 import './styles.css';
 
@@ -28,6 +29,20 @@ export default function Pacientes() {
     const [telemovel, setTelemovel] = useState(pacienteInfo.telemovel);
     const [peso, setPeso] = useState(pacienteInfo.peso);
     const [altura, setAltura] = useState(pacienteInfo.altura);
+
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const [consultasPorPagina] = useState(6);
+    const [treinosPorPagina] = useState(6);
+
+    const indexUltimaConsulta = paginaAtual * consultasPorPagina;
+    const indexPrimeiraConsulta = indexUltimaConsulta - consultasPorPagina;
+    const consultasAtuais = listaconsultas.slice(indexPrimeiraConsulta, indexUltimaConsulta);
+
+    const indexUltimoTreino = paginaAtual * treinosPorPagina;
+    const indexPrimeiroTreino = indexUltimoTreino - treinosPorPagina;
+    const treinosAtuais = listatreinos.slice(indexPrimeiroTreino, indexUltimoTreino);
+
+    const paginate = (numPagina) => setPaginaAtual(numPagina);
 
     const updatePaciente = async () => {
         let res = await axios.patch(`http://localhost:3001/pacientes/${id}`,
@@ -190,9 +205,10 @@ export default function Pacientes() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {listaconsultas.map(renderConsulta)}
+                                {consultasAtuais.map(renderConsulta)}
                             </tbody>
                         </Table>
+                        <ItemsPage itemsPorPagina={consultasPorPagina} totalItems={listaconsultas.length} paginate={paginate} />
                     </div>
                 </div>    
                 
@@ -207,9 +223,10 @@ export default function Pacientes() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {listatreinos.map(renderTreino)}
+                                {treinosAtuais.map(renderTreino)}
                             </tbody>
                         </Table>
+                        <ItemsPage itemsPorPagina={treinosPorPagina} totalItems={listatreinos.length} paginate={paginate} />
                     </div>
                 </div>
                     

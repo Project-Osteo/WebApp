@@ -1,16 +1,10 @@
 import React from 'react';
-import Pagination from 'react-bootstrap/Pagination'
-
 
 const ItemsPage = ({itemsPorPagina, totalItems, paginate}) => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalItems / itemsPorPagina); i++) {
-        pageNumbers.push(
-            <Pagination.Item key={i} onClick={paginate(i)}>
-            {i}
-            </Pagination.Item>,
-        );
+        pageNumbers.push(i);
     }
 
     console.log(pageNumbers);
@@ -18,15 +12,17 @@ const ItemsPage = ({itemsPorPagina, totalItems, paginate}) => {
     console.log(itemsPorPagina);
 
     return(
-        <Pagination>
-        <Pagination.First />
-        <Pagination.Prev />
-
-        {pageNumbers}
-
-        <Pagination.Next />
-        <Pagination.Last />
-        </Pagination>
+        <nav>
+            <ul className='pagination'>
+            {pageNumbers.map(number => (
+                <li key={number} className='page-item'>
+                    <a onClick={() => paginate(number)} /*href='!#'*/ className='page-link'>
+                        {number}
+                    </a>
+                </li>                
+            ))}
+            </ul>
+        </nav>
     )
 }
 
