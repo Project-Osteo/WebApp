@@ -28,33 +28,3 @@
     border-color: #999;
 }
 
-.homepage-container ul {
-  display: grid;
-  grid-template-columns:1fr;
-  grid-gap: 5px;
-  list-style: none;
-  text-align: left;
-}
-
-.homepage-container ul li {
-    background: #FFF;
-    padding: 24px;
-    border-radius: 8px;
-    border-bottom: 2px solid #ddd;
-    cursor: pointer;
-    font-size: 25px;
-}
-
-.homepage-container ul li a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.homepage-container ul li p {
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-.homepage-container ul li p b {
-    margin-right: 15px;
-}

@@ -4,15 +4,21 @@ import { FiUserPlus, FiSettings, FiPower } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
+import Table from 'react-bootstrap/Table';
 import { Nav, Form, FormControl, Button } from 'react-bootstrap';
 import { useHistory} from "react-router-dom";
 import axios from "axios";
+import ItemsPage from '../../pagination.js';
 
 import './styles.css';
+
 
 export default function Homepage() {
 
     const [listaPacientes, setListaPacientes] = useState([]);
+
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const [pacientesPorPagina, setPacientePorPagina] = useState(10);
 
     const history = useHistory();
 
@@ -25,6 +31,12 @@ export default function Homepage() {
             setListaPacientes(response.data);
         });
     }, []);
+
+    const indexUltimoPaciente = paginaAtual * pacientesPorPagina;
+    const indexPrimeiroPaciente = indexUltimoPaciente - pacientesPorPagina;
+    const pacientesAtuais = listaPacientes.slice(indexPrimeiroPaciente, indexUltimoPaciente);
+
+    const paginate = (numPagina) => setPaginaAtual(numPagina);
 
     const renderPaciente = (paciente, index) => {
         return (
@@ -55,13 +67,6 @@ export default function Homepage() {
                     </Link>
                 </div>*/}
 
-                <link
-                rel="stylesheet"
-                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-                crossOrigin="anonymous"
-                />
-
                 <Navbar bg="light" expand="lg">
                 <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -80,7 +85,7 @@ export default function Homepage() {
             </header>
         
             <div>
-                <ReactBootStrap.Table striped bordered hover>
+                <Table striped bordered hover>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -88,11 +93,11 @@ export default function Homepage() {
                             <th>Telemóvel</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        
-                        {listaPacientes.map(renderPaciente)}
+                    <tbody>                     
+                        {pacientesAtuais.map(renderPaciente)}
                     </tbody>
-                </ReactBootStrap.Table>
+                </Table>
+                <ItemsPage itemsPorPagina={pacientesPorPagina} totalItems={listaPacientes.length} paginate={paginate} />
             </div>
         </div> 
    );
