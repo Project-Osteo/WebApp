@@ -99,46 +99,46 @@ export default function NovaConsulta (){
             
 
                 <Form>
-                <Form.Group controlId="dataConsulta">
-                    <Col sm="4">
-                    <Form.Label>Data da Consulta(AAAA-MM-DD)</Form.Label>
-                    <Form.Control type="text" value={data}
-                        onChange={(e) => setData(e.target.value)} />
+                    <Form.Group controlId="dataConsulta">
+                        <Col sm="4">
+                        <Form.Label>Data da Consulta(AAAA-MM-DD)</Form.Label>
+                        <Form.Control type="text" value={data}
+                            onChange={(e) => setData(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="descricaoConsulta">
+                        <Col sm="12">
+                        <Form.Label>Descrição da Consulta</Form.Label>
+                        <Form.Control as="textarea" rows={3} type="text" value={descricao} 
+                            onChange={(e) => setDescricao(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="tratamento">
+                        <Col sm="12">
+                        <Form.Label>Tratamento</Form.Label>    
+                        <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
+                            onChange={(e) => setTratamento(e.target.value)} /> 
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="recomendacoes">
+                        <Col sm="12">
+                        <Form.Label>Recomendações</Form.Label>   
+                        <Form.Control as="textarea" rows={3} type="text" value={rec}
+                            onChange={(e) => setRec(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="observacoes">
+                        <Col sm="12">
+                        <Form.Label>Observações</Form.Label>
+                        <Form.Control as="textarea" rows={3} type="text" value={obs}
+                            onChange={(e) => setObs(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Col sm="2">
+                    <Button variant="secondary" type="submit" onClick={submitConsulta} href={'/pacientes/' + id}>
+                        Guardar
+                    </Button>
                     </Col>
-                </Form.Group>
-                <Form.Group controlId="descricaoConsulta">
-                    <Col sm="12">
-                    <Form.Label>Descrição da Consulta</Form.Label>
-                    <Form.Control as="textarea" rows={3} type="text" value={descricao} 
-                        onChange={(e) => setDescricao(e.target.value)} />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="tratamento">
-                    <Col sm="12">
-                    <Form.Label>Tratamento</Form.Label>    
-                    <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
-                        onChange={(e) => setTratamento(e.target.value)} /> 
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="recomendacoes">
-                    <Col sm="12">
-                    <Form.Label>Recomendações</Form.Label>   
-                    <Form.Control as="textarea" rows={3} type="text" value={rec}
-                        onChange={(e) => setRec(e.target.value)} />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="observacoes">
-                    <Col sm="12">
-                    <Form.Label>Observações</Form.Label>
-                    <Form.Control as="textarea" rows={3} type="text" value={obs}
-                        onChange={(e) => setObs(e.target.value)} />
-                    </Col>
-                </Form.Group>
-                <Col sm="2">
-                <Button variant="secondary" type="submit" onClick={submitConsulta} href={'/pacientes/' + id}>
-                    Guardar
-                </Button>
-                </Col>
                 </Form>
 
             </div>

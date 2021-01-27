@@ -6,8 +6,7 @@ import * as ReactBootStrap from "react-bootstrap";
 import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar';
 import Table from 'react-bootstrap/Table';
-import Pagination from 'react-bootstrap/Pagination'
-import { Nav, NavDropdown, ListGroup, Modal, Button} from 'react-bootstrap';
+import { Nav, NavDropdown, ListGroup, Modal, Button, Form } from 'react-bootstrap';
 import axios from "axios";
 import ItemsPage from '../../pagination.js';
 
@@ -34,9 +33,13 @@ export default function Pacientes() {
     const [consultasPorPagina] = useState(6);
     const [treinosPorPagina] = useState(6);
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [showUpdate, setShowUpdate] = useState(false);
+    const handleCloseUpdate = () => setShowUpdate(false);
+    const handleShowUpdate = () => setShowUpdate(true);
+
+    const [showDelete, setShowDelete] = useState(false);
+    const handleCloseDelete = () => setShowDelete(false);
+    const handleShowDelete = () => setShowDelete(true);
 
     const indexUltimaConsulta = paginaAtual * consultasPorPagina;
     const indexPrimeiraConsulta = indexUltimaConsulta - consultasPorPagina;
@@ -183,8 +186,8 @@ export default function Pacientes() {
                 <div className="dadosPaciente">
                     <Card style={{ width: '20rem' }}>
                         <Card.Header><b>#{pacienteInfo.id_paciente} - {pacienteInfo.nome}</b>
-                            <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
-                            <FiTrash2 type="button" size={20} onClick={handleShow}></FiTrash2>
+                            <FiEdit2 type="button" size={20} onClick={handleShowUpdate}></FiEdit2>
+                            <FiTrash2 type="button" size={20} onClick={handleShowDelete}></FiTrash2>
                         </Card.Header>
                         <ListGroup variant="flush">
                             <ListGroup.Item><b>Sexo:</b> {pacienteInfo.sexo}</ListGroup.Item>
@@ -196,6 +199,44 @@ export default function Pacientes() {
                         </ListGroup>
                     </Card>
                 </div>
+
+                <Modal show={showUpdate} onHide={handleCloseUpdate}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Alterar Dados do Paciente</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label>Nome</Form.Label>
+                                <Form.Control type="text" name="nome" value={nome} 
+                                    onChange={(e) => setNome(e.target.value)} />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseUpdate}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={updatePaciente}>
+                            Guardar Alterações
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={showDelete} onHide={handleCloseDelete}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Eliminar Paciente</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Deseja mesmo eliminar este paciente ?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseDelete}>
+                            Cancelar
+                        </Button>
+                        <Button variant="danger" onClick={deletePaciente}>
+                            Eliminar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
                 <div className="consultas"  id="listaConsultas">
                     <div>
@@ -234,21 +275,6 @@ export default function Pacientes() {
                 </div>
                     
             </div>
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Eliminar Paciente</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Deseja mesmo eliminar este paciente ?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={deletePaciente}>
-                        Eliminar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
 
                    {/*<div className="card text-white bg-secondary mb-3"> 
                 <div className="card-header">
