@@ -6,7 +6,7 @@ import * as ReactBootStrap from "react-bootstrap";
 import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar';
 import Table from 'react-bootstrap/Table';
-import { Nav, NavDropdown, ListGroup, Modal, Button, Form } from 'react-bootstrap';
+import { Nav, NavDropdown, ListGroup, Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import axios from "axios";
 import ItemsPage from '../../pagination.js';
 
@@ -40,6 +40,10 @@ export default function Pacientes() {
     const [showDelete, setShowDelete] = useState(false);
     const handleCloseDelete = () => setShowDelete(false);
     const handleShowDelete = () => setShowDelete(true);
+
+    const [showUpdateForm, setUpdateForm] = useState(false);
+    const handleCloseUpdateForm = () => setUpdateForm(false);
+    const handleShowUpdateForm = () => setUpdateForm(true);
 
     const indexUltimaConsulta = paginaAtual * consultasPorPagina;
     const indexPrimeiraConsulta = indexUltimaConsulta - consultasPorPagina;
@@ -112,6 +116,7 @@ export default function Pacientes() {
     function showConsultas () {
         document.getElementById("listaConsultas").style.display = 'block';
         document.getElementById("listaTreinos").style.display = "none";
+        document.getElementById("formUpdatePaciente").style.display = 'none';
 
         axios
         .get(`http://localhost:3001/pacientes/${id}/consultas`)
@@ -124,6 +129,7 @@ export default function Pacientes() {
     function showTreinos () {
         document.getElementById("listaTreinos").style.display = 'block';
         document.getElementById("listaConsultas").style.display = 'none';
+        document.getElementById("formUpdatePaciente").style.display = 'none';
 
         axios
         .get(`http://localhost:3001/pacientes/${id}/treinos`)
@@ -133,9 +139,11 @@ export default function Pacientes() {
         });
     }
 
-    function showPacienteInputUpdate () {
-        /*document.getElementById("updatePaciente").style.display = 'block';*/
-        /*document.getElementById("infoPaciente").style.display = 'none';*/
+    function showPacienteFormUpdate () {
+        document.getElementById("listaTreinos").style.display = 'none';
+        document.getElementById("listaConsultas").style.display = 'none';
+        document.getElementById("formUpdatePaciente").style.display = 'flex';
+        
     }
 
     return(
@@ -186,7 +194,7 @@ export default function Pacientes() {
                 <div className="dadosPaciente">
                     <Card style={{ width: '20rem' }}>
                         <Card.Header><b>#{pacienteInfo.id_paciente} - {pacienteInfo.nome}</b>
-                            <FiEdit2 type="button" size={20} onClick={handleShowUpdate}></FiEdit2>
+                            <FiEdit2 type="button" size={20} onClick={showPacienteFormUpdate}></FiEdit2>
                             <FiTrash2 type="button" size={20} onClick={handleShowDelete}></FiTrash2>
                         </Card.Header>
                         <ListGroup variant="flush">
@@ -200,19 +208,71 @@ export default function Pacientes() {
                     </Card>
                 </div>
 
+                <div className="updatePacientes" id="formUpdatePaciente">
+                <Form>
+                    <Form.Group>
+                        <Form.Label><h5><b>Altere os campos que deseja atualizar:</b></h5></Form.Label>
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="nome">
+                        <Form.Label column sm={4}>Nome</Form.Label>
+                        <Col sm={8}>
+                        <Form.Control type="text" value={nome}
+                            onChange={(e) => setNome(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="sexo">
+                        <Form.Label column sm={4}>Sexo</Form.Label>
+                        <Col sm={8}>
+                        <Form.Control type="text" value={sexo}
+                            onChange={(e) => setSexo(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="nacionalidade">
+                        <Form.Label column sm={4}>Nacionalidade</Form.Label>
+                        <Col sm={8}>
+                        <Form.Control type="text" value={nacionalidade}
+                            onChange={(e) => setNacionalidade(e.target.value)} />
+                        </Col>                  
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="localidade">
+                        <Form.Label column sm={4}>Localidade</Form.Label>
+                        <Col sm={8}>
+                        <Form.Control type="text" value={localidade}
+                            onChange={(e) => setLocalidade(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="telemovel">
+                        <Form.Label column sm={4}>Telemóvel</Form.Label>
+                        <Col sm={8}>
+                        <Form.Control type="text" value={telemovel}
+                            onChange={(e) => setTelemovel(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="peso">
+                        <Form.Label column sm={4}>Peso(kg)</Form.Label>
+                        <Col sm={8}>
+                        <Form.Control type="number" value={peso}
+                            onChange={(e) => setPeso(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="altura">
+                        <Form.Label column sm={4}>Altura(m)</Form.Label>
+                        <Col sm={8}>
+                        <Form.Control type="number" value={altura}
+                            onChange={(e) => setAltura(e.target.value)} />
+                        </Col>
+                    </Form.Group>   
+                    <Button variant="secondary"  onClick={handleShowUpdate}>
+                        Guardar
+                    </Button>
+                </Form>
+                </div>
+
                 <Modal show={showUpdate} onHide={handleCloseUpdate}>
                     <Modal.Header closeButton>
                         <Modal.Title>Alterar Dados do Paciente</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group>
-                                <Form.Label>Nome</Form.Label>
-                                <Form.Control type="text" name="nome" value={nome} 
-                                    onChange={(e) => setNome(e.target.value)} />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
+                    <Modal.Body>Desejo mesmo guardar as alterações ?</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseUpdate}>
                             Cancelar
@@ -238,40 +298,36 @@ export default function Pacientes() {
                     </Modal.Footer>
                 </Modal>
 
-                <div className="consultas"  id="listaConsultas">
-                    <div>
-                        <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Data da Consulta</th>
-                                    <th width="500" tdStyle={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>Descrição da Consulta</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {consultasAtuais.map(renderConsulta)}
-                            </tbody>
-                        </Table>
-                        <ItemsPage itemsPorPagina={consultasPorPagina} totalItems={listaconsultas.length} paginate={paginate} />
-                    </div>
+                <div className="consultas" id="listaConsultas">
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Data da Consulta</th>
+                                <th width="500" tdStyle={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>Descrição da Consulta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {consultasAtuais.map(renderConsulta)}
+                        </tbody>
+                    </Table>
+                    <ItemsPage itemsPorPagina={consultasPorPagina} totalItems={listaconsultas.length} paginate={paginate} />
                 </div>    
                 
-                <div className="treinos"  id="listaTreinos">
-                    <div>
-                        <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Data do Treino</th>
-                                    <th>Tipo de Treino</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {treinosAtuais.map(renderTreino)}
-                            </tbody>
-                        </Table>
-                        <ItemsPage itemsPorPagina={treinosPorPagina} totalItems={listatreinos.length} paginate={paginate} />
-                    </div>
+                <div className="treinos" id="listaTreinos">
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Data do Treino</th>
+                                <th>Tipo de Treino</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {treinosAtuais.map(renderTreino)}
+                        </tbody>
+                    </Table>
+                    <ItemsPage itemsPorPagina={treinosPorPagina} totalItems={listatreinos.length} paginate={paginate} />
                 </div>
                     
             </div>

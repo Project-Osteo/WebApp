@@ -38,8 +38,8 @@
     width: 70%;
 }
 
-#updatePaciente {
-    display: none;
+#formUpdatePaciente {
+    width: 40%;
 }
 
 .pacientes-container .info-paciente p {
@@ -69,11 +69,20 @@
     margin-right: 2px;
 }
 
-.pacientes-container .consultas {
+.consultas {
     display: none;
 }
 
-  .pacientes-container .treinos {
+.treinos {
     display: none;
+}
+
+.updatePacientes {
+    background: #f8f9fa;
+    padding: 25px;
+    width: 70%;
+    display: none;
+    border-radius: 10px;
+
 }
 

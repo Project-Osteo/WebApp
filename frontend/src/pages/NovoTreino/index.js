@@ -97,7 +97,7 @@ export default function NovoTreino (){
 
                 <Form>
                 <Form.Row>
-                    <Form.Group>
+                    <Form.Group controlId="dataTreino">
                         <Col>
                         <Form.Label>Data do Treino(AAAA-MM-DD)</Form.Label>
                         <Form.Control type="text" value={data}
