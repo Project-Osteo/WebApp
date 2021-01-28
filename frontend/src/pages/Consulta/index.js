@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card'
-import { Nav, ListGroup, CardGroup } from 'react-bootstrap';
+import { Nav, Col, Form, Button } from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -123,35 +123,54 @@ export default function Consulta () {
 
             <div className="container">
 
-            <Card>
-                <Card.Header><b>#{consultaInfo.id_consulta} - Data da Consulta:</b> {consultaInfo.data_consulta}</Card.Header>
-                <CardGroup>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Descrição:</Card.Title>
-                            <Card.Text>{consultaInfo.descricao_consulta}</Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Tratamento:</Card.Title>
-                            <Card.Text>{consultaInfo.tratamento}</Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Observações:</Card.Title>
-                            <Card.Text>{consultaInfo.obs_consulta}</Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Recomendações:</Card.Title>
-                            <Card.Text>{consultaInfo.recomendacao}</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </CardGroup>
-            </Card>
+                <Form>
+                    <Form.Group>
+                        <Form.Label><b>#{consultaInfo.id_consulta} - {consultaInfo.nome}
+                            <FiEdit2 type="button" size={20} onClick={}></FiEdit2>
+                            <FiTrash2 type="button" size={20} onClick={}></FiTrash2>
+                        </b></Form.Label>
+                    </Form.Group>
+                    <Form.Group controlId="dataConsulta">
+                        <Col sm="4">
+                        <Form.Label>Data da Consulta(AAAA-MM-DD)</Form.Label>
+                        <Form.Control type="text" value={dataConsulta}
+                            onChange={(e) => setData(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="descricaoConsulta">
+                        <Col sm="12">
+                        <Form.Label>Descrição da Consulta</Form.Label>
+                        <Form.Control as="textarea" rows={3} type="text" value={descricaoConsulta} 
+                            onChange={(e) => setDescricao(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="tratamento">
+                        <Col sm="12">
+                        <Form.Label>Tratamento</Form.Label>    
+                        <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
+                            onChange={(e) => setTratamento(e.target.value)} /> 
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="recomendacoes">
+                        <Col sm="12">
+                        <Form.Label>Recomendações</Form.Label>   
+                        <Form.Control as="textarea" rows={3} type="text" value={recomendacao}
+                            onChange={(e) => setRec(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="observacoes">
+                        <Col sm="12">
+                        <Form.Label>Observações</Form.Label>
+                        <Form.Control as="textarea" rows={3} type="text" value={obsConsulta}
+                            onChange={(e) => setObs(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Col sm="2">
+                    <Button variant="secondary" type="submit" onClick={updateConsulta} href={'/pacientes/' + id}>
+                        Guardar
+                    </Button>
+                    </Col>
+                </Form>
 
             </div>
             

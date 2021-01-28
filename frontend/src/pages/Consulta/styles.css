@@ -24,30 +24,15 @@
     float: left;
 }
 
-.consultas-container .consultas {
-    display: block;
-    margin-top: 10px;
-    margin-right: auto;
-    margin-bottom: 30px;
-    background: #A9A9A9;
-    padding: 24px;
-    border-radius: 8px;
-    border: 2px solid #ddd;
+.container {
+    width: 100%;
+    background: #f8f9fa;
 }
 
-.consultas-container .consultas p {
-    margin-bottom: 5px;
-    font-size: 20px;
+.container form {
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
 }
 
-.consultas-container .consultas .tratamento {
-    display: block;
-    margin-top: 20px;
-    margin-right: auto;
-    margin-bottom: 20px;
-    background: #FFF;
-    padding: 24px;
-    border-radius: 8px;
-    border: 2px solid #ddd;
-}
 
