@@ -68,7 +68,7 @@ export default function Homepage() {
                 </div>*/}
 
                 <Navbar bg="light" expand="lg">
-                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">

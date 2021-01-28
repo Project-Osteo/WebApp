@@ -142,8 +142,12 @@ export default function Pacientes() {
     function showPacienteFormUpdate () {
         document.getElementById("listaTreinos").style.display = 'none';
         document.getElementById("listaConsultas").style.display = 'none';
-        document.getElementById("formUpdatePaciente").style.display = 'flex';
+        document.getElementById("formUpdatePaciente").style.display = 'block';
         
+    }
+
+    function hidePacienteFormUpdate () {
+        document.getElementById("formUpdatePaciente").style.display = 'none';
     }
 
     return(
@@ -168,7 +172,7 @@ export default function Pacientes() {
                 </div>*/}
 
                 <Navbar bg="light" expand="lg">
-                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -261,10 +265,19 @@ export default function Pacientes() {
                         <Form.Control type="number" value={altura}
                             onChange={(e) => setAltura(e.target.value)} />
                         </Col>
-                    </Form.Group>   
-                    <Button variant="secondary"  onClick={handleShowUpdate}>
-                        Guardar
-                    </Button>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Col sm={3}>
+                        <Button variant="secondary" onClick={hidePacienteFormUpdate}>
+                            Cancelar
+                        </Button> 
+                        </Col>
+                        <Col sm={3}>
+                        <Button variant="secondary"  onClick={handleShowUpdate}>
+                            Guardar
+                        </Button>
+                        </Col>  
+                    </Form.Group>
                 </Form>
                 </div>
 
