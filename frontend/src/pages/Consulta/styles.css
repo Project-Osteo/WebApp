@@ -24,12 +24,12 @@
     float: left;
 }
 
-.container {
+.consultas-container .container {
     width: 100%;
     background: #f8f9fa;
 }
 
-.container form {
+.consultas-container .container form {
     width: 100%;
     padding: 25px;
     border-radius: 10px;

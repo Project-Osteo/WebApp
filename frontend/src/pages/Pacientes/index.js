@@ -41,10 +41,6 @@ export default function Pacientes() {
     const handleCloseDelete = () => setShowDelete(false);
     const handleShowDelete = () => setShowDelete(true);
 
-    const [showUpdateForm, setUpdateForm] = useState(false);
-    const handleCloseUpdateForm = () => setUpdateForm(false);
-    const handleShowUpdateForm = () => setUpdateForm(true);
-
     const indexUltimaConsulta = paginaAtual * consultasPorPagina;
     const indexPrimeiraConsulta = indexUltimaConsulta - consultasPorPagina;
     const consultasAtuais = listaconsultas.slice(indexPrimeiraConsulta, indexUltimaConsulta);

@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card'
-import { Nav, Col, Form, Button } from 'react-bootstrap';
+import { Nav, Col, Form, Button, Modal, Row } from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -24,11 +24,20 @@ export default function Consulta () {
     const [obsConsulta, setObs] = useState(consultaInfo.obsConsulta);
     const [nomePaciente, setNomePaciente] = useState(consultaInfo.nome)
 
+    const [showUpdate, setShowUpdate] = useState(false);
+    const handleCloseUpdate = () => setShowUpdate(false);
+    const handleShowUpdate = () => setShowUpdate(true);
+
+    const [showDelete, setShowDelete] = useState(false);
+    const handleCloseDelete = () => setShowDelete(false);
+    const handleShowDelete = () => setShowDelete(true);
+
     const updateConsulta = async () => {
         let res = await axios.patch(`http://localhost:3001/consultas/${id}`,
         {data_consulta: dataConsulta, descricao_consulta: descricaoConsulta, 
             tratamento: tratamento, recomendacao: recomendacao, obs_consulta: obsConsulta, nome: nomePaciente})
         console.log(res);
+        window.location.reload();
     }
 
     const deleteConsulta = async () => {
@@ -76,7 +85,7 @@ export default function Consulta () {
                 </div>*/}
                 
                 <Navbar bg="light" expand="lg">
-                <Navbar.Brand>OSTEOCLINIC</Navbar.Brand>
+                <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -124,11 +133,12 @@ export default function Consulta () {
             <div className="container">
 
                 <Form>
-                    <Form.Group>
-                        <Form.Label><b>#{consultaInfo.id_consulta} - {consultaInfo.nome}
-                            <FiEdit2 type="button" size={20} onClick={}></FiEdit2>
-                            <FiTrash2 type="button" size={20} onClick={}></FiTrash2>
-                        </b></Form.Label>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={11}><b>#{consultaInfo.id_consulta} - {consultaInfo.nome}</b>
+                        </Form.Label>
+                        <Col sm={1}>
+                            <FiTrash2 type="button" size={20} onClick={handleShowDelete}></FiTrash2>
+                        </Col>
                     </Form.Group>
                     <Form.Group controlId="dataConsulta">
                         <Col sm="4">
@@ -166,11 +176,41 @@ export default function Consulta () {
                         </Col>
                     </Form.Group>
                     <Col sm="2">
-                    <Button variant="secondary" type="submit" onClick={updateConsulta} href={'/pacientes/' + id}>
-                        Guardar
+                    <Button variant="secondary" onClick={handleShowUpdate}>
+                        Alterar
                     </Button>
                     </Col>
                 </Form>
+
+                <Modal show={showUpdate} onHide={handleCloseUpdate}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Alterar Detalhes da Consulta</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Desejo mesmo guardar as alterações ?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseUpdate}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={updateConsulta}>
+                            Guardar Alterações
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={showDelete} onHide={handleCloseDelete}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Eliminar Consulta</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Deseja mesmo eliminar esta consulta ?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseDelete}>
+                            Cancelar
+                        </Button>
+                        <Button variant="danger" onClick={deleteConsulta}>
+                            Eliminar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
             </div>
             

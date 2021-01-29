@@ -6,17 +6,9 @@
 }
 
 .treinos-container header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.treinos-container header span {
-    font-size: 40px;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 30px;
-    font-weight: 500;
 }
 
 .treinos-container header .btn-group a {
@@ -32,25 +24,15 @@
     float: left;
 }
 
-.treinos-container .treinos {
-    display: block;
-    margin-top: 10px;
-    margin-right: auto;
-    margin-bottom: 30px;
-    background: #A9A9A9;
-    padding: 24px;
-    border-radius: 8px;
-    border: 2px solid #ddd;
+.treinos-container .container {
+    width: 100%;
+    background: #f8f9fa;
 }
 
-.treinos-container .treinos p {
-    margin-bottom: 5px;
-    font-size: 20px;
+.treinos-container .container form {
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
 }
-
-#updateTreino {
-    display: none;
-}
-
 
 
