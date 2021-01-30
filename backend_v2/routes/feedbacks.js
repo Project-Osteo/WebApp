@@ -18,6 +18,27 @@ router.get('/', (req, res, next) => {
     });
 });
 
+//GET FEEDBACKS DO USER = ID
+router.get('/user/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `SELECT feedbacks.* FROM feedbacks 
+            JOIN consultas ON feedbacks.consulta_id = consultas.id_consulta 
+            JOIN pacientes ON consultas.paciente_id = pacientes.id_paciente 
+            WHERE user_id = ?;`,
+            [req.params.id],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                return res.status(200).send(result);
+            }
+        )
+    });
+});
+
+
+
 //GET FEEDBACKS DA CONSULTA = ID
 router.get('/consulta/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {

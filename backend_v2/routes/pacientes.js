@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-//GETONE PACIENTES
+//GETONE PACIENTES by ID
 router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
@@ -46,6 +46,36 @@ router.get('/:id', (req, res, next) => {
         )
     });
 });
+
+
+//GETONE PACIENTES by NOME
+router.post('/nome', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            'SELECT * FROM Pacientes WHERE nome LIKE ?;',
+            [req.body.nome],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                const response = {
+                    id_paciente: result[0].id_paciente,
+                    user_id: result[0].user_id,
+                    nome: result[0].nome,
+                    sexo: result[0].sexo,
+                    nacionalidade: result[0].nacionalidade,
+                    localidade: result[0].localidade,
+                    telemovel: result[0].telemovel,
+                    peso: result[0].peso, 
+                    altura:  result[0].altura
+                }
+                console.log(response);
+                return res.status(200).send(result)
+            }
+        )
+    });
+});
+
 
 //GETALL CONSULTAS DO PACIENTE
 router.get('/:id/consultas', (req, res, next) => {
