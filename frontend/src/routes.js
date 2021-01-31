@@ -10,6 +10,8 @@ import Estatisticas from './pages/Estatisticas';
 import NovoPaciente from './pages/NovoPaciente';
 import NovaConsulta from './pages/NovaConsulta';
 import NovoTreino from './pages/NovoTreino';
+import Profile from './frontoffice/Profile';
+import EditProfile from './frontoffice/EditProfile';
 
 export default function Routes() {
     return (
@@ -24,6 +26,10 @@ export default function Routes() {
             <Route path="/novoPaciente" component={NovoPaciente} />
             <Route path="/novaConsulta/:id" component={NovaConsulta} />
             <Route path="/novoTreino/:id" component={NovoTreino} />
+
+            <Route path="/profile/:id" component={Profile} />
+            <Route patt="/editProfile/:id" component={EditProfile} />
+
         </Switch>
       </BrowserRouter>  
     );
