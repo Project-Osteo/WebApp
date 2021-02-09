@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower, FiArrowLeft, FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { useParams, useHistory } from 'react-router-dom';
+import { FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as ReactBootStrap from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card'
-import { Nav, Col, Form, Button, Modal, Row } from 'react-bootstrap';
+import { Nav, Col, Form, Button, Modal, Row, CardGroup } from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';
@@ -16,13 +15,19 @@ export default function Consulta () {
     const history = useHistory();
 
     const [consultaInfo, setConsultaInfo] = useState({});
+    const [feedbackInfo, setFeedbackInfo] = useState({});
 
+    const [listaFeedbacks, setListaFeedbacks] = useState([]);
+ 
     const [dataConsulta, setData] = useState(consultaInfo.dataConsulta);
     const [descricaoConsulta, setDescricao] = useState(consultaInfo.descricaoConsulta);
     const [tratamento, setTratamento] = useState(consultaInfo.tratamento);
     const [recomendacao, setRec] = useState(consultaInfo.recomendacao);
     const [obsConsulta, setObs] = useState(consultaInfo.obsConsulta);
     const [nomePaciente, setNomePaciente] = useState(consultaInfo.nome)
+
+    const [mensagem, setMensagem] = useState(feedbackInfo.mensagem);
+    const [dataHora, setDataHora] = useState(feedbackInfo.dataHora);
 
     const [showUpdate, setShowUpdate] = useState(false);
     const handleCloseUpdate = () => setShowUpdate(false);
@@ -59,30 +64,38 @@ export default function Consulta () {
             setRec(result.recomendacao);
             setNomePaciente(result.nome);
         });
+        axios
+        .get(`http://localhost:3001/feedbacks/consulta/${id}`)
+        .then((response) => {
+            setListaFeedbacks(response.data);
+        });
     }, []);
+
+    function showFeedbacks () {
+        document.getElementById("feedbacks").style.display = 'block';
+    }
+
+    const renderFeedback = (feedbacks, index) => {
+        return (
+            <div className="feedback-container" style={{ padding: '5px', marginLeft: '30px', marginRight: '30px' }}>
+                <Card key={index}>
+                <Card.Header><b>Data e hora do Feedback:</b> {feedbacks.dataehora}</Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            <b>Mensagem:</b> {feedbacks.mensagem}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
+            
+        )
+    }
 
     return(       
 
         <div className="consultas-container">
 
             <header>
-                {/*<div className="btn-group">
-                    <Link type="button" to={'/pacientes/' + consultaInfo.paciente_id}>
-                        <FiArrowLeft size={55} color="#41414d" />
-                    </Link>
-
-                    <Link type="button" to="/homepage">
-                        <FiHome size={55} color="#41414d"></FiHome>
-                    </Link>
-
-                    <Link type="button" to="/settings">
-                        <FiSettings size={55} color="#41414d"></FiSettings>
-                    </Link>
-
-                    <Link type="button" to="/">
-                        <FiPower size={55} color="#41414d"></FiPower>
-                    </Link>
-                </div>*/}
                 
                 <Navbar bg="light" expand="lg">
                 <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
@@ -98,38 +111,6 @@ export default function Consulta () {
 
             </header>
 
-            {/*<div className="consultas">
-
-                <FiEdit2 type="button" size={20} onClick={updateConsulta}></FiEdit2>
-                
-                <FiTrash2 type="button" size={20} onClick={deleteConsulta}></FiTrash2>
-
-                <p><b>Id:</b> {consultaInfo.id_consulta}</p>
-
-                <p><b>Data da consulta:</b> {consultaInfo.data_consulta}</p>
-                <input type="text" name="data" value={dataConsulta}
-                       onChange={(e) => setData(e.target.value)} />
-
-                <p><b>Descrição:</b> {consultaInfo.descricao_consulta}</p>
-                <input type="text" name="descricao" value={descricaoConsulta}
-                       onChange={(e) => setDescricao(e.target.value)} />
-
-                <div className="tratamento">
-
-                    <p><b>Tratamento realizado:</b> {consultaInfo.tratamento}</p>
-                    <input type="text" name="tratamento" value={tratamento}
-                       onChange={(e) => setTratamento(e.target.value)} />
-
-                    <p><b>Observações:</b> {consultaInfo.obs_consulta}</p>
-                    <input type="text" name="obs" value={obsConsulta}
-                       onChange={(e) => setObs(e.target.value)} />
-                </div>
-
-                <p><b>Recomendações:</b> {consultaInfo.recomendacao}</p>
-                <input type="text" name="recomendacao" value={recomendacao}
-                       onChange={(e) => setRec(e.target.value)} />
-            </div>*/}
-
             <div className="container">
 
                 <Form>
@@ -142,35 +123,35 @@ export default function Consulta () {
                     </Form.Group>
                     <Form.Group controlId="dataConsulta">
                         <Col sm="4">
-                        <Form.Label>Data da Consulta(AAAA-MM-DD)</Form.Label>
+                        <Form.Label><b>Data da Consulta(AAAA-MM-DD)</b></Form.Label>
                         <Form.Control type="text" value={dataConsulta}
                             onChange={(e) => setData(e.target.value)} />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="descricaoConsulta">
                         <Col sm="12">
-                        <Form.Label>Descrição da Consulta</Form.Label>
+                        <Form.Label><b>Descrição da Consulta</b></Form.Label>
                         <Form.Control as="textarea" rows={3} type="text" value={descricaoConsulta} 
                             onChange={(e) => setDescricao(e.target.value)} />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="tratamento">
                         <Col sm="12">
-                        <Form.Label>Tratamento</Form.Label>    
+                        <Form.Label><b>Tratamento</b></Form.Label>    
                         <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
                             onChange={(e) => setTratamento(e.target.value)} /> 
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="recomendacoes">
                         <Col sm="12">
-                        <Form.Label>Recomendações</Form.Label>   
+                        <Form.Label><b>Recomendações</b></Form.Label>   
                         <Form.Control as="textarea" rows={3} type="text" value={recomendacao}
                             onChange={(e) => setRec(e.target.value)} />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="observacoes">
                         <Col sm="12">
-                        <Form.Label>Observações</Form.Label>
+                        <Form.Label><b>Observações</b></Form.Label>
                         <Form.Control as="textarea" rows={3} type="text" value={obsConsulta}
                             onChange={(e) => setObs(e.target.value)} />
                         </Col>
@@ -212,8 +193,10 @@ export default function Consulta () {
                     </Modal.Footer>
                 </Modal>
 
+                {listaFeedbacks.map(renderFeedback)}
+
             </div>
-            
+
         </div>
     );
 }
