@@ -18,6 +18,24 @@ router.get('/', (req, res, next) => {
     });
 });
 
+//COUNT FEEDBACKS
+router.get('/stats', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `SELECT COUNT(id_feedback) as 'num_feedbacks' FROM feedbacks`,
+            (error, result) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                const response = {
+                    n_feedbacks: result[0].num_feedbacks
+                }
+                return res.status(201).send(response);
+            }
+        )
+    });
+});
+
 //GET FEEDBACKS DO USER = ID
 router.get('/user/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {

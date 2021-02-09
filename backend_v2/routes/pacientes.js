@@ -19,6 +19,24 @@ router.get('/', (req, res, next) => {
     });
 });
 
+//COUNT PACIENTES
+router.get('/stats', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `SELECT COUNT(id_paciente) as 'num_pacientes' FROM pacientes`,
+            (error, result) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                const response = {
+                    n_pacientes: result[0].num_pacientes
+                }
+                return res.status(201).send(response);
+            }
+        )
+    });
+});
+
 //GETONE PACIENTES by ID
 router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
