@@ -111,6 +111,7 @@ router.get('/:id/treinos', (req, res, next) => {
 });
 
 
+//GET NUM CONSULTAS E NUM TREINOS DO PACIENTE BY ID
 router.get('/:id/stats', (req, res, next) => {
     mysql.getConnection((err, conn) => {
         if (err) { return res.status(500).send({ error: err }) }
@@ -137,6 +138,7 @@ router.get('/:id/stats', (req, res, next) => {
         });
     
 });
+
 
 //NEW PACIENTE
 router.post('/:id', (req, res, next) => {
