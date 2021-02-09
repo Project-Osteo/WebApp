@@ -110,6 +110,34 @@ router.get('/:id/treinos', (req, res, next) => {
     });
 });
 
+
+router.get('/:id/stats', (req, res, next) => {
+    mysql.getConnection((err, conn) => {
+        if (err) { return res.status(500).send({ error: err }) }
+        conn.query(
+            `SELECT COUNT(consultas.id_consulta) as 'num_consultas' FROM consultas WHERE consultas.paciente_id = ?`,
+            [req.params.id],
+            (error, result) => {
+                if (error) { return res.status(500).send({ error: error }) }
+                const n_consultas = result[0].num_consultas;
+                conn.query(
+                    `SELECT COUNT(treinos.id_treino) as 'num_treinos' FROM treinos WHERE treinos.paciente_id = ?`,
+                    [req.params.id],
+                    (error, resu) => {
+                        conn.release();
+                        if (error) { return res.status(500).send({ error: error }) }
+                        const response = {
+                            n_consultas: n_consultas,
+                            n_treinos: resu[0].num_treinos
+                        }
+                        return res.status(201).send(response);
+                    }
+                )
+            })
+        });
+    
+});
+
 //NEW PACIENTE
 router.post('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
@@ -194,5 +222,8 @@ router.delete('/:id', (req, res, next) => {
         )
     });
 });
+
+
+
 
 module.exports = router;
