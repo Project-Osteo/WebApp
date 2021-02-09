@@ -111,10 +111,10 @@ router.get('/:id/treinos', (req, res, next) => {
 });
 
 
-//GET NUM CONSULTAS E NUM TREINOS DO PACIENTE BY ID
+//GET NUM CONSULTAS NUM TREINOS E NUM FEEDBACKS DO PACIENTE BY ID
 router.get('/:id/stats', (req, res, next) => {
-    mysql.getConnection((err, conn) => {
-        if (err) { return res.status(500).send({ error: err }) }
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             `SELECT COUNT(consultas.id_consulta) as 'num_consultas' FROM consultas WHERE consultas.paciente_id = ?`,
             [req.params.id],
@@ -124,19 +124,29 @@ router.get('/:id/stats', (req, res, next) => {
                 conn.query(
                     `SELECT COUNT(treinos.id_treino) as 'num_treinos' FROM treinos WHERE treinos.paciente_id = ?`,
                     [req.params.id],
-                    (error, resu) => {
-                        conn.release();
+                    (error, resul) => {
                         if (error) { return res.status(500).send({ error: error }) }
-                        const response = {
-                            n_consultas: n_consultas,
-                            n_treinos: resu[0].num_treinos
-                        }
-                        return res.status(201).send(response);
-                    }
-                )
-            })
-        });
-    
+                        const n_treinos = resul[0].num_treinos;
+                        conn.query(
+                            `SELECT COUNT(feedbacks.id_feedback) as 'num_feedbacks' FROM feedbacks
+                            JOIN consultas ON feedbacks.consulta_id = consultas.id_consulta 
+                                        JOIN pacientes ON consultas.paciente_id = pacientes.id_paciente 
+                                        WHERE id_paciente = ?;`,
+                            [req.params.id],
+                            (error, resu) => {
+                                conn.release();
+                                if (error) { return res.status(500).send({ error: error }) }
+                                const response = {
+                                    n_consultas: n_consultas,
+                                    n_treinos: n_treinos,
+                                    n_feedbacks: resu[0].num_feedbacks
+                                }
+                                return res.status(201).send(response);
+                        })
+                        
+                })
+        })
+    });
 });
 
 
