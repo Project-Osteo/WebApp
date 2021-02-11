@@ -15,6 +15,11 @@ import './styles.css';
 
 export default function Homepage() {
 
+    function logOut() {
+        localStorage.removeItem("tokens");
+        window.location.reload();
+    }
+
     const [listaPacientes, setListaPacientes] = useState([]);
 
     const [paginaAtual, setPaginaAtual] = useState(1);
@@ -74,7 +79,7 @@ export default function Homepage() {
                     <Nav className="mr-auto">
                     <Nav.Link href="/novoPaciente">Adicionar Paciente</Nav.Link>
                     <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
-                    <Nav.Link>Logout</Nav.Link>
+                    <Nav.Link onClick={logOut}>Logout</Nav.Link>
                     </Nav>
                     <Form inline>
                     <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Login from './pages/Login';
@@ -13,24 +13,42 @@ import NovoTreino from './pages/NovoTreino';
 import Profile from './frontoffice/Profile';
 import EditProfile from './frontoffice/EditProfile';
 
+import { AuthContext } from './context/auth';
+import PrivateRoute from './PrivateRoute';
+
 export default function Routes() {
+
+    const existingTokens = JSON.parse(localStorage.getItem("tokens"));
+    const [authTokens, setAuthTokens] = useState(existingTokens);
+
+    const setTokens = (data) => {
+      localStorage.setItem("tokens", JSON.stringify(data));
+      setAuthTokens(data);
+    }
+
     return (
-      <BrowserRouter>
-        <Switch>
-            <Route path="/" exact component={Login} />
-            <Route path="/homepage" component={Homepage} />
-            <Route path="/pacientes/:id" component={Pacientes} />
-            <Route path="/consultas/:id" component={Consulta} />
-            <Route path="/treinos/:id" component={Treino} />
-            <Route path="/estatisticas" component={Estatisticas} />
-            <Route path="/novoPaciente" component={NovoPaciente} />
-            <Route path="/novaConsulta/:id" component={NovaConsulta} />
-            <Route path="/novoTreino/:id" component={NovoTreino} />
 
-            <Route path="/profile/:id" component={Profile} />
-            <Route patt="/editProfile/:id" component={EditProfile} />
+      <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
 
-        </Switch>
-      </BrowserRouter>  
+          <BrowserRouter>
+          <Switch>
+              <Route path="/" exact component={Login} />
+              <PrivateRoute path="/homepage" component={Homepage} />
+              <PrivateRoute path="/pacientes/:id" component={Pacientes} />
+              <PrivateRoute path="/consultas/:id" component={Consulta} />
+              <PrivateRoute path="/treinos/:id" component={Treino} />
+              <PrivateRoute path="/estatisticas" component={Estatisticas} />
+              <PrivateRoute path="/novoPaciente" component={NovoPaciente} />
+              <PrivateRoute path="/novaConsulta/:id" component={NovaConsulta} />
+              <PrivateRoute path="/novoTreino/:id" component={NovoTreino} />
+
+              <PrivateRoute path="/profile/:id" component={Profile} />
+              <PrivateRoute patt="/editProfile/:id" component={EditProfile} />
+
+          </Switch>
+        </BrowserRouter>  
+
+      </AuthContext.Provider>
+      
     );
 }

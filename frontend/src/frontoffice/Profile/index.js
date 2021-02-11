@@ -29,6 +29,11 @@ export default function Profile () {
         });
     }, []);
 
+    function logOut() {
+        localStorage.removeItem("tokens");
+        window.location.reload();
+    }
+
     return (
         <div className="profile-container">
             <header>
@@ -38,7 +43,7 @@ export default function Profile () {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                         <Nav.Link href="/editarPerfil">Editar Perfil</Nav.Link>
-                        <Nav.Link>Logout</Nav.Link>
+                        <Nav.Link onClick={logOut}>Logout</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

@@ -72,7 +72,7 @@ router.post('/nome', (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
             'SELECT * FROM Pacientes WHERE nome LIKE ?;',
-            [req.body.nome],
+            [`%${req.body.nome}%`],
             (error, result, fields) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
