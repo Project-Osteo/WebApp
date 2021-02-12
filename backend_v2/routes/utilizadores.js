@@ -184,52 +184,6 @@ router.post('/login', (req, res, next) => {
 });
 
 
-router.get('/stats', (req, res, next) => {
-    mysql.getConnection((err, conn) => {
-        if (err) { return res.status(500).send({ error: err }) }
-        conn.query(
-            `SELECT COUNT(consultas.id_consulta) as 'num_consultas' FROM consultas;`,
-            (error, result) => {
-                if (error) { return res.status(500).send({ error: error }) }
-                const n_consultas = result[0].num_consultas;
-                conn.query(
-                    `SELECT COUNT(treinos.id_treino) as 'num_treinos' FROM treinos;`,
-                    (error, resul) => {
-                        if (error) { return res.status(500).send({ error: error }) }
-                        const n_treinos = resul[0].num_treinos;
-                        const response = {
-                            n_consultas: result[0].num_consultas,
-                            n_treinos: resul[0].num_treinos
-                        }
-                        return res.status(201).send(response);
-                        /* conn.query(
-                            `SELECT COUNT(pacientes.id_paciente) as 'num_pacientes' FROM pacientes;`,
-                            (error, resu) => {
-                                conn.release();
-                                if (error) { return res.status(500).send({ error: error }) } 
-                                const n_pacientes = resu[0].num_pacientes;
-                                const response = {
-                                    n_consultas: result[0].num_consultas,
-                                    n_treinos: resul[0].num_treinos,
-                                    n_pacientes: resu[0].num_pacientes
-                                }
-                                console.log(response);
-                                res.status(201).send(response);
-                                conn.query(
-                                    `SELECT COUNT(feedbacks.id_feedback) as 'num_feedbacks' FROM feedbacks`,
-                                    (error, reslt) => {
-                                        conn.release();
-                                        if (error) { return res.status(500).send({ error: error }) }
-                                        const n_feedbacks = reslt[0].num_feedback;
-                                        return res.status(201).send(response);
-                                    }
-                                )
-                            }
-                        ) */
-                    }
-                )
-            })
-    });
-});
+
 
 module.exports = router;
