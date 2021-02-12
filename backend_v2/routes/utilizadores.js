@@ -154,7 +154,7 @@ router.post('/login', (req, res, next) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error }) }
                 if (results.length < 1) {
-                    return res.status(401).send({ mensagem: "Falha na autenticação"});
+                    return res.status(404).send({ mensagem: "Falha na autenticação 1"});
                 }
                 bcrypt.compare(req.body.pwd, results[0].pwd, (err, result) => {
                     if (err) {
@@ -178,7 +178,8 @@ router.post('/login', (req, res, next) => {
                         }
                         return res.status(200).send(response);
                     }
-                    return res.status(401).send({ mensagem: "Falha na autenticação"});
+
+                    return res.status(401).send({ mensagem: "Falha na autenticação 2"});
                 });
         });
     });

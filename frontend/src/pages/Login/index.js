@@ -27,12 +27,13 @@ export default function Login(){
                 setLoggedIn(true);
                 console.log(response.data["id_paciente"]);
                 console.log(response);
-                
             } else {
                 setIsError(true);
+                console.log('else-error', response);
             }
         }).catch(e => {
             setIsError(true);
+            console.log('catch-error', e);
         });
     };
 
