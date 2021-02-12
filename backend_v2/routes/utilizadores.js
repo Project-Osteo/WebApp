@@ -211,9 +211,4 @@ router.post('/login', (req, res, next) => {
 });
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ad063ef419d72475bf204ce3401cacb962a6d71b
-
 module.exports = router;
