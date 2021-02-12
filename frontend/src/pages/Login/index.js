@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
 
@@ -7,12 +7,11 @@ import './styles.css';
 
 export default function Login(){
 
-    const [isLoggedIn, setLoggedIn] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const [_, setIsError] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [idPaciente, setIdPaciente] = useState('');
+    const [idPaciente, setIdPaciente] = useState(undefined);
     const { setAuthTokens } = useAuth();
 
     const login = () => {
@@ -21,12 +20,9 @@ export default function Login(){
             pwd: password,
         }).then(response => {
             if(response.status === 200) {
-                setAuthTokens(response.data);
+                setAuthTokens(response.data.token);
                 setIsAdmin(response.data.isadmin);
-                setIdPaciente(response.data["id_paciente"]);
-                setLoggedIn(true);
-                console.log(response.data["id_paciente"]);
-                console.log(response);
+                setIdPaciente(response.data.id_paciente);
             } else {
                 setIsError(true);
                 console.log('else-error', response);
@@ -36,12 +32,12 @@ export default function Login(){
             console.log('catch-error', e);
         });
     };
-
+    
     if(isAdmin) {
         return <Redirect to="/homepage" />
     }
-
-    if (isLoggedIn) {
+    
+    if (idPaciente) {
         return <Redirect to={`/profile/${idPaciente}`} />
     }
 
@@ -58,7 +54,7 @@ export default function Login(){
                 <input placeholder="Password" value={password} onChange={(e) => {
                     setPassword(e.target.value);
                 }} />
-                <Link type="submit" onClick={login}>LOGIN</Link>
+                <a type="submit" onClick={login}>LOGIN</a>
 
             </form>            
             </section>

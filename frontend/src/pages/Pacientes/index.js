@@ -320,7 +320,7 @@ export default function Pacientes() {
                             {consultasAtuais.map(renderConsulta)}
                         </tbody>
                     </Table>
-                    <ItemsPage itemsPorPagina={consultasPorPagina} totalItems={listaconsultas.length} paginate={paginate} />
+                    <ItemsPage itemsPorPagina={consultasPorPagina} totalItems={listaconsultas.length} paginate={paginate} current={paginaAtual} />
                 </div>    
                 
                 <div className="treinos" id="listaTreinos">
