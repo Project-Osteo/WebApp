@@ -11,6 +11,46 @@ import axios from "axios";
 import './styles.css';
 
 export default function Estatisticas () {
+
+    const [statsInfo, setStatsInfo] = useState({});
+
+    const [numPacientes, setNumPacientes] = useState(statsInfo.numPacientes);
+    const [numConsultas, setNumConsultas] = useState(statsInfo.numConsultas);
+    const [numTreinos, setNumTreinos] = useState(statsInfo.numTreinos);
+    const [numFeedbacks, setNumFeedbacks] = useState(statsInfo.numFeedbacks);
+
+    useEffect(() => {
+        axios
+        .get(`http://localhost:3001/pacientes/stats`)
+        .then((response) => {
+          var result = response.data;
+          setStatsInfo(result);
+          setNumPacientes(result.n_pacientes);    
+        });
+        axios
+        .get(`http://localhost:3001/consultas/stats`)
+        .then((response) => {
+          var result = response.data;
+          setStatsInfo(result);
+          setNumConsultas(result.n_consultas);    
+        });
+        axios
+        .get(`http://localhost:3001/feedbacks/stats`)
+        .then((response) => {
+          var result = response.data;
+          setStatsInfo(result);
+          setNumFeedbacks(result.n_feedbacks);
+        });
+        axios
+        .get(`http://localhost:3001/treinos/stats`)
+        .then((response) => {
+          var result = response.data;
+          setStatsInfo(result);
+          setNumTreinos(result.n_treinos);
+        });
+    }, []);
+
+
     return(
 
       <div className="estatisticas-container">
@@ -32,39 +72,33 @@ export default function Estatisticas () {
         <CardGroup>
           <Card>
             <Card.Body>
-              <Card.Title>Pacientes</Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.
+              <Card.Title style={{ fontSize: '50px' }}>{numPacientes}</Card.Title>
+              <Card.Text style={{ fontSize: '20px' }}>
+                Número de pacientes registados na aplicação.
               </Card.Text>
             </Card.Body>
           </Card>
           <Card>
             <Card.Body>
-              <Card.Title>Consultas</Card.Title>
-              <Card.Text>
-                This card has supporting text below as a natural lead-in to additional
-                content.
+              <Card.Title style={{ fontSize: '50px' }}>#{numConsultas}</Card.Title>
+              <Card.Text style={{ fontSize: '20px' }}>
+                Número de consultas realizadas.
               </Card.Text>
             </Card.Body>
           </Card>
           <Card>
             <Card.Body>
-              <Card.Title>Treinos</Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content. This card has even longer content than the first to
-                show that equal height action.
+              <Card.Title style={{ fontSize: '50px' }}>{numFeedbacks}</Card.Title>
+              <Card.Text style={{ fontSize: '20px' }}>
+                Número de feedbacks atribuídos às consultas.
               </Card.Text>
             </Card.Body>
           </Card>
           <Card>
             <Card.Body>
-              <Card.Title>Feedbacks</Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content. This card has even longer content than the first to
-                show that equal height action.
+              <Card.Title style={{ fontSize: '50px' }}>{numTreinos}</Card.Title>
+              <Card.Text style={{ fontSize: '20px' }}>
+                Número de treinos que foram atribuídos.
               </Card.Text>
             </Card.Body>
           </Card>

@@ -148,7 +148,7 @@ router.post('/login', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            `SELECT Utilizadores.id_user, Utilizadores.mail, Utilizadores.pwd, Pacientes.id_paciente FROM Utilizadores JOIN Pacientes ON Utilizadores.id_user = Pacientes.user_id WHERE mail = ?`,
+            `SELECT Utilizadores.id_user, Utilizadores.mail, Utilizadores.pwd, Utilizadores.isadmin, Pacientes.id_paciente FROM Utilizadores JOIN Pacientes ON Utilizadores.id_user = Pacientes.user_id WHERE mail = ?`,
             [req.body.mail],
             (error, results) => {
                 conn.release();
@@ -173,7 +173,8 @@ router.post('/login', (req, res, next) => {
                             success: true,
                             token: token,
                             id_user: results[0].id_user,
-                            id_paciente: results[0].id_paciente
+                            id_paciente: results[0].id_paciente,
+                            isadmin: results[0].isadmin
                         }
                         return res.status(200).send(response);
                     }
@@ -184,6 +185,9 @@ router.post('/login', (req, res, next) => {
 });
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad063ef419d72475bf204ce3401cacb962a6d71b
 
 module.exports = router;

@@ -18,6 +18,25 @@ router.get('/', (req, res, next) => {
     });
 });
 
+//COUNT CONSULTAS
+router.get('/stats', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `SELECT COUNT(id_consulta) as 'num_consultas' FROM consultas`,
+            (error, result) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                const response = {
+                    n_consultas: result[0].num_consultas
+                }
+                return res.status(201).send(response);
+            }
+        )
+    });
+});
+
+
 //GETONE CONSULTA
 router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {

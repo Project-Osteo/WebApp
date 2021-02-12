@@ -17,6 +17,24 @@ router.get('/', (req, res, next) => {
     });
 });
 
+//COUNT TREINOS
+router.get('/stats', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `SELECT COUNT(id_treino) as 'num_treinos' FROM treinos`,
+            (error, result) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+                const response = {
+                    n_treinos: result[0].num_treinos
+                }
+                return res.status(201).send(response);
+            }
+        )
+    });
+});
+
 //GETONE TREINOS
 router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
