@@ -148,7 +148,7 @@ router.post('/login', (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) { return res.status(500).send({ error: error }) }
         conn.query(
-            `SELECT Utilizadores.id_user, Utilizadores.mail, Utilizadores.pwd, Utilizadores.isadmin, Pacientes.id_paciente FROM Utilizadores JOIN Pacientes ON Utilizadores.id_user = Pacientes.user_id WHERE mail = ?`,
+            `SELECT Utilizadores.id_user, Utilizadores.mail, Utilizadores.pwd, Utilizadores.isadmin FROM Utilizadores WHERE mail = ?`,
             [req.body.mail],
             (error, results) => {
                 conn.release();
@@ -169,17 +169,42 @@ router.post('/login', (req, res, next) => {
                         {
                             expiresIn: "1d"
                         });
-                        const response = {
-                            success: true,
-                            token: token,
-                            id_user: results[0].id_user,
-                            id_paciente: results[0].id_paciente,
-                            isadmin: results[0].isadmin
-                        }
-                        return res.status(200).send(response);
-                    }
 
-                    return res.status(401).send({ mensagem: "Falha na autenticação 2"});
+                        if (!results[0].isadmin){
+                            mysql.getConnection((error, conn) => {
+                                if (error) { return res.status(500).send({ error: error }) }
+                                conn.query(
+                                    'SELECT Pacientes.id_paciente FROM Pacientes WHERE Pacientes.user_id = ?',
+                                    [results[0].id_user],
+                                    (error, [paciente], fields) => {
+                                        conn.release();
+                                        if (error || !paciente) { return res.status(500).send({ error: error }) }
+
+
+                                        const response = {
+                                            success: true,
+                                            token: token,
+                                            id_user: results[0].id_user,
+                                            isadmin: results[0].isadmin,
+                                            id_paciente: paciente["id_paciente"]
+                                        }
+                                        return res.status(200).send(response);
+                                    }
+                                )
+                            });
+                        }
+
+                        else{
+                            const response = {
+                                success: true,
+                                token: token,
+                                id_user: results[0].id_user,
+                                isadmin: results[0].isadmin,
+                                id_paciente: undefined
+                            }
+                            return res.status(200).send(response);
+                        }
+                    }
                 });
         });
     });
