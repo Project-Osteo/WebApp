@@ -55,29 +55,14 @@ export default function Homepage() {
 
     return(
         <div className="homepage-container">
+
             <header>
-                {/*<span><b>OSTEOCLINIC</b></span>
-
-                <div className="btn-group">
-                    <Link type="button" to="/novoPaciente">
-                        <FiUserPlus size={55} color="#41414d"></FiUserPlus>
-                    </Link>
-
-                    <Link type="button" to="/settings">
-                        <FiSettings size={55} color="#41414d"></FiSettings>
-                    </Link>
-
-                    <Link type="button" to="/">
-                        <FiPower size={55} color="#41414d"></FiPower>
-                    </Link>
-                </div>*/}
 
                 <Navbar bg="light" expand="lg">
                 <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                    <Nav.Link href="/novoPaciente">Adicionar Paciente</Nav.Link>
                     <Nav.Link href="/estatisticas">Estatísticas</Nav.Link>
                     <Nav.Link onClick={logOut}>Logout</Nav.Link>
                     </Nav>
@@ -87,6 +72,7 @@ export default function Homepage() {
                     </Form>
                 </Navbar.Collapse>
                 </Navbar>
+                
             </header>
         
             <div>
@@ -102,7 +88,7 @@ export default function Homepage() {
                         {pacientesAtuais.map(renderPaciente)}
                     </tbody>
                 </Table>
-                <ItemsPage itemsPorPagina={pacientesPorPagina} totalItems={listaPacientes.length} paginate={paginate} />
+                <ItemsPage itemsPorPagina={pacientesPorPagina} totalItems={listaPacientes.length} paginate={paginate} current={paginaAtual} />
             </div>
         </div> 
    );

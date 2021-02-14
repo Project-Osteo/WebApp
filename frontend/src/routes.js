@@ -7,11 +7,9 @@ import Pacientes from './pages/Pacientes';
 import Consulta from './pages/Consulta';
 import Treino from './pages/Treino';
 import Estatisticas from './pages/Estatisticas';
-import NovoPaciente from './pages/NovoPaciente';
 import NovaConsulta from './pages/NovaConsulta';
 import NovoTreino from './pages/NovoTreino';
 import Profile from './frontoffice/Profile';
-import EditProfile from './frontoffice/EditProfile';
 
 import { AuthContext } from './context/auth';
 import PrivateRoute from './PrivateRoute';
@@ -38,12 +36,10 @@ export default function Routes() {
               <PrivateRoute path="/consultas/:id" component={Consulta} />
               <PrivateRoute path="/treinos/:id" component={Treino} />
               <PrivateRoute path="/estatisticas" component={Estatisticas} />
-              <PrivateRoute path="/novoPaciente" component={NovoPaciente} />
               <PrivateRoute path="/novaConsulta/:id" component={NovaConsulta} />
               <PrivateRoute path="/novoTreino/:id" component={NovoTreino} />
 
               <PrivateRoute path="/profile/:id" component={Profile} />
-              <PrivateRoute patt="/editProfile/:id" component={EditProfile} />
 
           </Switch>
         </BrowserRouter>  

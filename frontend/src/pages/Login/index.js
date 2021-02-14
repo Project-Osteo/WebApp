@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
@@ -48,10 +48,10 @@ export default function Login(){
             <form>
                 <h1>OSTEOCLINIC</h1>
 
-                <input placeholder="E-mail" value={email} onChange={(e) => {
+                <input placeholder="E-mail" type="email" value={email} onChange={(e) => {
                     setEmail(e.target.value);
                 }} />
-                <input placeholder="Password" value={password} onChange={(e) => {
+                <input placeholder="Password" type="password" value={password} onChange={(e) => {
                     setPassword(e.target.value);
                 }} />
                 <a type="submit" onClick={login}>LOGIN</a>

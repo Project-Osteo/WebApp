@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
 import Navbar from 'react-bootstrap/Navbar';
-import { Form, Nav, Button, Col } from 'react-bootstrap';
+import { Form, Nav, Button, Col, Modal } from 'react-bootstrap';
 import axios from 'axios';
 
 import './styles.css';
@@ -10,19 +9,20 @@ import './styles.css';
 export default function NovaConsulta (){
     let { id } = useParams();
 
-    const history = useHistory();
-
     const [data, setData] = useState('');
     const [descricao, setDescricao] = useState('');
     const [tratamento, setTratamento] = useState('');
     const [rec, setRec] = useState('');
     const [obs, setObs] = useState('');
+
+    const [showSave, setShowSave] = useState(false);
+    const handleCloseSave = () => setShowSave(false);
+    const handleShowSave = () => setShowSave(true);
     
 
     const submitConsulta = async () => {
         let res = await axios.post(`http://localhost:3001/consultas/${id}`,
         { data_consulta: data, descricao_consulta: descricao, tratamento: tratamento, obs_consulta: obs, recomendacao: rec })
-            /*history.push(`/pacientes/${id}`);*/
             console.log(res);
     }
 
@@ -30,25 +30,6 @@ export default function NovaConsulta (){
         <div className="novaConsulta-container">
 
             <header>
-                {/*<span><b>OSTEOCLINIC</b></span>
-
-                <div className="btn-group">
-                    <Link type="button" to={'/pacientes/' + id}>
-                        <FiArrowLeft size={55} color="#41414d" />
-                    </Link>
-
-                    <Link type="button" to="/homepage">
-                        <FiHome size={55} color="#41414d"></FiHome>
-                    </Link>
-
-                    <Link type="button" to="/settings">
-                        <FiSettings size={55} color="#41414d"></FiSettings>
-                    </Link>
-
-                    <Link type="button" to="/">
-                        <FiPower size={55} color="#41414d"></FiPower>
-                    </Link>
-                </div>*/}
 
                 <Navbar bg="light" expand="lg">
                 <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
@@ -66,38 +47,6 @@ export default function NovaConsulta (){
 
             <div className="content">
                 
-                {/*<form class="myForm2" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
-
-                    <label>Descrição da consulta
-                    <textarea type="text" name="descricao Consulta" cols="40" rows="5" value={descricao}
-                       onChange={(e) => setDescricao(e.target.value)}/>
-                    </label>
-
-                    <label>Tratamento
-                    <textarea type="text" name="tratamento" cols="40" rows="5" value={tratamento}
-                       onChange={(e) => setTratamento(e.target.value)}/>
-                    </label>
-
-                    <label>Recomendações
-                    <textarea type="text" name="recomendacoes" cols="40" rows="5" value={rec}
-                       onChange={(e) => setRec(e.target.value)}/>
-                    </label>
-
-                    <label>Observações
-                    <textarea type="text" name="observacoes" cols="40" rows="5" value={obs}
-                       onChange={(e) => setObs(e.target.value)}/>
-                    </label>
-
-                    <label>Data da Consulta(AAAA-MM-DD)
-                    <input type="text" name="observacoes" cols="40" rows="5" value={data}
-                       onChange={(e) => setData(e.target.value)}/>
-                    </label>
-
-                    <p><Link type="submit" onClick={submitConsulta}>ADICIONAR CONSULTA</Link></p>
-                </form>*/}
-
-            
-
                 <Form>
                     <Form.Group controlId="dataConsulta">
                         <Col sm="4">
@@ -135,11 +84,26 @@ export default function NovaConsulta (){
                         </Col>
                     </Form.Group>
                     <Col sm="2">
-                    <Button variant="secondary" type="submit" onClick={submitConsulta} href={'/pacientes/' + id}>
-                        Guardar
+                    <Button variant="secondary" onClick={handleShowSave}>
+                        Adicionar
                     </Button>
                     </Col>
                 </Form>
+
+                <Modal show={showSave} onHide={handleCloseSave}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Adicionar Nova Consulta</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Deseja mesmo adicionar esta consulta ?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseSave}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={submitConsulta} href={'/pacientes/' + id}>
+                            Adicionar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
             </div>
         </div>

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower, FiArrowLeft, FiEdit2, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as ReactBootStrap from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card'
-import { Nav, Col, Form, Button, Modal, Row, CardGroup } from 'react-bootstrap';
+import { Nav, CardGroup } from 'react-bootstrap';
 import axios from "axios";
  
 import './styles.css';
 
 export default function Estatisticas () {
+
+    function logOut() {
+      localStorage.removeItem("tokens");
+      window.location.reload();
+    }
 
     const [statsInfo, setStatsInfo] = useState({});
 
@@ -62,6 +64,7 @@ export default function Estatisticas () {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                 <Nav.Link href="/homepage">Homepage</Nav.Link>
+                <Nav.Link onClick={logOut}>Logout</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -72,7 +75,7 @@ export default function Estatisticas () {
         <CardGroup>
           <Card>
             <Card.Body>
-              <Card.Title style={{ fontSize: '50px' }}>{numPacientes}</Card.Title>
+              <Card.Title style={{ fontSize: '50px' }}>#{numPacientes}</Card.Title>
               <Card.Text style={{ fontSize: '20px' }}>
                 Número de pacientes registados na aplicação.
               </Card.Text>
@@ -88,7 +91,7 @@ export default function Estatisticas () {
           </Card>
           <Card>
             <Card.Body>
-              <Card.Title style={{ fontSize: '50px' }}>{numFeedbacks}</Card.Title>
+              <Card.Title style={{ fontSize: '50px' }}>#{numFeedbacks}</Card.Title>
               <Card.Text style={{ fontSize: '20px' }}>
                 Número de feedbacks atribuídos às consultas.
               </Card.Text>
@@ -96,7 +99,7 @@ export default function Estatisticas () {
           </Card>
           <Card>
             <Card.Body>
-              <Card.Title style={{ fontSize: '50px' }}>{numTreinos}</Card.Title>
+              <Card.Title style={{ fontSize: '50px' }}>#{numTreinos}</Card.Title>
               <Card.Text style={{ fontSize: '20px' }}>
                 Número de treinos que foram atribuídos.
               </Card.Text>

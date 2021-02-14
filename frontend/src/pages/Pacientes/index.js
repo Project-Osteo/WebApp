@@ -151,22 +151,6 @@ export default function Pacientes() {
 
             <header>
 
-                {/*<span><h1>OSTEOCLINIC</h1></span>
-
-                <div className="btn-group">
-                    <Link type="button" to="/homepage">
-                        <FiHome size={55} color="#41414d"></FiHome>
-                    </Link>
-
-                    <Link type="button" to="/settings"> 
-                        <FiSettings size={55} color="#41414d"></FiSettings>
-                    </Link>
-
-                    <Link type="button">
-                        <FiPower size={55} color="#41414d"></FiPower>
-                    </Link>
-                </div>*/}
-
                 <Navbar bg="light" expand="lg">
                 <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -313,7 +297,7 @@ export default function Pacientes() {
                             <tr>
                                 <th>#</th>
                                 <th>Data da Consulta</th>
-                                <th width="500" tdStyle={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>Descrição da Consulta</th>
+                                <th width="500" tdstyle={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>Descrição da Consulta</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -336,112 +320,10 @@ export default function Pacientes() {
                             {treinosAtuais.map(renderTreino)}
                         </tbody>
                     </Table>
-                    <ItemsPage itemsPorPagina={treinosPorPagina} totalItems={listatreinos.length} paginate={paginate} />
+                    <ItemsPage itemsPorPagina={treinosPorPagina} totalItems={listatreinos.length} paginate={paginate} current={paginaAtual} />
                 </div>
                     
             </div>
-
-                   {/*<div className="card text-white bg-secondary mb-3"> 
-                <div className="card-header">
-                    <h3>{pacienteInfo.id_paciente}. <b>{pacienteInfo.nome}</b>
-                        <FiEdit2 type="button" size={20} onClick={showPacienteInputUpdate}></FiEdit2>
-                        <FiTrash2 type="button" size={20} onClick={deletePaciente}></FiTrash2>
-                    </h3>
-                </div>
-
-                <div className="card-body" id="infoPaciente">
-                    <p><b>Sexo:</b> {pacienteInfo.sexo}</p>
-
-                    <p><b>Nacionalidade:</b> {pacienteInfo.nacionalidade}</p>
-
-                    <p><b>Localidade:</b> {pacienteInfo.localidade}</p>
-
-                    <p><b>Telemóvel:</b> {pacienteInfo.telemovel}</p>
-
-                    <p><b>Peso(kg):</b> {pacienteInfo.peso}</p>
-
-                    <p><b>Altura(m):</b> {pacienteInfo.altura}</p>
-                </div>
-
-                <div className="formUpdate" id="updatePaciente">
-                    <p><b>Nome:</b> <input type="text" name="nome" value={nome} 
-                        onChange={(e) => setNome(e.target.value)} /></p>
-
-                    <p><b>Sexo:</b> <input type="text" name="sexo" value={sexo}
-                       onChange={(e) => setSexo(e.target.value)} /></p>    
-
-                    <p><b>Nacionalidade:</b> <input type="text" name="nacionalidade" value={nacionalidade}
-                        onChange={(e) => setNacionalidade(e.target.value)} /></p>    
-
-                    <p><b>Localidade:</b> <input type="text" name="localidade" value={localidade}
-                        onChange={(e) => setLocalidade(e.target.value)} /></p>
-
-                    <p><b>Telemóvel:</b> <input type="text" name="telemovel" value={telemovel}
-                       onChange={(e) => setTelemovel(e.target.value)} /></p>
-
-                    <p><b>Peso(kg):</b> <input type="number" name="peso" value={peso}
-                       onChange={(e) => setPeso(e.target.valueAsNumber)} /></p>       
-
-                    <p><b>Altura(m):</b> <input type="number" name="altura" value={altura}
-                        onChange={(e) => setAltura(e.target.valueAsNumber)} /></p>
-
-                    <FiSave type="button" size={20} onClick={updatePaciente}></FiSave>
-                </div>
-            </div>*/}
-
-            {/*<div className="btn-container">                
-                <button type="buton"  onClick={() => showConsultas()}>
-                    CONSULTAS
-                </button>
-
-                <button type="buton" onClick={() => showTreinos()}>
-                    TREINOS
-                </button>
-            </div>*/}
-
-            {/*<div className="consultas"  id="listaConsultas">
-                <Link type="button" to={'/novaConsulta/' + pacienteInfo.id_paciente}>
-                    <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
-                </Link>
-
-                <FiSearch size={55} color="#41414d"></FiSearch>
-                
-                <div>
-                    <ReactBootStrap.Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Ident.</th>
-                                <th>Data da Consulta</th>
-                                <th>Descrição da Consulta</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {listaconsultas.map(renderConsulta)}
-                        </tbody>
-                    </ReactBootStrap.Table>
-                </div>
-            </div>*/}
-
-            {/*<div className="treinos"  id="listaTreinos">
-                <Link type="button" to={'/novoTreino/' + pacienteInfo.id_paciente}>
-                    <FiPlusSquare size={55} color="#41414d"></FiPlusSquare>
-                </Link>*
-
-                <div>
-                    <ReactBootStrap.Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Ident.</th>
-                                <th>Data do Treino</th>
-                                <th>Tipo de Treino</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {listatreinos.map(renderTreino)}
-                        </tbody>
-                    </ReactBootStrap.Table>
-                </div>
-        </div>*/}
 
         </div>
     );

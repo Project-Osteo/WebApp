@@ -13,8 +13,21 @@
 
 .profile-container .container {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 80px;
     background: #f8f9fa;
     padding: 25px;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.statsProfile {
+    width: 60%;
+    padding: 20px;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+#formUpdatePaciente {
+    display: none;
 }

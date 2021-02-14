@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower, FiArrowLeft } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
-import { Form, Nav, Button, Col } from 'react-bootstrap';
+import { Form, Nav, Button, Col, Modal } from 'react-bootstrap';
 import axios from 'axios';
 
 import './styles.css';
@@ -10,17 +9,18 @@ import './styles.css';
 export default function NovoTreino (){
     let { id } = useParams();
 
-    const history = useHistory();
-
     const [data, setData] = useState('');
     const [descricao, setDescricao] = useState('');
     const [tipo, setTipo] = useState('');
     const [obs, setObs] = useState('');
 
+    const [showSave, setShowSave] = useState(false);
+    const handleCloseSave = () => setShowSave(false);
+    const handleShowSave = () => setShowSave(true);
+
     const submitTreino = async () => {
         let res = await axios.post(`http://localhost:3001/treinos/${id}`,
         { data_treino: data, descricao_treino: descricao, tipo_treino: tipo, obs_treino: obs})
-            /*history.push(`/pacientes/${id}`);*/
             console.log(res);
     }
 
@@ -28,25 +28,6 @@ export default function NovoTreino (){
        <div className="novoTreino-container">
 
             <header>
-
-
-                {/*<div className="btn-group">
-                    <Link type="button" to={'/pacientes/' + id}>
-                        <FiArrowLeft size={55} color="#41414d" />
-                    </Link>
-
-                    <Link type="button" to="/homepage">
-                        <FiHome size={55} color="#41414d"></FiHome>
-                    </Link>
-
-                    <Link type="button" to="/settings">
-                        <FiSettings size={55} color="#41414d"></FiSettings>
-                    </Link>
-
-                    <Link type="button" to="/">
-                        <FiPower size={55} color="#41414d"></FiPower>
-                    </Link>
-                </div>*/}
 
                 <Navbar bg="light" expand="lg">
                 <Navbar.Brand><b>OSTEOCLINIC</b></Navbar.Brand>
@@ -63,37 +44,6 @@ export default function NovoTreino (){
             </header>
 
             <div className="content">
-                
-                {/*<form className="myForm2" encType="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
-
-                    <label>TIPO DE TREINO
-                    <input type="text" name="tipo" list="optionslist" value={tipo}
-                       onChange={(e) => setTipo(e.target.value)}/>
-                    <datalist id="optionslist">
-                        <option value="Recuperação" />
-                        <option value="Fortalecimento" />
-                        <option value="Rotina" />
-                    </datalist>
-                    </label>
-
-                    <label>DESCRIÇÃO DO TREINO
-                    <textarea type="text" name="descricao" cols="40" rows="5" value={descricao}
-                       onChange={(e) => setDescricao(e.target.value)}/>
-                    </label>
-
-                    <label>OBSERVAÇÕES
-                    <textarea type="text" name="observacoes" cols="40" rows="5" value={obs}
-                       onChange={(e) => setObs(e.target.value)}/>
-                    </label>
-
-                    <label>DATA DO TREINO(AAAA-MM-DD)
-                    <input type="text" name="observacoes" cols="40" rows="5" value={data}
-                       onChange={(e) => setData(e.target.value)}/>
-                    </label>
-
-                    <p><Link type="submit" onClick={submitTreino}>ADICIONAR TREINO</Link></p>
-                </form>*/}
-
 
                 <Form>
                 <Form.Row>
@@ -127,11 +77,26 @@ export default function NovoTreino (){
                     </Col>
                 </Form.Group>
                 <Col sm="2">
-                <Button variant="secondary" type="submit" onClick={submitTreino} href={'/pacientes/' + id}>
+                <Button variant="secondary" onClick={handleShowSave}>
                     Guardar
                 </Button>
                 </Col>
                 </Form>
+
+                <Modal show={showSave} onHide={handleCloseSave}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Adicionar Novo Treino</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Deseja mesmo adicionar este treino ?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseSave}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={submitTreino} href={'/pacientes/' + id}>
+                            Adicionar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
             </div>
         </div>

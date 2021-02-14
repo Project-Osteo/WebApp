@@ -15,7 +15,6 @@ export default function Consulta () {
     const history = useHistory();
 
     const [consultaInfo, setConsultaInfo] = useState({});
-    const [feedbackInfo, setFeedbackInfo] = useState({});
 
     const [listaFeedbacks, setListaFeedbacks] = useState([]);
  
@@ -25,9 +24,6 @@ export default function Consulta () {
     const [recomendacao, setRec] = useState(consultaInfo.recomendacao);
     const [obsConsulta, setObs] = useState(consultaInfo.obsConsulta);
     const [nomePaciente, setNomePaciente] = useState(consultaInfo.nome)
-
-    const [mensagem, setMensagem] = useState(feedbackInfo.mensagem);
-    const [dataHora, setDataHora] = useState(feedbackInfo.dataHora);
 
     const [showUpdate, setShowUpdate] = useState(false);
     const handleCloseUpdate = () => setShowUpdate(false);
@@ -70,10 +66,6 @@ export default function Consulta () {
             setListaFeedbacks(response.data);
         });
     }, []);
-
-    function showFeedbacks () {
-        document.getElementById("feedbacks").style.display = 'block';
-    }
 
     const renderFeedback = (feedbacks, index) => {
         return (
