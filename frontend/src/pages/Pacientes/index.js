@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
-import { FiHome, FiSettings, FiPlusSquare, FiPower, FiEdit2, FiTrash2, FiSave, FiSearch } from 'react-icons/fi';
+import { useHistory, useParams } from 'react-router-dom';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as ReactBootStrap from "react-bootstrap";
 import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar';
 import Table from 'react-bootstrap/Table';

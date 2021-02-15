@@ -107,7 +107,7 @@ export default function Consulta () {
 
                 <Form>
                     <Form.Group as={Row}>
-                        <Form.Label column sm={11}><b>#{consultaInfo.id_consulta} - {consultaInfo.nome}</b>
+                        <Form.Label column sm={11}><b>Consulta #{consultaInfo.id_consulta} - {consultaInfo.nome}</b>
                         </Form.Label>
                         <Col sm={1}>
                             <FiTrash2 type="button" size={20} onClick={handleShowDelete}></FiTrash2>
@@ -122,28 +122,28 @@ export default function Consulta () {
                     </Form.Group>
                     <Form.Group controlId="descricaoConsulta">
                         <Col sm="12">
-                        <Form.Label><b>Descrição da Consulta</b></Form.Label>
+                        <Form.Label><b>Descrição:</b></Form.Label>
                         <Form.Control as="textarea" rows={3} type="text" value={descricaoConsulta} 
                             onChange={(e) => setDescricao(e.target.value)} />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="tratamento">
                         <Col sm="12">
-                        <Form.Label><b>Tratamento</b></Form.Label>    
+                        <Form.Label><b>Tratamento:</b></Form.Label>    
                         <Form.Control as="textarea" rows={3} type="text" value={tratamento} 
                             onChange={(e) => setTratamento(e.target.value)} /> 
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="recomendacoes">
                         <Col sm="12">
-                        <Form.Label><b>Recomendações</b></Form.Label>   
+                        <Form.Label><b>Recomendações:</b></Form.Label>   
                         <Form.Control as="textarea" rows={3} type="text" value={recomendacao}
                             onChange={(e) => setRec(e.target.value)} />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="observacoes">
                         <Col sm="12">
-                        <Form.Label><b>Observações</b></Form.Label>
+                        <Form.Label><b>Observações:</b></Form.Label>
                         <Form.Control as="textarea" rows={3} type="text" value={obsConsulta}
                             onChange={(e) => setObs(e.target.value)} />
                         </Col>

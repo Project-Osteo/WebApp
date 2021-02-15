@@ -83,7 +83,7 @@ export default function Treino () {
             <div className="container">
                 <Form>
                     <Form.Group as={Row}>
-                        <Form.Label column sm={11}><b>#{treinoInfo.id_treino} - {treinoInfo.nome}</b>
+                        <Form.Label column sm={11}><b>Treino #{treinoInfo.id_treino} - {treinoInfo.nome}</b>
                         </Form.Label>
                         <Col sm={1}>
                             <FiTrash2 type="button" size={20} onClick={handleShowDelete}></FiTrash2>
@@ -92,14 +92,14 @@ export default function Treino () {
                     <Form.Row>
                         <Form.Group controlId="dataTreino">
                             <Col>
-                            <Form.Label>Data do Treino(AAAA-MM-DD)</Form.Label>
+                            <Form.Label><b>Data do Treino(AAAA-MM-DD)</b></Form.Label>
                             <Form.Control type="text" value={dataTreino}
                                 onChange={(e) => setData(e.target.value)} />
                             </Col>
                         </Form.Group>
                         <Form.Group controlId="tipoTreino">
                             <Col>
-                            <Form.Label>Tipo de Treino</Form.Label>
+                            <Form.Label><b>Tipo de Treino</b></Form.Label>
                             <Form.Control type="text" value={tipoTreino}
                                 onChange={(e) => setTipo(e.target.value)} />
                             </Col>
@@ -107,14 +107,14 @@ export default function Treino () {
                     </Form.Row>    
                     <Form.Group controlId="descricaoTreino">
                         <Col sm="12">
-                        <Form.Label>Descrição do Treino</Form.Label>
+                        <Form.Label><b>Descrição:</b></Form.Label>
                         <Form.Control as="textarea" rows={3} type="text" value={descricaoTreino} 
                             onChange={(e) => setDescricao(e.target.value)} />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="observacoes">
                         <Col sm="12">
-                        <Form.Label>Observações</Form.Label>    
+                        <Form.Label><b>Observações:</b></Form.Label>    
                         <Form.Control as="textarea" rows={3} type="text" value={obsTreino} 
                         onChange={(e) => setObs(e.target.value)} /> 
                         </Col>

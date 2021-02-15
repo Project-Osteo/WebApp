@@ -12,19 +12,6 @@
     margin-bottom: 30px;
 }
 
-.novaConsulta-container header .btn-group a {
-    height: 60px;
-    width: 60px;
-    border-radius: 8px;
-    border: 2px solid #dcdce6;
-    background: transparent;
-    margin-left: 2px;
-    margin-right: 2px;
-    transition: border-color 0.2s;
-    text-align: center;
-    float: left;
-}
-
 .novaConsulta-container .content {
     width: 100%;
     background: #f8f9fa;
@@ -34,12 +21,6 @@
     width: 100%;
     padding: 25px;
     border-radius: 10px;
-}
-
-.novaConsulta-container section form h1 {
-    font-size: 40px;
-    margin-bottom: 40px;
-    text-align: center;
 }
 
 .novaConsulta-container .content form input {
@@ -60,21 +41,3 @@
     padding: 0 25px;
     margin-bottom: 10px;
 }
-
-.novaConsulta-container .content  form p a {
-    width: 100%;
-    height: 70px;
-    background: #333;
-    border: 0;
-    border-radius: 8px;
-    color: #FFF;
-    font-weight: medium;
-    margin-top: 15px;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-    line-height: 60px;
-    padding: 0.3em;
-    float: right;
-} 

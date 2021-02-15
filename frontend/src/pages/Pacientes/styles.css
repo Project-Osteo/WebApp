@@ -12,19 +12,6 @@
     margin-bottom: 30px;
 }
 
-.pacientes-container header .btn-group a {
-    height: 60px;
-    width: 60px;
-    border-radius: 8px;
-    border: 2px solid #dcdce6;
-    background: transparent;
-    margin-left: 2px;
-    margin-right: 2px;
-    transition: border-color 0.2s;
-    text-align: center;
-    float: left;
-}
-
 .pacientesContainerInfo {
     display: flex;
     justify-content: space-between;
@@ -40,33 +27,6 @@
 
 #formUpdatePaciente {
     width: 40%;
-}
-
-.pacientes-container .info-paciente p {
-    margin-bottom: 5px;
-    font-size: 30px;
-}
-
-.pacientes-container .btn-container {
-    display: flex;
-    margin-bottom: 40px;
-}
-
-.pacientes-container .btn-container button {
-    width: 50%;
-    height: 70px;
-    background: #333;
-    border: 0;
-    border-radius: 8px;
-    color: #FFF;
-    font-weight: medium;
-    margin-top: 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-    line-height: 60px;
-    margin-left: 2px;
-    margin-right: 2px;
 }
 
 .consultas {

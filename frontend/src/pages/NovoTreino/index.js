@@ -49,14 +49,14 @@ export default function NovoTreino (){
                 <Form.Row>
                     <Form.Group controlId="dataTreino">
                         <Col>
-                        <Form.Label>Data do Treino(AAAA-MM-DD)</Form.Label>
+                        <Form.Label><b>Data do Treino(AAAA-MM-DD)</b></Form.Label>
                         <Form.Control type="text" value={data}
                             onChange={(e) => setData(e.target.value)} />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="tipoTreino">
                         <Col>
-                        <Form.Label>Tipo de Treino</Form.Label>
+                        <Form.Label><b>Tipo de Treino</b></Form.Label>
                         <Form.Control type="text" value={tipo}
                             onChange={(e) => setTipo(e.target.value)} />
                         </Col>
@@ -64,14 +64,14 @@ export default function NovoTreino (){
                 </Form.Row>    
                 <Form.Group controlId="descricaoTreino">
                     <Col sm="12">
-                    <Form.Label>Descrição do Treino</Form.Label>
+                    <Form.Label><b>Descrição do Treino</b></Form.Label>
                     <Form.Control as="textarea" rows={3} type="text" value={descricao} 
                         onChange={(e) => setDescricao(e.target.value)} />
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="observacoes">
                     <Col sm="12">
-                    <Form.Label>Observações</Form.Label>    
+                    <Form.Label><b>Observações</b></Form.Label>    
                     <Form.Control as="textarea" rows={3} type="text" value={obs} 
                        onChange={(e) => setObs(e.target.value)} /> 
                     </Col>
