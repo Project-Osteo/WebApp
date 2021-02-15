@@ -4,7 +4,7 @@ import { FiTrash2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card'
-import { Nav, Col, Form, Button, Modal, Row, CardGroup } from 'react-bootstrap';
+import { Nav, Col, Form, Button, Modal, Row } from 'react-bootstrap';
 import axios from "axios";
 
 import './styles.css';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams,useHistory } from 'react-router-dom';
-import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
+import { FiEdit2 } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card'
